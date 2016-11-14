@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  border: 1px solid black; }
+
+@font-face {
+  font-family: "defcon";
+  src: url("../fonts/defconzeropunchital.ttf"); }
+header .center-block {
+  background-image: url("../images/stars.jpeg");
+  background-color: #004E64;
+  background-position: 79% 269%; }
+
+h1 {
+  font-family: defcon;
+  color: #F9F9F9;
+  font-size: 50px; }
+
+header {
+  height: 118px; }
+
+.logo-bar {
+  height: 150px; }
+
+main {
+  height: 400px; }
+
+footer {
+  height: 100px; }
+
+.center-block {
+  width: 960px; }
+
+.container {
+  width: 100%; }
+
+/*# sourceMappingURL=style.css.map */
