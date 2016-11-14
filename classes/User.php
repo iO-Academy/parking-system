@@ -9,7 +9,16 @@ class User {
         $this->loggedIn = FALSE;
     }
 
-    //login function
+    /**
+     * validates user login details:
+     * if email and password match database then sets $loggedIn to TRUE
+     *
+     * @param DbConnector $database database connector object
+     * @param STRING $email user email
+     * @param STRING $password user password
+     *
+     * @throws Exception
+     */
     function login(DbConnector $database, $email, $password) {
 
         $sql = "SELECT * FROM `users` WHERE `email` = :email;";
