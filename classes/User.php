@@ -22,7 +22,10 @@ class User {
         }
     }
 
-    //TODO: logout function
+    public function logOut(){
+        //log out
+    }
+
 
     //TODO: change details function(s)
 }
