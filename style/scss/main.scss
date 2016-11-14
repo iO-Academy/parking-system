@@ -1,1 +1,18 @@
-//main
+main .container {
+  height: 100%;
+}
+
+.form {
+  height: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.person-select {
+  padding: 0;
+}
+
+.person-select .btn {
+  height: 50%;
+  width: 100%;
+}
