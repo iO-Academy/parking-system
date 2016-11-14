@@ -39,4 +39,12 @@ class User {
     }
 
     //TODO: change details function(s)
+
+    public function changeEmail($database, $newEmail){
+
+        $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
+        $query = $database->prepare($sql);
+        $query->execute([':email'=>$newEmail]);
+
+    }
 }
