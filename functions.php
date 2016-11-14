@@ -1,2 +1,0 @@
-<?php
-//validate login function
