@@ -52,6 +52,12 @@ class User {
 
     }
 
+    /**
+     * updates user password in database
+     *
+     * @param DbConnector $database database connector object
+     * @param STRING $newPassword password to add to database
+     */
     public function changePassword(DbConnector $database, $newPassword){
 
         $newPassword = $this->id . $newPassword;
