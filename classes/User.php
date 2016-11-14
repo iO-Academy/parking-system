@@ -38,6 +38,12 @@ class User {
         return $this->loggedIn;
     }
 
+    /**
+     * updates user email in database
+     *
+     * @param DbConnector $database database connector object
+     * @param STRING $newEmail email to add to database
+     */
     public function changeEmail(DbConnector $database, $newEmail){
 
         $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
