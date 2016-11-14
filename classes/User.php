@@ -38,13 +38,22 @@ class User {
         return $this->loggedIn;
     }
 
-    //TODO: change details function(s)
-
     public function changeEmail($database, $newEmail){
 
         $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
         $query = $database->prepare($sql);
         $query->execute([':email'=>$newEmail]);
+
+    }
+
+    public function changePassword($database, $newPassword){
+
+        $newPassword = $this->id . $newPassword;
+        $newPassword = sha1($newPassword);
+
+        $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
+        $query = $database->prepare($sql);
+        $query->execute([':password'=>$newPassword]);
 
     }
 }
