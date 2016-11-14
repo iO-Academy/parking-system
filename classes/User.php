@@ -14,9 +14,9 @@ class User {
         $encryptPass = sha1($encryptPass);
 
         if(empty($user)) {
-            //throw error = user does not exist
+            throw new Exception("user does not exist");
         } elseif($user["password"] != $encryptPass) {
-            //throw error = incorrect email and password combination
+            throw new Exception("incorrect email and password combination");
         } else {
             //login
         }
