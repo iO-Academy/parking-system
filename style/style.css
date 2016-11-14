@@ -1,6 +1,14 @@
 * {
   box-sizing: border-box; }
 
+.btn {
+  background-color: #004E64;
+  color: #2D2A32;
+  border: 3px solid #2D2A32; }
+
+.btn:hover {
+  color: #F9F9F9; }
+
 header {
   background-image: url("../images/stars.jpeg");
   background-color: #004E64;
@@ -12,8 +20,13 @@ header {
   height: 80px;
   margin-top: 18px; }
 
+header .btn {
+  float: right;
+  margin-right: 145px; }
+
 .logo-bar {
-  background-color: #47003D; }
+  background-color: #47003D;
+  border-top: 5px solid #F9F9F9; }
 
 footer {
   background-color: #47003D; }
@@ -28,15 +41,33 @@ main {
   height: 400px; }
 
 footer {
-  height: 100px; }
-
-.center-block {
-  width: 820px; }
+  height: 125px; }
 
 .container {
   width: 100%; }
 
 main {
   background-color: #F9F9F9; }
+
+.center-block {
+  width: 820px; }
+
+main .container {
+  height: 100%; }
+
+.form {
+  height: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.person-select {
+  padding: 0; }
+
+.person-select .btn {
+  height: 50%;
+  width: 100%; }
+
+.person-select .btn:first-child {
+  border-bottom: 0; }
 
 /*# sourceMappingURL=style.css.map */
