@@ -10,10 +10,10 @@ class User {
     }
 
     //login function
-    function login($database, $email, $password) {
+    function login(DbConnector $database, $email, $password) {
 
         $sql = "SELECT * FROM `users` WHERE `email` = :email;";
-        $query = $database->prepare($sql);
+        $query = $database->conn->prepare($sql);
         $query->execute([':email'=>$email]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -38,21 +38,21 @@ class User {
         return $this->loggedIn;
     }
 
-    public function changeEmail($database, $newEmail){
+    public function changeEmail(DbConnector $database, $newEmail){
 
         $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
-        $query = $database->prepare($sql);
+        $query = $database->conn->prepare($sql);
         $query->execute([':email'=>$newEmail]);
 
     }
 
-    public function changePassword($database, $newPassword){
+    public function changePassword(DbConnector $database, $newPassword){
 
         $newPassword = $this->id . $newPassword;
         $newPassword = sha1($newPassword);
 
         $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
-        $query = $database->prepare($sql);
+        $query = $database->conn->prepare($sql);
         $query->execute([':password'=>$newPassword]);
 
     }
