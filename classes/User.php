@@ -3,6 +3,7 @@
 class User {
 
     private $loggedIn;
+    private $id;
 
     public function __construct(){
         $this->loggedIn = FALSE;
@@ -25,6 +26,7 @@ class User {
             throw new Exception("incorrect email and password combination");
         } else {
             $this->loggedIn = TRUE;
+            $this->id = $user['id'];
         }
     }
 
