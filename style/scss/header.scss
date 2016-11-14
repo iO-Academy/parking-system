@@ -18,5 +18,8 @@ header .btn {
 
 .logo-bar {
   background-color: $logo-bar-bg;
-  border-top: 5px solid $snow;
+  -moz-box-shadow: 1px -4px 10px $logo-bar-border;
+  -webkit-box-shadow: 1px -4px 10px $logo-bar-border;
+  box-shadow: 1px -4px 10px $logo-bar-border;
+  border-top: 3px solid $logo-bar-border;
 }

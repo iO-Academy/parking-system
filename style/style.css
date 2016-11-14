@@ -26,7 +26,10 @@ header .btn {
 
 .logo-bar {
   background-color: #47003D;
-  border-top: 5px solid #F9F9F9; }
+  -moz-box-shadow: 1px -4px 10px #F9F9F9;
+  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
+  box-shadow: 1px -4px 10px #F9F9F9;
+  border-top: 3px solid #F9F9F9; }
 
 footer {
   background-color: #47003D; }
