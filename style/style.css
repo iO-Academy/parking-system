@@ -1,19 +1,16 @@
 * {
-  box-sizing: border-box;
-  border: 1px solid black; }
+  box-sizing: border-box; }
 
-@font-face {
-  font-family: "defcon";
-  src: url("../fonts/defconzeropunchital.ttf"); }
-header .center-block {
+header {
   background-image: url("../images/stars.jpeg");
   background-color: #004E64;
-  background-position: 79% 269%; }
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%; }
 
-h1 {
-  font-family: defcon;
-  color: #F9F9F9;
-  font-size: 50px; }
+.brand {
+  height: 80px;
+  margin-top: 18px; }
 
 header {
   height: 118px; }
@@ -28,7 +25,7 @@ footer {
   height: 100px; }
 
 .center-block {
-  width: 960px; }
+  width: 820px; }
 
 .container {
   width: 100%; }

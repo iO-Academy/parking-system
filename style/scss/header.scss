@@ -1,11 +1,12 @@
-header .center-block {
+header {
   background-image: url("../images/stars.jpeg");
-  background-color: $image-default;
-  background-position: 79% 269%;
+  background-color: #004E64;
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
-h1 {
-  font-family: defcon;
-  color: $h1-color;
-  font-size: 50px;
+.brand {
+  height: 80px;
+  margin-top: 18px;
 }
