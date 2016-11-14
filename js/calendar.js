@@ -10,6 +10,8 @@ $(function() {
         multidate: true,
         todayHighlight: true,
         clearBtn: true,
+        startDate: $date,
+        todayBtn: true,
         defaultViewDate: { month: $month }});
 
     $fromDate.on("changeDate", function() {
@@ -22,6 +24,8 @@ $(function() {
         multidate: true,
         todayHighlight: true,
         clearBtn: true,
+        startDate: $date,
+        todayBtn: true,
         defaultViewDate: { month: $month + 1 }});
 
     $toDate.on("changeDate", function() {
