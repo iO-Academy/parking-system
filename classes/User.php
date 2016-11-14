@@ -2,6 +2,12 @@
 
 class User {
 
+    private $loggedIn;
+
+    public function __construct(){
+        $this->loggedIn = FALSE;
+    }
+
     //login function
     function login($database, $email, $password) {
 
@@ -18,14 +24,17 @@ class User {
         } elseif($user["password"] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
-            //login
+            $this->loggedIn = TRUE;
         }
     }
 
     public function logOut(){
-        //log out
+        $this->loggedIn = FALSE;
     }
 
+    public function getLoggedIn(){
+        return $this->loggedIn;
+    }
 
     //TODO: change details function(s)
 }
