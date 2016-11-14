@@ -12,6 +12,12 @@ header {
   height: 80px;
   margin-top: 18px; }
 
+.logo-bar {
+  background-color: #47003D; }
+
+footer {
+  background-color: #47003D; }
+
 header {
   height: 118px; }
 
@@ -29,5 +35,8 @@ footer {
 
 .container {
   width: 100%; }
+
+main {
+  background-color: #F9F9F9; }
 
 /*# sourceMappingURL=style.css.map */
