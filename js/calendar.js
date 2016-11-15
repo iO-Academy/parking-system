@@ -26,12 +26,49 @@ $(function() {
         $('#fromSpan').text(
             $fromDate.datepicker('getFormattedDate')
         )
+        $toDate.datepicker()
         $toDate.datepicker('setStartDate', $fromDate.datepicker('getFormattedDate'))
+        // var $start = $('#fromCal .active.day')
+        // var $finish = $('#toCal .active.day')
+        // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
     })
 
     $toDate.on("changeDate", function() {
         $('#toSpan').text(
             $toDate.datepicker('getFormattedDate')
         )
+        // $start = $('#fromCal .active.day')
+        // $finish = $('#toCal .active.day')
+        // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
     })
+
+    function rangeHighlight($start, $finish) {
+        $('.selected', $toDate).removeClass('selected')
+        if (($('#fromCal .datepicker-switch').first().text()) === ($('#toCal .datepicker-switch').first().text())) {
+
+            $fromDate.find('td:contains(' + $finish.text() + ')').addClass('selected')
+            $toDate.find('td:contains(' + $start.text() + ')').addClass('selected')
+        }
+        if($start.length > 0 && $finish.length > 0) {
+            $start.nextUntil('.selected', 'td:not(.new)').css("background-color", "#EEEEEE")
+            $start.parent('tr').nextAll('tr').find('td:not(.new, .disabled)').each(function() {
+                if($(this).hasClass('.selected')) {
+                    return false
+                } else {
+                    $(this).css("background-color", "#EEEEEE")
+                }
+            })
+            $finish.prevUntil('.selected', 'td:not(.old)').css("background-color", "#EEEEEE")
+            $finish.parent('tr').prevAll('tr').find('td:not(.old, .disabled)').each(function() {
+                if($(this).hasClass('.selected')) {
+                    return false
+                } else {
+                    $(this).css("background-color", "#EEEEEE")
+                }
+            })
+        }
+    }
+
 })
+
+
