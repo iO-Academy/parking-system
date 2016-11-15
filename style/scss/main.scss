@@ -20,3 +20,12 @@ main .container {
 .person-select .btn:first-child {
   border-bottom: 0;
 }
+
+.date-select,
+.time-select {
+  border: 1px solid $orioles-orange;
+}
+
+.book-btn {
+  margin-top: 22.5%;
+}
