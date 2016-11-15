@@ -11,15 +11,14 @@ header {
   margin-top: 18px;
 }
 
-header .btn {
-  float: right;
-  margin-right: 145px;
-}
-
 .logo-bar {
   background-color: $logo-bar-bg;
   -moz-box-shadow: 1px -4px 10px $logo-bar-border;
   -webkit-box-shadow: 1px -4px 10px $logo-bar-border;
   box-shadow: 1px -4px 10px $logo-bar-border;
   border-top: 3px solid $logo-bar-border;
+}
+
+.logo-bar .btn {
+  float: right;
 }
