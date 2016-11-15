@@ -43,12 +43,16 @@ footer {
   background-color: #283f69;
   color: #F9F9F9; }
   footer h4 {
-    position: absolute;
-    bottom: 3px;
-    left: 5px;
+    margin-top: 158px;
+    margin-left: 20px;
+    float: left;
     padding: 0;
-    margin: 0;
     font-size: 11px; }
+  footer img {
+    height: 30%;
+    margin-top: 118px;
+    margin-left: 20px;
+    float: right; }
 
 main .container {
   height: 100%;
