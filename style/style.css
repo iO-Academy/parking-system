@@ -13,6 +13,10 @@ h1 {
   font-size: 100px;
   color: #e3e3e3; }
 
+h2 {
+  margin-bottom: 20px;
+  text-align: center; }
+
 .logo-bar .container {
   text-align: center; }
 
@@ -105,8 +109,10 @@ main .container {
 .account-details {
   background-color: #9cc7df;
   padding: 15px; }
-  .account-details h2 {
-    margin-bottom: 20px;
-    text-align: center; }
+
+.bookings {
+  background-color: #d25e4e;
+  padding: 15px;
+  margin-top: 15px; }
 
 /*# sourceMappingURL=style.css.map */
