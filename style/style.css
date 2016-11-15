@@ -50,26 +50,6 @@ footer {
     margin: 0;
     font-size: 11px; }
 
-header {
-  height: 180px; }
-
-.logo-bar {
-  height: 180px; }
-
-main {
-  height: 600px;
-  background-color: #F9F9F9; }
-
-footer {
-  height: 180px; }
-
-.container {
-  width: 100%;
-  height: 100%; }
-
-.center-block {
-  width: 960px; }
-
 main .container {
   height: 100%;
   padding-top: 30px; }
@@ -131,5 +111,36 @@ main .container {
   left: -39px;
   position: absolute;
   bottom: 13px; }
+
+header {
+  height: 180px; }
+
+.logo-bar {
+  height: 180px; }
+
+main {
+  height: 600px;
+  background-color: #F9F9F9; }
+
+footer {
+  height: 180px; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.center-block {
+  width: 960px; }
+
+#timePicker {
+  border: 1px solid black;
+  padding-top: 10px; }
+
+.form-inline {
+  text-align: center; }
+
+#fullDayContainer {
+  margin-top: 20px;
+  text-align: right; }
 
 /*# sourceMappingURL=style.css.map */
