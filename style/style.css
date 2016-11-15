@@ -39,29 +39,20 @@ header {
   float: right; }
 
 footer {
-  background-color: #283f69; }
-
-header {
-  height: 180px; }
-
-.logo-bar {
-  height: 180px; }
-
-main {
-  height: 600px; }
-
-footer {
-  height: 180px; }
-
-.container {
-  width: 100%;
-  height: 100%; }
-
-main {
-  background-color: #F9F9F9; }
-
-.center-block {
-  width: 960px; }
+  position: relative;
+  background-color: #283f69;
+  color: #F9F9F9; }
+  footer h4 {
+    margin-top: 158px;
+    margin-left: 20px;
+    float: left;
+    padding: 0;
+    font-size: 11px; }
+  footer img {
+    height: 30%;
+    margin-top: 118px;
+    margin-left: 20px;
+    float: right; }
 
 main .container {
   height: 100%;
@@ -82,14 +73,68 @@ main .container {
 .person-select .btn:first-child {
   border-bottom: 0; }
 
-.date-select {
+.time-date-select {
   border-left: none;
-  border-right: none; }
+  cursor: default; }
+
+.time-date-select:hover {
+  background-color: #e9f2f7; }
 
 .btn h2 {
   -webkit-transform: translateY(50%);
   -moz-transform: translateY(50%);
   transform: translateY(50%); }
+
+#alien-container {
+  position: relative;
+  height: 240px; }
+
+#alien {
+  width: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px; }
+
+#speech-bubble {
+  background-color: #9cc7df;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  height: 140px;
+  padding: 10px;
+  margin-top: 32px; }
+  #speech-bubble p {
+    font-size: 16px; }
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 20px 40px;
+  border-color: transparent transparent #9cc7df transparent;
+  left: -39px;
+  position: absolute;
+  bottom: 13px; }
+
+header {
+  height: 180px; }
+
+.logo-bar {
+  height: 180px; }
+
+main {
+  height: 600px;
+  background-color: #F9F9F9; }
+
+footer {
+  height: 180px; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.center-block {
+  width: 960px; }
 
 #timePicker {
   border: 1px solid black;
