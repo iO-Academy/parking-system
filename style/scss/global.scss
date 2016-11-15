@@ -1,5 +1,5 @@
 .btn {
-  background-color: $button-color;
+  background-color: $button-bg;
   color: $button-text;
   border-top: 2px solid $button-outline-tl;
   border-left: 2px solid $button-outline-tl;
@@ -8,7 +8,8 @@
 }
 
 .btn:hover {
-  color: $snow;
+  background-color: $button-bg-hover;
+  color: $button-text-hover;
 }
 
 

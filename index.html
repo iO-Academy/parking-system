@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/bootstrap-datepicker.min.js"></script>
+    <script src="js/vendor/bootstrap-datepicker.en-GB.min.js"></script>
+    <script src="js/calendar.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <title>Space Book</title>
 </head>
@@ -19,20 +24,39 @@
     </div>
     <main>
         <div class="container center-block">
-            <div class="col-md-3 person-select form">
-                <a class="btn" href="#">
-                    <h2>Staff</h2>
-                </a>
-                <a class="btn" href="#">
-                    <h2>Visitor</h2>
-                </a>
+            <div id="filters">
+                <div class="col-md-3 person-select form">
+                    <button class="btn btn-default" href="#" id="staffButton">Staff</button>
+                    <button class="btn btn-d  efault" href="#" id="visitorButton">Visitor</button>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-7 offset-md-2 date-select form" id="staff-container">
+                    <div id="staffPicker" class="input-group input-daterange">
+                        <div class="datepicker pull-left" id="fromCal">From: <span id="fromSpan"></span></div>
+                        <div class="datepicker pull-left" id="toCal">To: <span id="toSpan"></span></div>
+                    </div>
+                </div>
+                <div class="col-md-7 offset-md-2 date-select form" id="visitor-container">
+                    <div id="visitorPicker" class="input-group input-daterange">
+                        <div class="datepicker pull-left" id="visitorCal">Date: <span id="visitorSpan"></span></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-5 date-select form btn"></div>
-            <div class="col-md-3 time-select form btn"></div>
-            <img src="#" alt="#">
+            <div class="col-md-3" id="alien-container">
+                <img id="alien" src="images/alien.svg" alt="alien">
+            </div>
+            <div class="col-md-6" id="speech-bubble">
+                <div class="triangle"></div>
+                <p>Available spaces:</p>
+            </div>
         </div>
     </main>
     <footer>
+        <div class="container center-block">
+            <img src="images/logo_mayden.png" alt="mayden">
+            <img src="images/logo-academy-solo.png" alt="mayden academy">
+            <h4>Icon made by Freepik from www.flaticon.com</h4>
+        </div>
     </footer>
 </body>
 </html>
