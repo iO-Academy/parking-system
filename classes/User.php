@@ -6,6 +6,12 @@ class User {
     private $id;
     private $pdo;
 
+
+    /**
+     * sets class variables
+     *
+     * @param PDO $pdo database connection
+     */
     public function __construct(PDO $pdo){
         $this->loggedIn = FALSE;
         $this->pdo = $pdo;
