@@ -91,4 +91,15 @@ main .container {
   -moz-transform: translateY(50%);
   transform: translateY(50%); }
 
+#timePicker {
+  border: 1px solid black;
+  padding-top: 10px; }
+
+.form-inline {
+  text-align: center; }
+
+#fullDayContainer {
+  margin-top: 20px;
+  text-align: right; }
+
 /*# sourceMappingURL=style.css.map */

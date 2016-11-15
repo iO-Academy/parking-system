@@ -5,7 +5,7 @@ $(function() {
     var $fromMinutes = $('#fromMinutes')
     var $toMinutes = $('#toMinutes')
 
-    $('#fullday').change(function () {
+    $('#fullDay').change(function () {
 
         $fromHours.prop("disabled", false).find('option').first().prop('selected', true)
         if(typeof(fromHours) != 'undefined') {

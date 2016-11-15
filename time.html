@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Time Selector</title>
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="style/style.css">
     <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
     <script type="text/javascript" src="js/timePicker.js"></script>
 </head>
 <body>
-<div class="col-md-12">
+<div class="col-md-2" id="timePicker">
     <div>
-        <h4>From</h4>
+        <h4>From:</h4>
         <form class="form-inline">
             <div class="form-group">
                 <select class="form-control timeInput" id="fromHours">
@@ -53,7 +54,7 @@
         </form>
     </div>
     <div>
-        <h4>To</h4>
+        <h4>To:</h4>
         <form class="form-inline">
             <div class="form-group">
                 <select class="form-control timeInput" id="toHours">
@@ -95,14 +96,14 @@
             </div>
         </form>
     </div>
-    <div>
+    <div id="fullDayContainer">
         <label>Full day</label>
-        <input type="checkbox" id="fullday">
+        <input type="checkbox" id="fullDay">
     </div>
-    <div>
-        <label>Duration of Stay:</label>
-        <p>?</p>
-    </div>
+    <!--<div>-->
+        <!--<label>Duration of Stay:</label>-->
+        <!--<p>?</p>-->
+    <!--</div>-->
 </div>
 </body>
 </html>
