@@ -29,3 +29,9 @@ main .container {
 .book-btn {
   margin-top: 29.5%;
 }
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%);
+}
