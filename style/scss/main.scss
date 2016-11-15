@@ -22,20 +22,9 @@ main .container {
   border-bottom: 0;
 }
 
-.date-select,
-.time-select {
-  background-color: $pop-out-color;
-  border: 3px solid $button-outline;
-}
-
 .date-select {
   border-left: none;
   border-right: none;
-}
-
-.book-btn {
-  margin-top: 29.5%;
-  border-left: none;
 }
 
 .btn h2 {

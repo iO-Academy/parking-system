@@ -1,7 +1,10 @@
 .btn {
-  background-color: #004E64;
-  color: #2D2A32;
-  border: 3px solid #2D2A32; }
+  background-color: #F9F9F9;
+  color: #627391;
+  border-top: 2px solid #9cc7df;
+  border-left: 2px solid #9cc7df;
+  border-right: 2px solid #d25e4e;
+  border-bottom: 2px solid #d25e4e; }
 
 .btn:hover {
   color: #F9F9F9; }
@@ -78,18 +81,9 @@ main .container {
 .person-select .btn:first-child {
   border-bottom: 0; }
 
-.date-select,
-.time-select {
-  background-color: #F34213;
-  border: 3px solid #2D2A32; }
-
 .date-select {
   border-left: none;
   border-right: none; }
-
-.book-btn {
-  margin-top: 29.5%;
-  border-left: none; }
 
 .btn h2 {
   -webkit-transform: translateY(50%);

@@ -1,7 +1,10 @@
 .btn {
   background-color: $button-color;
   color: $button-text;
-  border: 3px solid $button-outline;
+  border-top: 2px solid $button-outline-tl;
+  border-left: 2px solid $button-outline-tl;
+  border-right: 2px solid $button-outline-br;
+  border-bottom: 2px solid $button-outline-br;
 }
 
 .btn:hover {
