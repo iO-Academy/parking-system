@@ -1,36 +1,107 @@
-* {
-  box-sizing: border-box;
-  border: 1px solid black; }
-
-@font-face {
-  font-family: "defcon";
-  src: url("../fonts/defconzeropunchital.ttf"); }
-header .center-block {
-  background-image: url("../images/stars.jpeg");
+.btn {
   background-color: #004E64;
-  background-position: 79% 269%; }
+  color: #2D2A32;
+  border: 3px solid #2D2A32; }
 
-h1 {
-  font-family: defcon;
-  color: #F9F9F9;
-  font-size: 50px; }
+.btn:hover {
+  color: #F9F9F9; }
 
 header {
-  height: 118px; }
+  background-image: url("../images/stars.jpeg");
+  background-color: #004E64;
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -moz-box-shadow: 1px -4px 10px #283f69;
+  -webkit-box-shadow: 1px -4px 10px #283f69;
+  box-shadow: 1px -4px 10px #283f69; }
+
+.brand {
+  height: 80px;
+  margin-top: 18px; }
 
 .logo-bar {
-  height: 150px; }
+  background-color: #283f69;
+  -moz-box-shadow: 1px -4px 10px #F9F9F9;
+  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
+  box-shadow: 1px -4px 10px #F9F9F9; }
+  .logo-bar img {
+    position: absolute;
+    width: 284px;
+    left: 338px; }
+  .logo-bar .container {
+    position: relative;
+    height: 100%; }
 
-main {
-  height: 400px; }
+.logo-bar .btn {
+  float: right; }
 
 footer {
-  height: 100px; }
+  background-color: #283f69;
+  -moz-box-shadow: 1px -4px 10px #283f69;
+  -webkit-box-shadow: 1px -4px 10px #283f69;
+  box-shadow: 1px -4px 10px #283f69; }
+
+header {
+  height: 130px; }
+
+.logo-bar {
+  height: 180px; }
+
+main {
+  height: 600px; }
+
+footer {
+  height: 180px; }
+
+.container {
+  width: 100%; }
+
+main {
+  background-color: #F9F9F9; }
 
 .center-block {
   width: 960px; }
 
-.container {
+main .container {
+  height: 100%; }
+
+main {
+  -moz-box-shadow: 1px -4px 10px #F9F9F9;
+  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
+  box-shadow: 1px -4px 10px #F9F9F9; }
+
+.form {
+  height: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.person-select {
+  padding: 0; }
+
+.person-select .btn {
+  height: 50%;
   width: 100%; }
+
+.person-select .btn:first-child {
+  border-bottom: 0; }
+
+.date-select,
+.time-select {
+  background-color: #F34213;
+  border: 3px solid #2D2A32; }
+
+.date-select {
+  border-left: none;
+  border-right: none; }
+
+.book-btn {
+  margin-top: 29.5%;
+  border-left: none; }
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%); }
 
 /*# sourceMappingURL=style.css.map */

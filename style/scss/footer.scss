@@ -1,0 +1,4 @@
+footer {
+  background-color: $footer-bg;
+  @include box-shadow-alt($box-shadow-alt);
+}
