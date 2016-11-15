@@ -22,9 +22,13 @@ main .container {
   border-bottom: 0;
 }
 
-.date-select {
+.time-date-select {
   border-left: none;
-  border-right: none;
+  cursor: default;
+}
+
+.time-date-select:hover {
+  background-color: $date-time-hover;
 }
 
 .btn h2 {

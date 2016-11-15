@@ -89,9 +89,12 @@ main .container {
 .person-select .btn:first-child {
   border-bottom: 0; }
 
-.date-select {
+.time-date-select {
   border-left: none;
-  border-right: none; }
+  cursor: default; }
+
+.time-date-select:hover {
+  background-color: #e9f2f7; }
 
 .btn h2 {
   -webkit-transform: translateY(50%);
