@@ -83,41 +83,37 @@ $(function() {
         }
     }
 
-    function slideRight() {
-        $('.date-select').animate({
+    function slideRight($el) {
+        $el.animate({
             right: '0',
         }, 1000)
     }
 
-    function slideLeft() {
-        $('.date-select').animate({
+    function slideLeft($el) {
+        $el.animate({
             right: '75%'
         }, 500)
     }
 
     $('#staffButton').click(function() {
-        console.log($('.date-select').css('right'))
         $(this).prop('disabled', true)
         $('#visitorButton').prop('disabled', false)
-        if($('.date-select').css('right') == '0px') {
-            slideLeft()
-            //Load Content
-            slideRight()
+        if($('#visitor-container').css('right') == '0px') {
+            slideLeft($('#visitor-container'))
+            slideRight($('#staff-container'))
         } else {
-            slideRight()
+            slideRight($('#staff-container'))
         }
     })
 
     $('#visitorButton').click(function() {
-        console.log($('.date-select').css('right'))
         $(this).prop('disabled', true)
         $('#staffButton').prop('disabled', false)
-        if($('.date-select').css('right') == '0px') {
-            slideLeft()
-            //Load Content
-            slideRight()
+        if($('#staff-container').css('right') == '0px') {
+            slideLeft($('#staff-container'))
+            slideRight($('#visitor-container'))
         } else {
-            slideRight()
+            slideRight($('#visitor-container'))
         }
     })
 })
