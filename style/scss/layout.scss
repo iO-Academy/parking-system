@@ -1,23 +1,28 @@
 header {
-  height: 118px;
+  height: 180px;
 }
 
 .logo-bar {
-  height: 150px;
+  height: 180px;
 }
 
 main {
-  height: 400px;
+  height: 600px;
 }
 
 footer {
-  height: 100px;
-}
-
-.center-block {
-  width: 960px;
+  height: 180px;
 }
 
 .container {
   width: 100%;
+  height: 100%;
+}
+
+main {
+  background-color: $main-bg;
+}
+
+.center-block {
+  width: 960px;
 }

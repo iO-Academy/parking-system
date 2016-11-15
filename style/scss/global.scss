@@ -1,6 +1,15 @@
-* {
-  box-sizing: border-box;
-  border: 1px solid black;
+.btn {
+  background-color: $button-bg;
+  color: $button-text;
+  border-top: 2px solid $button-outline-tl;
+  border-left: 2px solid $button-outline-tl;
+  border-right: 2px solid $button-outline-br;
+  border-bottom: 2px solid $button-outline-br;
+}
+
+.btn:hover {
+  background-color: $button-bg-hover;
+  color: $button-text-hover;
 }
 
 
