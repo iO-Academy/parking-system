@@ -106,7 +106,7 @@ main .container {
   -moz-transform: translateY(50%);
   transform: translateY(50%); }
 
-.account-details {
+#user-details {
   background-color: #9cc7df;
   padding: 15px;
   overflow: auto; }
@@ -116,7 +116,10 @@ main .container {
   padding: 15px;
   margin-top: 15px; }
 
-.account-details .btn {
+#user-details .btn {
   float: right; }
+
+#update-form {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

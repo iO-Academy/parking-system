@@ -1,4 +1,4 @@
-.account-details {
+#user-details {
   background-color: $account-details-background-color;
   padding: 15px;
   overflow: auto;
@@ -10,6 +10,10 @@
   margin-top: 15px;
   }
 
-.account-details .btn {
+#user-details .btn {
   float: right;
+}
+
+#update-form {
+  display: none;
 }
