@@ -1,0 +1,34 @@
+main .container {
+  height: 100%;
+  padding-top: 30px;
+}
+
+.form {
+  height: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.person-select {
+  padding: 0;
+}
+
+.person-select .btn {
+  height: 50%;
+  width: 100%;
+}
+
+.person-select .btn:first-child {
+  border-bottom: 0;
+}
+
+.date-select {
+  border-left: none;
+  border-right: none;
+}
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%);
+}

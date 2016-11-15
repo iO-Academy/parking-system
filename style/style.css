@@ -1,36 +1,105 @@
-* {
-  box-sizing: border-box;
-  border: 1px solid black; }
+.btn {
+  background-color: #F9F9F9;
+  color: #627391;
+  border-top: 2px solid #9cc7df;
+  border-left: 2px solid #9cc7df;
+  border-right: 2px solid #d25e4e;
+  border-bottom: 2px solid #d25e4e; }
 
-@font-face {
-  font-family: "defcon";
-  src: url("../fonts/defconzeropunchital.ttf"); }
-header .center-block {
-  background-image: url("../images/stars.jpeg");
-  background-color: #004E64;
-  background-position: 79% 269%; }
-
-h1 {
-  font-family: defcon;
-  color: #F9F9F9;
-  font-size: 50px; }
+.btn:hover {
+  background-color: #9cc7df;
+  color: #4f6184; }
 
 header {
-  height: 118px; }
+  background-image: url("../images/stars.jpeg");
+  background-color: #004E64;
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%; }
+
+.brand {
+  height: 80px;
+  margin-top: 42px; }
 
 .logo-bar {
-  height: 150px; }
+  background-color: #283f69;
+  -moz-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  -webkit-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  box-shadow: 2px -3px 23px 10px #F9F9F9; }
+  .logo-bar img {
+    position: absolute;
+    width: 306px;
+    left: 327px;
+    bottom: -36px; }
+  .logo-bar .container {
+    position: relative;
+    height: 100%; }
 
-main {
-  height: 400px; }
+.logo-bar .btn {
+  float: right; }
 
 footer {
-  height: 100px; }
+  background-color: #283f69; }
+
+header {
+  height: 180px; }
+
+.logo-bar {
+  height: 180px; }
+
+main {
+  height: 600px; }
+
+footer {
+  height: 180px; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+main {
+  background-color: #F9F9F9; }
 
 .center-block {
   width: 960px; }
 
-.container {
+main .container {
+  height: 100%;
+  padding-top: 30px; }
+
+.form {
+  height: 50%;
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.person-select {
+  padding: 0; }
+
+.person-select .btn {
+  height: 50%;
   width: 100%; }
+
+.person-select .btn:first-child {
+  border-bottom: 0; }
+
+.date-select {
+  border-left: none;
+  border-right: none; }
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%); }
+
+#timePicker {
+  border: 1px solid black;
+  padding-top: 10px; }
+
+.form-inline {
+  text-align: center; }
+
+#fullDayContainer {
+  margin-top: 20px;
+  text-align: right; }
 
 /*# sourceMappingURL=style.css.map */
