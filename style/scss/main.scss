@@ -2,6 +2,10 @@ main .container {
   height: 100%;
 }
 
+main {
+  @include box-shadow($box-shadow);
+}
+
 .form {
   height: 50%;
   margin-top: 15px;
@@ -34,6 +38,7 @@ main .container {
 
 .book-btn {
   margin-top: 29.5%;
+  border-left: none;
 }
 
 .btn h2 {

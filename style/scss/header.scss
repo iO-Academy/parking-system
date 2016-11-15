@@ -4,6 +4,8 @@ header {
   background-position: 58% 40%;
   background-repeat: no-repeat;
   background-size: 100%;
+  @include box-shadow-alt($box-shadow-alt);
+
 }
 
 .brand {
@@ -13,12 +15,21 @@ header {
 
 .logo-bar {
   background-color: $logo-bar-bg;
-  -moz-box-shadow: 1px -4px 10px $logo-bar-border;
-  -webkit-box-shadow: 1px -4px 10px $logo-bar-border;
-  box-shadow: 1px -4px 10px $logo-bar-border;
-  border-top: 3px solid $logo-bar-border;
+  @include box-shadow($box-shadow);
+
+  img {
+    position: absolute;
+    width: 284px;
+    left: 338px;
+  }
+
+  .container {
+    position: relative;
+    height: 100%;
+  }
 }
 
 .logo-bar .btn {
   float: right;
 }
+

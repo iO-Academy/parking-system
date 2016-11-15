@@ -11,36 +11,48 @@ header {
   background-color: #004E64;
   background-position: 58% 40%;
   background-repeat: no-repeat;
-  background-size: 100%; }
+  background-size: 100%;
+  -moz-box-shadow: 1px -4px 10px #283f69;
+  -webkit-box-shadow: 1px -4px 10px #283f69;
+  box-shadow: 1px -4px 10px #283f69; }
 
 .brand {
   height: 80px;
   margin-top: 18px; }
 
 .logo-bar {
-  background-color: #47003D;
+  background-color: #283f69;
   -moz-box-shadow: 1px -4px 10px #F9F9F9;
   -webkit-box-shadow: 1px -4px 10px #F9F9F9;
-  box-shadow: 1px -4px 10px #F9F9F9;
-  border-top: 3px solid #F9F9F9; }
+  box-shadow: 1px -4px 10px #F9F9F9; }
+  .logo-bar img {
+    position: absolute;
+    width: 284px;
+    left: 338px; }
+  .logo-bar .container {
+    position: relative;
+    height: 100%; }
 
 .logo-bar .btn {
   float: right; }
 
 footer {
-  background-color: #47003D; }
+  background-color: #283f69;
+  -moz-box-shadow: 1px -4px 10px #283f69;
+  -webkit-box-shadow: 1px -4px 10px #283f69;
+  box-shadow: 1px -4px 10px #283f69; }
 
 header {
   height: 130px; }
 
 .logo-bar {
-  height: 130px; }
+  height: 180px; }
 
 main {
   height: 600px; }
 
 footer {
-  height: 260px; }
+  height: 180px; }
 
 .container {
   width: 100%; }
@@ -53,6 +65,11 @@ main {
 
 main .container {
   height: 100%; }
+
+main {
+  -moz-box-shadow: 1px -4px 10px #F9F9F9;
+  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
+  box-shadow: 1px -4px 10px #F9F9F9; }
 
 .form {
   height: 50%;
@@ -79,7 +96,8 @@ main .container {
   border-right: none; }
 
 .book-btn {
-  margin-top: 29.5%; }
+  margin-top: 29.5%;
+  border-left: none; }
 
 .btn h2 {
   -webkit-transform: translateY(50%);
