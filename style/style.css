@@ -9,6 +9,13 @@
 .btn:hover {
   color: #F9F9F9; }
 
+h1 {
+  font-size: 100px;
+  color: #e3e3e3; }
+
+.logo-bar .container {
+  text-align: center; }
+
 header {
   background-image: url("../images/stars.jpeg");
   background-color: #004E64;
