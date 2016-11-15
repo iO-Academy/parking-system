@@ -4,13 +4,12 @@ header {
   background-position: 58% 40%;
   background-repeat: no-repeat;
   background-size: 100%;
-  @include box-shadow-alt($box-shadow-alt);
 
 }
 
 .brand {
   height: 80px;
-  margin-top: 18px;
+  margin-top: 42px;
 }
 
 .logo-bar {
@@ -19,8 +18,9 @@ header {
 
   img {
     position: absolute;
-    width: 284px;
-    left: 338px;
+    width: 306px;
+    left: 327px;
+    bottom: -36px;
   }
 
   .container {

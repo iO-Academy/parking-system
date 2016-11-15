@@ -4,6 +4,10 @@ $orioles-orange: #F34213;
 $charleston-green: #2D2A32;
 $snow: #F9F9F9;
 $deep-koamaru: #283f69;
+$pale-cerulean: #9cc7df;
+$jelly-bean: #d25e4e;
+$dark-blue-gray: #627391;
+$platinum: #e3e3e3;
 
 $image-default: $dark-imperial-blue;
 $logo-bar-bg: $deep-koamaru;
@@ -11,7 +15,11 @@ $box-shadow: $snow;
 $box-shadow-alt: $deep-koamaru;
 $footer-bg: $deep-koamaru;
 $main-bg: $snow;
-$button-color: $dark-imperial-blue;
-$button-outline: $charleston-green;
-$button-text: $charleston-green;
-$pop-out-color: $orioles-orange;
+
+$button-color: $snow;
+$button-outline-tl: $pale-cerulean;
+$button-outline-br: $jelly-bean;
+$button-text: $dark-blue-gray;
+$pop-out-color: $snow;
+
+$page-title-color: #e3e3e3;

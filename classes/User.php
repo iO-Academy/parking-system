@@ -6,6 +6,12 @@ class User {
     private $id;
     private $pdo;
 
+
+    /**
+     * sets class variables
+     *
+     * @param PDO $pdo database connection
+     */
     public function __construct(PDO $pdo){
         $this->loggedIn = FALSE;
         $this->pdo = $pdo;
@@ -15,7 +21,6 @@ class User {
      * validates user login details:
      * if email and password match database then sets $loggedIn to TRUE
      *
-     * @param DbConnector $database database connector object
      * @param STRING $email user email
      * @param STRING $password user password
      *
@@ -54,7 +59,6 @@ class User {
     /**
      * updates user email in database
      *
-     * @param DbConnector $database database connector object
      * @param STRING $newEmail email to add to database
      */
     public function changeEmail($newEmail){
@@ -68,7 +72,6 @@ class User {
     /**
      * updates user password in database
      *
-     * @param DbConnector $database database connector object
      * @param STRING $newPassword password to add to database
      */
     public function changePassword($newPassword){
