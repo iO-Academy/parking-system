@@ -18,7 +18,8 @@ class Carpark
 
     public function __construct(PDO $pdo, $name) {
 
-        $statement = $pdo->query('SELECT * FROM `' . self::CARPARK_TABLE_NAME . '` WHERE `name` = \'' . $name . '\';');
+        $statement = $pdo->prepare('SELECT * FROM `' . self::CARPARK_TABLE_NAME . '` WHERE `name` = ?;');
+        $statement->execute(array($name));
         $result = $statement->fetch();
         if (!empty($result)) {
             $this->pdo = $pdo;
