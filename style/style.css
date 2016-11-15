@@ -11,10 +11,7 @@ header {
   background-color: #004E64;
   background-position: 58% 40%;
   background-repeat: no-repeat;
-  background-size: 100%;
-  -moz-box-shadow: 1px -4px 10px #283f69;
-  -webkit-box-shadow: 1px -4px 10px #283f69;
-  box-shadow: 1px -4px 10px #283f69; }
+  background-size: 100%; }
 
 .brand {
   height: 80px;
@@ -22,9 +19,9 @@ header {
 
 .logo-bar {
   background-color: #283f69;
-  -moz-box-shadow: 1px -4px 10px #F9F9F9;
-  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
-  box-shadow: 1px -4px 10px #F9F9F9; }
+  -moz-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  -webkit-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  box-shadow: 2px -3px 23px 10px #F9F9F9; }
   .logo-bar img {
     position: absolute;
     width: 306px;
@@ -38,10 +35,7 @@ header {
   float: right; }
 
 footer {
-  background-color: #283f69;
-  -moz-box-shadow: 1px -4px 10px #283f69;
-  -webkit-box-shadow: 1px -4px 10px #283f69;
-  box-shadow: 1px -4px 10px #283f69; }
+  background-color: #283f69; }
 
 header {
   height: 180px; }
@@ -68,11 +62,6 @@ main {
 main .container {
   height: 100%;
   padding-top: 30px; }
-
-main {
-  -moz-box-shadow: 1px -4px 10px #F9F9F9;
-  -webkit-box-shadow: 1px -4px 10px #F9F9F9;
-  box-shadow: 1px -4px 10px #F9F9F9; }
 
 .form {
   height: 50%;

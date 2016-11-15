@@ -3,10 +3,6 @@ main .container {
   padding-top: 30px;
 }
 
-main {
-  @include box-shadow($box-shadow);
-}
-
 .form {
   height: 50%;
   margin-top: 15px;
