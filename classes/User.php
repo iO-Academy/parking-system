@@ -28,12 +28,14 @@ class User {
         $query->execute([':email'=>$email]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
+        if(empty($user)) {
+            throw new Exception("user does not exist");
+        }
+
         $encryptPass = $user["id"] . $password;
         $encryptPass = sha1($encryptPass);
 
-        if(empty($user)) {
-            throw new Exception("user does not exist");
-        } elseif($user["password"] != $encryptPass) {
+        if($user["password"] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
             $this->loggedIn = TRUE;
