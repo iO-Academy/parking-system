@@ -7,7 +7,8 @@
   border-bottom: 2px solid #d25e4e; }
 
 .btn:hover {
-  color: #F9F9F9; }
+  background-color: #9cc7df;
+  color: #4f6184; }
 
 header {
   background-image: url("../images/stars.jpeg");
