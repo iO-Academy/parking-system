@@ -1,6 +1,11 @@
-* {
-  box-sizing: border-box;
-  border: 1px solid black;
+.btn {
+  background-color: $button-color;
+  color: $button-text;
+  border: 3px solid $button-outline;
+}
+
+.btn:hover {
+  color: $snow;
 }
 
 
