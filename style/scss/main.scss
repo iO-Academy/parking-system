@@ -23,7 +23,13 @@ main .container {
 
 .date-select,
 .time-select {
-  border: 1px solid $orioles-orange;
+  background-color: $pop-out-color;
+  border: 3px solid $button-outline;
+}
+
+.date-select {
+  border-left: none;
+  border-right: none;
 }
 
 .book-btn {
