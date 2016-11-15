@@ -102,4 +102,11 @@ main .container {
   -moz-transform: translateY(50%);
   transform: translateY(50%); }
 
+.account-details {
+  background-color: #9cc7df;
+  padding: 15px; }
+  .account-details h2 {
+    margin-bottom: 20px;
+    text-align: center; }
+
 /*# sourceMappingURL=style.css.map */
