@@ -52,8 +52,9 @@ $(function() {
         $('#visitorSpan').text(
             $visitorDate.datepicker('getFormattedDate')
         )
-        $toDate.datepicker()
-        $toDate.datepicker('setStartDate', $fromDate.datepicker('getFormattedDate'))
+        $('#time-container').animate({
+            right: '10%'
+        }, 1000)
     })
 
     function rangeHighlight($start, $finish) {
@@ -85,37 +86,42 @@ $(function() {
 
     function slideRight($el) {
         $el.animate({
-            right: '0',
+            right: '10%'
         }, 1000)
     }
 
     function slideLeft($el) {
         $el.animate({
             right: '75%'
-        }, 500)
+        }, 400)
     }
 
     $('#staffButton').click(function() {
         $(this).prop('disabled', true)
         $('#visitorButton').prop('disabled', false)
-        if($('#visitor-container').css('right') == '0px') {
-            slideLeft($('#visitor-container'))
-            slideRight($('#staff-container'))
-        } else {
-            slideRight($('#staff-container'))
+        if($('#visitor-container').css('right') != '0') {
+            slideLeft($('#visitor-container, #time-container'))
         }
+        $('#staff-container').animate({
+            right: '10%'
+        }, 1000)
     })
 
     $('#visitorButton').click(function() {
         $(this).prop('disabled', true)
         $('#staffButton').prop('disabled', false)
-        if($('#staff-container').css('right') == '0px') {
+        if($('#staff-container').css('right') != '0') {
             slideLeft($('#staff-container'))
-            slideRight($('#visitor-container'))
-        } else {
-            slideRight($('#visitor-container'))
         }
+        $('#visitor-container').animate({
+            right: '35%'
+        }, 1000)
+        $('#time-container').animate({
+            right: '40%'
+        }, 1000)
     })
+
+
 })
 
 

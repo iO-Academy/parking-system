@@ -11,7 +11,7 @@ main .container {
 
 .person-select {
   padding: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .person-select .btn {
@@ -24,23 +24,31 @@ main .container {
 }
 
 .date-select {
+  height: 100%;
   border-left: none;
   border-right: none;
-  position: relative;
+  position: absolute;
   right: 75%;
   padding: 15px;
-  //margin: auto;
+  overflow: auto;
+  background-color: $snow;
 }
 
 #filters {
   overflow: hidden;
+  position: relative;
 }
 
 #filters .btn {
   font-size: 32px;
   padding: 50px 0;
+  position: relative;
 }
 
 #filters .btn[disabled] {
   opacity: 1;
+}
+
+#visitor-container {
+  z-index: 2;
 }
