@@ -32,3 +32,38 @@ main .container {
   -moz-transform: translateY(50%);
   transform: translateY(50%);
 }
+
+#alien-container {
+  position: relative;
+  height: 240px;
+}
+
+#alien {
+  width: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+
+#speech-bubble {
+  background-color: $bubble-bg;
+  @include border-radius(20px);
+  height: 140px;
+  padding: 10px;
+  margin-top: 32px;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 20px 40px;
+  border-color: transparent transparent #9cc7df transparent;
+  left: -39px;
+  position: absolute;
+  bottom: 13px;
+}
