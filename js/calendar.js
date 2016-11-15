@@ -9,16 +9,16 @@ $(function() {
 
     $fromDate.datepicker({
         todayHighlight: true,
-        clearBtn: true,
+        // clearBtn: true,
         startDate: $date,
-        todayBtn: true,
+        // todayBtn: true,
         defaultViewDate: { month: $month }})
 
     $toDate.datepicker({
         todayHighlight: true,
-        clearBtn: true,
+        // clearBtn: true,
         startDate: $toStartDate,
-        todayBtn: true,
+        // todayBtn: true,
         defaultViewDate: { month: $month + 1 }
     })
 
@@ -69,6 +69,45 @@ $(function() {
         }
     }
 
+    function slideRight() {
+        $('.date-select').animate({
+            right: '0',
+        }, 1000)
+    }
+
+    function slideLeft() {
+        $('.date-select').animate({
+            right: '75%'
+        }, 500)
+    }
+
+    $('#staffButton').click(function() {
+        console.log($('.date-select').css('right'))
+        $(this).prop('disabled', true)
+        $('#visitorButton').prop('disabled', false)
+        if($('.date-select').css('right') == '0px') {
+            slideLeft()
+            //Load Content
+            slideRight()
+        } else {
+            slideRight()
+        }
+    })
+
+    $('#visitorButton').click(function() {
+        console.log($('.date-select').css('right'))
+        $(this).prop('disabled', true)
+        $('#staffButton').prop('disabled', false)
+        if($('.date-select').css('right') == '0px') {
+            slideLeft()
+            //Load Content
+            slideRight()
+        } else {
+            slideRight()
+        }
+    })
 })
+
+
 
 

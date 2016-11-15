@@ -1,20 +1,20 @@
 main .container {
   height: 100%;
   padding-top: 30px;
+  overflow: hidden;
 }
 
 .form {
-  height: 50%;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
 .person-select {
   padding: 0;
+  z-index: 2;
 }
 
 .person-select .btn {
-  height: 50%;
   width: 100%;
 }
 
@@ -25,10 +25,21 @@ main .container {
 .date-select {
   border-left: none;
   border-right: none;
+  position: relative;
+  right: 75%;
+  padding: 15px;
+  //margin: auto;
 }
 
-.btn h2 {
-  -webkit-transform: translateY(50%);
-  -moz-transform: translateY(50%);
-  transform: translateY(50%);
+#filters {
+  overflow: hidden;
+}
+
+#filters .btn {
+  font-size: 32px;
+  padding: 50px 0;
+}
+
+#filters .btn[disabled] {
+  opacity: 1;
 }

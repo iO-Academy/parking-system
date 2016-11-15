@@ -24,17 +24,20 @@
     </div>
     <main>
         <div class="container center-block">
-            <div class="col-md-3 person-select form">
-                <a class="btn" href="#">
-                    <h2>Staff</h2>
-                </a>
-                <a class="btn" href="#">
-                    <h2>Visitor</h2>
-                </a>
+            <div id="filters">
+                <div class="col-md-3 person-select form">
+                    <button class="btn btn-default" href="#" id="staffButton">Staff</button>
+                    <button class="btn btn-default" href="#" id="visitorButton">Visitor</button>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-7 offset-md-2 date-select form" >
+                    <div id="staffPicker" class="input-group input-daterange">
+                        <div class="datepicker pull-left" id="fromCal">From: <span id="fromSpan"></span></div>
+                        <div class="datepicker pull-left" id="toCal">To: <span id="toSpan"></span></div>
+                    </div>
+                </div>
+                <img src="#" alt="#">
             </div>
-            <div class="col-md-5 date-select form btn"></div>
-            <div class="col-md-3 time-select form btn"></div>
-            <img src="#" alt="#">
         </div>
     </main>
     <footer>
