@@ -6,6 +6,7 @@ $(function() {
 
     $fromDate = $('#fromCal')
     $toDate = $('#toCal')
+    $visitorDate = $('#visitorCal')
 
     $fromDate.datepicker({
         todayHighlight: true,
@@ -21,6 +22,11 @@ $(function() {
         // todayBtn: true,
         defaultViewDate: { month: $month + 1 }
     })
+
+    $visitorDate.datepicker({
+        todayHighlight: true,
+        startDate: $date,
+        defaultViewDate: { month: $month }})
 
     $fromDate.on("changeDate", function() {
         $('#fromSpan').text(
@@ -40,6 +46,14 @@ $(function() {
         // $start = $('#fromCal .active.day')
         // $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
+    })
+
+    $visitorDate.on("changeDate", function() {
+        $('#visitorSpan').text(
+            $visitorDate.datepicker('getFormattedDate')
+        )
+        $toDate.datepicker()
+        $toDate.datepicker('setStartDate', $fromDate.datepicker('getFormattedDate'))
     })
 
     function rangeHighlight($start, $finish) {
