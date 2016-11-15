@@ -7,7 +7,7 @@
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
 # Database: parkingSystem
-# Generation Time: 2016-11-14 14:31:26 +0000
+# Generation Time: 2016-11-15 16:28:16 +0000
 # ************************************************************
 
 
@@ -18,6 +18,32 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table bookings
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `bookings`;
+
+CREATE TABLE `bookings` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `carpark_id` int(11) unsigned NOT NULL,
+  `from` datetime DEFAULT NULL,
+  `to` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `carpark_id` (`carpark_id`),
+  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`carpark_id`) REFERENCES `carpark` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `bookings` WRITE;
+/*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
+
+INSERT INTO `bookings` (`id`, `carpark_id`, `from`, `to`)
+VALUES
+	(1,1,'2016-11-20 00:00:00','2016-11-22 00:00:00');
+
+/*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table carpark
