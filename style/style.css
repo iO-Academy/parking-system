@@ -108,11 +108,15 @@ main .container {
 
 .account-details {
   background-color: #9cc7df;
-  padding: 15px; }
+  padding: 15px;
+  overflow: auto; }
 
 .bookings {
   background-color: #d25e4e;
   padding: 15px;
   margin-top: 15px; }
+
+.account-details .btn {
+  float: right; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,6 +1,7 @@
 .account-details {
   background-color: $account-details-background-color;
   padding: 15px;
+  overflow: auto;
   }
 
 .bookings {
@@ -8,3 +9,7 @@
   padding: 15px;
   margin-top: 15px;
   }
+
+.account-details .btn {
+  float: right;
+}
