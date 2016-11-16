@@ -7,7 +7,7 @@
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
 # Database: parkingSystem
-# Generation Time: 2016-11-16 14:39:17 +0000
+# Generation Time: 2016-11-16 11:21:57 +0000
 # ************************************************************
 
 
@@ -18,7 +18,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 
 # Dump of table bookings
 # ------------------------------------------------------------
@@ -48,7 +47,6 @@ VALUES
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
 # Dump of table carpark
 # ------------------------------------------------------------
 
@@ -56,9 +54,9 @@ DROP TABLE IF EXISTS `carpark`;
 
 CREATE TABLE `carpark` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(11) DEFAULT NULL,
-  `capacity` int(11) DEFAULT NULL,
-  `isVisitor` tinyint(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `capacity` int(5) NOT NULL,
+  `isVisitor` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -97,7 +95,6 @@ VALUES
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

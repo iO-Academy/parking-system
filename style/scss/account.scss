@@ -1,0 +1,31 @@
+#user-details {
+  background-color: $account-details-background-color;
+  padding: 15px;
+  overflow: auto;
+  }
+
+.bookings {
+  background-color: $bookings-background-color;
+  padding: 15px;
+  margin-top: 15px;
+  }
+
+#user-details .btn {
+  float: right;
+}
+
+#update-form {
+  display: none;
+}
+
+.logo-bar .logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.logo-bar .home-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

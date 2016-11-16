@@ -10,6 +10,17 @@
   background-color: #9cc7df;
   color: #4f6184; }
 
+h2 {
+  margin-bottom: 20px;
+  text-align: center; }
+
+.logo-bar .container {
+  text-align: center; }
+
+.logo-bar h1 {
+  margin-bottom: 20px;
+  color: #e3e3e3; }
+
 header {
   background-image: url("../images/stars.jpeg");
   background-color: #004E64;
@@ -142,20 +153,20 @@ main .container {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   height: 140px;
+  position: relative;
   padding: 10px;
   margin-top: 32px; }
   #speech-bubble p {
     font-size: 16px; }
-
-.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 20px 40px;
-  border-color: transparent transparent #9cc7df transparent;
-  left: -39px;
-  position: absolute;
-  bottom: 13px; }
+  #speech-bubble .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 40px;
+    border-color: transparent transparent #9cc7df transparent;
+    left: -39px;
+    position: absolute;
+    bottom: 13px; }
 
 #staffSubmit {
   position: absolute;
@@ -168,9 +179,6 @@ main .container {
   margin-top: 10px; }
 
 header {
-  height: 180px; }
-
-.logo-bar {
   height: 180px; }
 
 main {
@@ -187,6 +195,9 @@ footer {
 .center-block {
   width: 960px; }
 
+#login-form-div {
+  margin-top: 30px; }
+
 #timePicker {
   padding: 10px;
   margin-top: 10px; }
@@ -197,5 +208,31 @@ footer {
 #fullDayContainer {
   margin-top: 20px;
   text-align: right; }
+
+#user-details {
+  background-color: #9cc7df;
+  padding: 15px;
+  overflow: auto; }
+
+.bookings {
+  background-color: #d25e4e;
+  padding: 15px;
+  margin-top: 15px; }
+
+#user-details .btn {
+  float: right; }
+
+#update-form {
+  display: none; }
+
+.logo-bar .logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.logo-bar .home-btn {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 /*# sourceMappingURL=style.css.map */
