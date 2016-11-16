@@ -47,7 +47,13 @@ if(!empty($_SESSION['userAuth'])) {
     <div class="logo-bar">
         <div class="container center-block">
             <img src="images/header.png" alt="Space Book rocket logo">
-            <a class="col-md-1 btn" href="#">Login</a>
+            <?php
+            if($loggedIn){
+                echo '<a class="col-md-1 btn" href="#">Logout</a>';
+            }else{
+                echo '<a class="col-md-1 btn" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </div>
     <main>
