@@ -6,6 +6,9 @@ $(function(){
 
     $('form').submit(function(e) {
         e.preventDefault();
-        $('.user-account-content').slideToggle()
+        // do ajax
+        // in ajax calllback
+        $(".user-account-content").slideToggle()
+        $("#email-field span").text($('#email').val())
     })
 })

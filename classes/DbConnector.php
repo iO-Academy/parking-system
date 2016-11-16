@@ -24,4 +24,3 @@ class DbConnector
         return $this->conn;
     }
 }
-
