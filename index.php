@@ -1,3 +1,36 @@
+<?php
+require_once 'autoload.php';
+
+$loggedIn = FALSE;
+
+/********** create database **********/
+try{
+    $db = new DbConnector();
+} catch(Exception $e) {
+    $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
+    header($header_str);
+}
+
+$user = new User($db->getDB());
+
+session_start();
+if(!empty($_SESSION['userAuth'])) {
+
+    try {
+        $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
+        $loggedIn = TRUE;
+    } catch(Exception $e) {
+//        session_destroy();
+        //do something
+    }
+
+
+}else {
+    header('Location: login.php?success=false');
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>

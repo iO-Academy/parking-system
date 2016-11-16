@@ -19,6 +19,11 @@
     <div>
         <div class="col-md-6 col-md-offset-3 well" id="login-form-div">
             <h4>Please Login</h4>
+            <?php
+            if($_GET['err']) {
+                echo '<div class="text-danger">*' . $_GET['err'] . '</div>';
+            }
+            ?>
             <hr>
             <form method="POST" action="account.php" id="loginForm" class="form-horizontal">
                 <div class="form-group">
@@ -47,4 +52,6 @@
 </footer>
 </body>
 </html>
+
+
 
