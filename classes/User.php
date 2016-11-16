@@ -2,7 +2,6 @@
 
 class User {
 
-    private $loggedIn;
     private $id;
     private $pdo;
 
@@ -13,7 +12,6 @@ class User {
      * @param PDO $pdo database connection
      */
     public function __construct(PDO $pdo){
-        $this->loggedIn = FALSE;
         $this->pdo = $pdo;
     }
 
@@ -23,6 +21,8 @@ class User {
      *
      * @param STRING $email user email
      * @param STRING $password user password
+     *
+     * @return BOOLEAN returns if login is successful
      *
      * @throws Exception
      */
@@ -43,17 +43,9 @@ class User {
         if($user["password"] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
-            $this->loggedIn = TRUE;
             $this->id = $user['id'];
+            return true;
         }
-    }
-
-    public function logOut(){
-        $this->loggedIn = FALSE;
-    }
-
-    public function getLoggedIn(){
-        return $this->loggedIn;
     }
 
     /**
