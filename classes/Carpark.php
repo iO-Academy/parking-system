@@ -61,21 +61,28 @@ class Carpark
         $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
 
         // Handling datetime case
-        $startDay = explode(' ', $dateTimeFrom)[0];
-        $endDay = explode(' ', $dateTimeTo)[0];
-        $day = $startDay;
-        $bookingsOnDay = [];
-        while ($day <= $endDay) {
-            $bookingsOnDay[$day] = 0;
-            foreach ($bookings as $booking) {
-                if (self::check_in_range(explode(' ', $booking['from'])[0], explode(' ', $booking['to'])[0], $day)) {
-                    $bookingsOnDay[$day]++;
+        if ($this->isVisitor()) {
+
+        } else {
+            $startDay = explode(' ', $dateTimeFrom)[0];
+            $endDay = explode(' ', $dateTimeTo)[0];
+            $day = $startDay;
+            $bookingsOnDay = [];
+            while ($day <= $endDay) {
+                $bookingsOnDay[$day] = 0;
+                foreach ($bookings as $booking) {
+                    if (self::check_in_range(explode(' ', $booking['from'])[0], explode(' ', $booking['to'])[0], $day)) {
+                        $bookingsOnDay[$day]++;
+                    }
                 }
+                $date = strtotime("+1 day", strtotime($day));
+                $day = date("Y-m-d", $date);
             }
-            $date = strtotime("+1 day", strtotime($day));
-            $day = date("Y-m-d", $date);
+            return  $this->getCapacity() - max($bookingsOnDay);
+
         }
-        return  $this->getCapacity() - max($bookingsOnDay);
+
+
 
     }
 
