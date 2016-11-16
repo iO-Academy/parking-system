@@ -1,11 +1,14 @@
 <?php
 
-require '/Users/benmorris/Documents/Development/academy/parking-system/classes/User.php';
-require '/Users/benmorris/Documents/Development/academy/parking-system/vendor/autoload.php';
+require __DIR__ . '/../../classes/User.php';
+require __DIR__ . '/../../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase {
 
+    /**
+     * Tests that the property behind getLoggedIn() will be set to true when logging in with an existing email and password.
+     */
     public function testSuccessfulLogin() {
 
         // Note, details used relevant to testLogOut
@@ -14,7 +17,7 @@ class UserTest extends TestCase {
         $mockStatement->method('fetch')->willReturn([
             'id' => '1',
             'email' => 'example@gmail.com',
-            'password' => sha1("1" . 'aaa')
+            'password' => sha1('1' . 'aaa')
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
@@ -27,6 +30,9 @@ class UserTest extends TestCase {
         }
     }
 
+    /**
+     * Tests that the expected error will be thrown while trying to log in an email whose name doesn't exist.
+     */
     public function testNonExistantUserLogin() {
 
         $mockPDO = $this->createMock('PDO');
@@ -38,10 +44,13 @@ class UserTest extends TestCase {
         try {
             $user->login('example@gmail.com','aaa');
         } catch (Exception $e) {
-            $this->assertEquals("user does not exist", $e->getMessage());
+            $this->assertEquals('user does not exist', $e->getMessage());
         }
     }
 
+    /**
+     * Tests that the correct error will be thrown while trying to log in with an existing email but an incorrect password.
+     */
     public function testIncorrectPasswordLogin() {
 
         $mockPDO = $this->createMock('PDO');
@@ -49,7 +58,7 @@ class UserTest extends TestCase {
         $mockStatement->method('fetch')->willReturn([
             'id' => '1',
             'email' => 'example@gmail.com',
-            'password' => sha1("1" . 'aab')
+            'password' => sha1('1' . 'aab')
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
@@ -57,10 +66,13 @@ class UserTest extends TestCase {
         try {
             $user->login('example@gmail.com','aaa');
         } catch (Exception $e) {
-            $this->assertEquals("incorrect email and password combination", $e->getMessage());
+            $this->assertEquals('incorrect email and password combination', $e->getMessage());
         }
     }
 
+    /**
+     * Tests that logging out will change the property behind getLoggedIn() to false appropriately.
+     */
     public function testLogOut() {
 
         // Same as testSuccessfulLogin()
