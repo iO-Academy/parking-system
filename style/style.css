@@ -138,7 +138,8 @@ footer {
 
 #timePicker {
   border: 1px solid black;
-  padding-top: 10px; }
+  padding-top: 10px;
+  height: 100%; }
 
 .form-inline {
   text-align: center; }
