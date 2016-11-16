@@ -7,7 +7,7 @@
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
 # Database: parkingSystem
-# Generation Time: 2016-11-14 15:48:06 +0000
+# Generation Time: 2016-11-16 11:21:57 +0000
 # ************************************************************
 
 
@@ -27,9 +27,9 @@ DROP TABLE IF EXISTS `carpark`;
 
 CREATE TABLE `carpark` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(11) DEFAULT NULL,
-  `capacity` int(11) DEFAULT NULL,
-  `isVisitor` tinyint(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `capacity` int(5) NOT NULL,
+  `isVisitor` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -53,8 +53,9 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `validationString` char(40) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
