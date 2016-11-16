@@ -50,5 +50,10 @@ class Carpark
         return $this->isVisitor;
     }
 
+    public function getAvailability() {
+        $booking = new BookingManager($this->pdo);
+        $bookings = $booking->getBookings();
+        die(var_export($bookings));
+    }
 
 }

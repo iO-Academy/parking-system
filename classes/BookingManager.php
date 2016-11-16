@@ -6,7 +6,7 @@
  * Date: 16/11/2016
  * Time: 09:15
  */
-class Booking
+class BookingManager
 {
     const TABLE_NAME = 'bookings';
 
@@ -27,4 +27,4 @@ class Booking
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-}}
+}
