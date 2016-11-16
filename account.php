@@ -2,6 +2,7 @@
 require_once 'autoload.php';
 
 /********** create database **********/
+
 try{
     $db = new DbConnector();
 } catch(Exception $e) {
@@ -12,6 +13,10 @@ try{
 $user = new User($db->getDB());
 
 session_start();
+
+
+/********** validate session data **********/
+
 if(!empty($_SESSION['userAuth'])) {
 
     try {
@@ -22,34 +27,21 @@ if(!empty($_SESSION['userAuth'])) {
         header($header_str);
     }
 
-
 } elseif(!empty($_POST['email']) && !empty($_POST['password'])) {
-
-
 
     /********** validate / login **********/
 
     try{
         $user->login($_POST['email'], $_POST['password']);
-//        var_dump($_SESSION);
     } catch(Exception $e) {
         $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
         header($header_str);
     }
-
-    //set session to logged in and id
-    //random string using time
-
-
-
-} else {
+}
+else {
     header('Location: login.php?success=false');
 }
-
-//change spec errors to if success=false echo some generic err (do validation in form?)
-
 ?>
-
 
 <!DOCTYPE html>
 <html>

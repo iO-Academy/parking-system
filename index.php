@@ -4,6 +4,7 @@ require_once 'autoload.php';
 $loggedIn = FALSE;
 
 /********** create database **********/
+
 try{
     $db = new DbConnector();
 } catch(Exception $e) {
@@ -14,21 +15,25 @@ try{
 $user = new User($db->getDB());
 
 session_start();
+
+
+/********** validate session data **********/
+
 if(!empty($_SESSION['userAuth'])) {
 
     try {
         $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
         $loggedIn = TRUE;
     } catch(Exception $e) {
-//        session_destroy();
-        //do something
+        session_destroy();
+        $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
+        header($header_str);
     }
 
-
-}else {
+}
+else {
     header('Location: login.php?success=false');
 }
-
 ?>
 
 <!DOCTYPE html>
