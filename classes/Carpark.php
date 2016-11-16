@@ -1,8 +1,6 @@
 <?php
 
-//function d ($var) {
-//    die(var_dump($var));
-//}
+require __DIR__ . '/BookingManager.php';
 
 /**
  * Represents a single row of the carpark table.
