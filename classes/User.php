@@ -98,14 +98,30 @@ class User {
 
     }
 
-    public function validateToken($token, $id) {
+    public function validateToken($token, $id)
+    {
         $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
-        $query->execute([':id'=>$id]);
+        $query->execute([':id' => $id]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
 
-        if($token != $user['validationString']) {
+        if ($token != $user['validationString']) {
             throw new Exception('error validating user');
         }
+    }
+
+    /**
+     * gets all bookings for current user from the bookings table
+     *
+     * @return ARRAY multidimentional with an array for each row returned
+     * @throws Exception
+     */
+    public function getBookings() {
+
+        $sql = "SELECT `carpark`.`name` AS `Carpark Name`, DATE(`bookings`.`FROM`) AS `Date From`, TIME_FORMAT(`bookings`.`FROM`, '%H:%i') AS `Time From`, DATE(`bookings`.`TO`) AS `Date To`, TIME_FORMAT(`bookings`.`TO`, '%H:%i') AS `Time To` FROM `bookings` LEFT JOIN `carpark` ON `bookings`.`carpark_id`=`carpark`.`id` WHERE `bookings`.`user_id` = :id;";
+//        $sql = "SELECT * FROM `bookings` LEFT JOIN `carpark` ON `bookings`.`carpark_id`=`carpark`.`id` WHERE `bookings`.`user_id` = :id;";
+        $query = $this->pdo->prepare($sql);
+        $query->execute([':id' => $this->id]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

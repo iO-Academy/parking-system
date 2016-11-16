@@ -46,6 +46,8 @@ if(!empty($_SESSION['userAuth'])) {
     header('Location: login.php?success=false');
 }
 
+$bookings = $user->getBookings();
+
 //change spec errors to if success=false echo some generic err (do validation in form?)
 
 ?>
@@ -56,7 +58,7 @@ if(!empty($_SESSION['userAuth'])) {
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/account-page.js"></script>
     <title>Space Book</title>
 </head>
@@ -107,7 +109,23 @@ if(!empty($_SESSION['userAuth'])) {
         </div>
         <div class="bookings">
             <h2>Your Bookings</h2>
-            <h4>You have no bookings</h4>
+            <?php
+            if (is_array($bookings) && count($bookings) > 0) {
+//                var_dump($bookings);
+                echo '<div class="table-responsive">';
+                echo '<table class="table"><tr><th>Carpark Name</th><th>Date From</th><th>Time From</th><th>Date To</th><th>Time To</th></tr>';
+                foreach ($bookings as $row) {
+                    echo "<tr><td>" . $row['Carpark Name'] . "</td>";
+                    echo "<td>" . $row['Date From'] . "</td>";
+                    echo "<td>" . $row['Time From'] . "</td>";
+                    echo "<td>" . $row['Date To'] . "</td>";
+                    echo "<td>" . $row['Time To'] . "</td></tr>";
+                }
+                echo "</table></div>";
+            } else {
+                echo "<h4>You have no bookings</h4>";
+            }
+            ?>
         </div>
     </div>
 </main>

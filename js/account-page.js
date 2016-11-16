@@ -11,4 +11,7 @@ $(function(){
         $(".user-account-content").slideToggle()
         $("#email-field span").text($('#email').val())
     })
+
+
+
 })
