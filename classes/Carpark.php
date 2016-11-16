@@ -1,8 +1,8 @@
 <?php
 
-function d ($var) {
-    die(var_dump($var));
-}
+//function d ($var) {
+//    die(var_dump($var));
+//}
 
 /**
  * Created by PhpStorm.
@@ -62,7 +62,23 @@ class Carpark
 
         // Handling datetime case
         if ($this->isVisitor()) {
+            $startTime = explode(' ', $dateTimeFrom)[1];
+            $endTime = explode(' ', $dateTimeTo)[1];
+            $time = $startTime;
+            $bookingsAtTime = [];
+            while (strtotime($time) <= strtotime($endTime)) {
+                $bookingsAtTime[$time] = 0;
+                foreach ($bookings as $booking) {
+                    if (self::check_in_range(explode(' ', $booking['from'])[1], explode(' ', $booking['to'])[1], $time)) {
+                        $bookingsAtTime[$time]++;
+                    }
+                }
 
+                $timeStamped = strtotime($time);
+                $timeStamped = strtotime("15 mins", strtotime($time));
+                $time = date("h-i-s", $timeStamped);
+            }
+            return  $this->getCapacity() - max($bookingsAtTime);
         } else {
             $startDay = explode(' ', $dateTimeFrom)[0];
             $endDay = explode(' ', $dateTimeTo)[0];
