@@ -40,10 +40,7 @@ $(function() {
         // var $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
-        //Enables button if both dates are selected.
-        if($('#toSpan').text() != '') {
-            $('#staffSubmit').prop('disabled', false)
-        }
+        $('#staffSubmit').prop('disabled', true)
     })
 
     $toDate.on("changeDate", function() {
@@ -55,7 +52,7 @@ $(function() {
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
         //Enables button if both dates are selected.
-        if($('#fromSpan').text() != '') {
+        if($('#fromSpan').text() != '' && $('#toSpan').text() != '') {
             $('#staffSubmit').prop('disabled', false)
         }
     })
