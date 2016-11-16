@@ -107,5 +107,8 @@ class User {
         if($token != $user['validationString']) {
             throw new Exception('error validating user');
         }
+
+        $this->id = $id;
+        
     }
 }
