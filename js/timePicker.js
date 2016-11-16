@@ -15,9 +15,7 @@ $(function() {
         //Enables all options from dropdowns and selects first drop down option which is HH or mm.
         //If statement checks if stored previous selection had a value and if so sets value to stored selection.
         $fromHours.prop("disabled", false).find('option').first().prop('selected', true)
-        console.log(fromHours)
         if(typeof(fromHours) != 'undefined' && fromHours != null) {
-            console.log('lemon')
             $fromHours.val(fromHours)
         }
         $toHours.prop("disabled", false).find('option').first().prop('selected', true)
@@ -26,6 +24,7 @@ $(function() {
         }
         $fromMinutes.prop("disabled", true).find('option').first().prop('selected', true)
         if(typeof(fromMinutes) != 'undefined' && fromMinutes != null) {
+            console.log('lemon')
             $fromMinutes.val(fromMinutes).prop("disabled", false)
         }
         $toMinutes.prop("disabled", true).find('option').first().prop('selected', true)
