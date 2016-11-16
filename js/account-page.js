@@ -1,10 +1,11 @@
 $(function(){
 
     $('#edit').click(function (){
-        $('.user-account-content').toggle()
+        $('.user-account-content').slideToggle()
     })
 
-    $('#save-user-details').click(function (){
-        $('.user-account-content').toggle()
+    $('form').submit(function(e) {
+        e.preventDefault();
+        $('.user-account-content').slideToggle()
     })
 })
