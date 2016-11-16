@@ -22,7 +22,6 @@ class BookingManager
      */
     public function getBookings($carparkId, $fromDateTime, $toDateTime) {
         $selectString = 'SELECT `to`, `from` FROM `' . self::TABLE_NAME . '` WHERE `carpark_id` = ? AND `to` >= ? AND `from` <= ?;';
-        var_dump($selectString);
         $statement = $this->pdo->prepare($selectString);
         $statement->execute([$carparkId, $fromDateTime, $toDateTime]);
         return $statement->fetchAll(PDO::FETCH_ASSOC);

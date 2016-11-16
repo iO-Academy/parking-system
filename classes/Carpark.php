@@ -1,5 +1,9 @@
 <?php
 
+function d ($var) {
+    die(var_dump($var));
+}
+
 /**
  * Created by PhpStorm.
  * User: benmorris
@@ -50,10 +54,44 @@ class Carpark
         return $this->isVisitor;
     }
 
-    public function getAvailability() {
-        $booking = new BookingManager($this->pdo);
-        $bookings = $booking->getBookings();
-        die(var_export($bookings));
+    //just handling staff bookings at first
+    // assume format 'YYYY-MM-DD HH:MM:SS' so split on space
+    public function getAvailability($dateTimeFrom, $dateTimeTo) {
+        $bookingManager = new BookingManager($this->pdo);
+        $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
+
+        // Handling datetime case
+        $startDay = explode(' ', $dateTimeFrom)[0];
+        $endDay = explode(' ', $dateTimeTo)[0];
+        $day = $startDay;
+        $bookingsOnDay = [];
+        while ($day <= $endDay) {
+            $bookingsOnDay[$day] = 0;
+            foreach ($bookings as $booking) {
+                if (self::check_in_range(explode(' ', $booking['from'])[0], explode(' ', $booking['to'])[0], $day)) {
+                    $bookingsOnDay[$day]++;
+                }
+            }
+            $date = strtotime("+1 day", strtotime($day));
+            $day = date("Y-m-d", $date);
+        }
+        return  $this->getCapacity() - max($bookingsOnDay);
+
     }
+
+    public static function check_in_range($start_date, $end_date, $date_from_user)
+    {
+        //d([$start_date, $end_date, $date_from_user]);
+
+        // Convert to timestamp
+        $start_ts = strtotime($start_date);
+        $end_ts = strtotime($end_date);
+        $user_ts = strtotime($date_from_user);
+
+        // Check that user date is between start & end
+        return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+    }
+
+
 
 }

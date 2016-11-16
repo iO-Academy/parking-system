@@ -9,6 +9,8 @@
 include '/Users/benmorris/Documents/Development/academy/parking-system/classes/BookingManager.php';
 include '/Users/benmorris/Documents/Development/academy/parking-system/classes/Carpark.php';
 
+date_default_timezone_set('Europe/London');
+
 $servername = "192.168.20.56";
 $dbname = "academy";
 $username = "root";
@@ -16,7 +18,4 @@ $password = "";
 $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 $carpark = new Carpark($pdo, 'magic');
-$bookingManager = new BookingManager($pdo);
-$bookings = $bookingManager->getBookings($carpark->getId(), '2016-11-20', '2016-11-22');
-var_dump($carpark->getId());
-var_dump($bookings);
+echo $carpark->getAvailability('2016-11-15', '2016-11-22');
