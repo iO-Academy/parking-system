@@ -6,8 +6,8 @@
  * Time: 09:47
  */
 
-include '/Users/benmorris/Documents/Development/academy/parking-system/classes/BookingManager.php';
-include '/Users/benmorris/Documents/Development/academy/parking-system/classes/Carpark.php';
+include '../../classes/BookingManager.php';
+include '../../classes/Carpark.php';
 
 date_default_timezone_set('Europe/London');
 
