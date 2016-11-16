@@ -31,9 +31,13 @@ if(!empty($_SESSION['userAuth'])) {
     }
 
 }
+//add this else statement to stop users from seeing home if they're not logged in
+/*
 else {
     header('Location: login.php?success=false');
 }
+*/
+
 ?>
 
 <!DOCTYPE html>
