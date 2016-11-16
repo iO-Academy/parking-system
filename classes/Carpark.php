@@ -55,31 +55,37 @@ class Carpark
     }
 
     //just handling staff bookings at first
-    // assume format 'YYYY-MM-DD HH:MM:SS' so split on space
+    // assume format 'YYYY-MM-DD HH:MM' so split on space
     public function getAvailability($dateTimeFrom, $dateTimeTo) {
         $bookingManager = new BookingManager($this->pdo);
         $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
 
         // Handling datetime case
         if ($this->isVisitor()) {
-            $startTime = explode(' ', $dateTimeFrom)[1];
-            $endTime = explode(' ', $dateTimeTo)[1];
+            // Test that the input was provided in correct format for carpark type
+//            if (count(explode(' ', $dateTimeFrom)) < 2) {
+//                throw new Exception('Availability in days for visitor!');
+//            }
+            $startTime = strtotime(explode(' ', $dateTimeFrom)[1]);
+            $endTime = strtotime(explode(' ', $dateTimeTo)[1]);
             $time = $startTime;
             $bookingsAtTime = [];
-            while (strtotime($time) <= strtotime($endTime)) {
+            while ($time < $endTime) {
                 $bookingsAtTime[$time] = 0;
                 foreach ($bookings as $booking) {
-                    if (self::check_in_range(explode(' ', $booking['from'])[1], explode(' ', $booking['to'])[1], $time)) {
+                    if (strtotime(explode(' ', $booking['from'])[1]) <= $time && $time < strtotime(explode(' ', $booking['to'])[1])) {
                         $bookingsAtTime[$time]++;
                     }
                 }
 
-                $timeStamped = strtotime($time);
-                $timeStamped = strtotime("15 mins", strtotime($time));
-                $time = date("h-i-s", $timeStamped);
+            $time += 15 * 60;
             }
             return  $this->getCapacity() - max($bookingsAtTime);
         } else {
+            // Test that the input was provided in correct format for carpark type
+//            if (count(explode(' ', $dateTimeFrom)) > 1) {
+//                throw new Exception('Availability in hours for staff!');
+//            }
             $startDay = explode(' ', $dateTimeFrom)[0];
             $endDay = explode(' ', $dateTimeTo)[0];
             $day = $startDay;
