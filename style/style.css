@@ -138,7 +138,7 @@ footer {
 
 #timePicker {
   border: 1px solid black;
-  padding-top: 10px;
+  padding: 40px 10px;
   height: 100%; }
 
 .form-inline {
@@ -182,7 +182,8 @@ main .container {
   overflow: hidden;
   position: relative; }
 
-#filters .btn {
+#staffButton,
+#visitorButton {
   font-size: 32px;
   padding: 50px 0;
   position: relative; }
@@ -192,5 +193,10 @@ main .container {
 
 #visitor-container {
   z-index: 2; }
+
+#visitorSubmit {
+  position: absolute;
+  right: 25px;
+  margin-top: 10px; }
 
 /*# sourceMappingURL=style.css.map */
