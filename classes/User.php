@@ -15,7 +15,12 @@ class User {
         $this->pdo = $pdo;
     }
 
-
+    /**
+     * sets the session data and adds random validation string to database
+     *
+     * @param STRING $email email to check against database
+     * @param STRING $password password to check against database
+     */
     function login($email, $password) {
 
         if($this->validateDetails($email, $password)) {
@@ -26,13 +31,7 @@ class User {
             $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
             $query = $this->pdo->prepare($sql);
             $query->execute([':token'=>$token]);
-
         }
-
-    }
-
-    public function logout() {
-        session_destroy();
     }
 
     /**
@@ -98,6 +97,14 @@ class User {
 
     }
 
+    /**
+     * validates that the session data matches up with the data in the database
+     *
+     * @param STRING $token validation string to check against database
+     * @param STRING $id id of user to check validation string against
+     *
+     * @throws Exception
+     */
     public function validateToken($token, $id) {
         $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
