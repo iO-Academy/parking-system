@@ -101,23 +101,24 @@ main .container {
   background-color: $bubble-bg;
   @include border-radius(20px);
   height: 140px;
+  position: relative;
   padding: 10px;
   margin-top: 32px;
 
   p {
     font-size: 16px;
   }
-}
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 20px 40px;
-  border-color: transparent transparent $pale-cerulean transparent;
-  left: -39px;
-  position: absolute;
-  bottom: 13px;
+  .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 40px;
+    border-color: transparent transparent $pale-cerulean transparent;
+    left: -39px;
+    position: absolute;
+    bottom: 13px;
+  }
 }
 
 #visitorSubmit {
