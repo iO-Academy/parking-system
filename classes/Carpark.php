@@ -63,9 +63,9 @@ class Carpark
         // Handling datetime case
         if ($this->isVisitor()) {
             // Test that the input was provided in correct format for carpark type
-//            if (count(explode(' ', $dateTimeFrom)) < 2) {
-//                throw new Exception('Availability in days for visitor!');
-//            }
+            if (count(explode(' ', $dateTimeFrom)) < 2) {
+                throw new Exception('Availability in days for visitor!');
+            }
             $startTime = strtotime(explode(' ', $dateTimeFrom)[1]);
             $endTime = strtotime(explode(' ', $dateTimeTo)[1]);
             $time = $startTime;
@@ -83,9 +83,9 @@ class Carpark
             return  $this->getCapacity() - max($bookingsAtTime);
         } else {
             // Test that the input was provided in correct format for carpark type
-//            if (count(explode(' ', $dateTimeFrom)) > 1) {
-//                throw new Exception('Availability in hours for staff!');
-//            }
+            if (count(explode(' ', $dateTimeFrom)) > 1) {
+                throw new Exception('Availability in hours for staff!');
+            }
             $startDay = explode(' ', $dateTimeFrom)[0];
             $endDay = explode(' ', $dateTimeTo)[0];
             $day = $startDay;
