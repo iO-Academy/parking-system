@@ -101,7 +101,8 @@ main .container {
   overflow: hidden;
   position: relative; }
 
-#filters .btn {
+#staffButton,
+#visitorButton {
   font-size: 32px;
   padding: 50px 0;
   position: relative; }
@@ -155,6 +156,11 @@ main .container {
   left: -39px;
   position: absolute;
   bottom: 13px; }
+
+#visitorSubmit {
+  position: absolute;
+  right: 25px;
+  margin-top: 10px; }
 
 header {
   height: 180px; }

@@ -55,7 +55,8 @@ main .container {
   position: relative;
 }
 
-#filters .btn {
+#staffButton,
+#visitorButton {
   font-size: 32px;
   padding: 50px 0;
   position: relative;
@@ -67,10 +68,10 @@ main .container {
 
 .slider {
   height: 100%;
-  color: #627391;
-  border-top: 2px solid #9cc7df;
-  border-right: 2px solid #d25e4e;
-  border-bottom: 2px solid #d25e4e;
+  color: $dark-blue-gray;
+  border-top: 2px solid $pale-cerulean;
+  border-right: 2px solid $jelly-bean;
+  border-bottom: 2px solid $jelly-bean;
 }
 
 #staff-container {
@@ -113,8 +114,14 @@ main .container {
   height: 0;
   border-style: solid;
   border-width: 0 0 20px 40px;
-  border-color: transparent transparent #9cc7df transparent;
+  border-color: transparent transparent $pale-cerulean transparent;
   left: -39px;
   position: absolute;
   bottom: 13px;
+}
+
+#visitorSubmit {
+  position: absolute;
+  right: 25px;
+  margin-top: 10px;
 }
