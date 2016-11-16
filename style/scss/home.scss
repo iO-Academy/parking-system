@@ -1,25 +1,37 @@
 main .container {
   height: 100%;
   padding-top: 30px;
+  overflow: hidden;
 }
 
 .form {
-  height: 50%;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  height: 100%;
 }
 
 .person-select {
   padding: 0;
+  z-index: 3;
 }
 
 .person-select .btn {
   height: 50%;
   width: 100%;
+  padding: 30px 0;
 }
 
 .person-select .btn:first-child {
   border-bottom: 0;
+}
+
+.date-select {
+  height: 100%;
+  border-left: none;
+  border-right: none;
+  position: absolute;
+  right: 75%;
+  padding: 15px;
+  overflow: auto;
+  background-color: $snow;
 }
 
 .time-date-select {
@@ -35,6 +47,41 @@ main .container {
   -webkit-transform: translateY(50%);
   -moz-transform: translateY(50%);
   transform: translateY(50%);
+}
+
+#filters {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+#filters .btn {
+  font-size: 32px;
+  padding: 50px 0;
+  position: relative;
+}
+
+#filters .btn[disabled] {
+  opacity: 1;
+}
+
+.slider {
+  height: 100%;
+  color: #627391;
+  border-top: 2px solid #9cc7df;
+  border-right: 2px solid #d25e4e;
+  border-bottom: 2px solid #d25e4e;
+}
+
+#staff-container {
+  width: 620px;
+  padding-left: 90px;
+}
+
+#visitor-container {
+  z-index: 2;
+  width: 380px;
+  padding-left: 90px;
 }
 
 #alien-container {
