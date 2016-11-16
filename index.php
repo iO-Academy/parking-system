@@ -44,14 +44,15 @@ if(!empty($_SESSION['userAuth'])) {
             <img class="brand center-block" src="images/spacebook.png" alt="space book">
         </div>
     </header>
-    <div class="logo-bar">
+    <div class="logo-bar home">
         <div class="container center-block">
             <img src="images/header.png" alt="Space Book rocket logo">
+            <a class="col-md-1 btn othr-btn" href="account.php">Account</a>
             <?php
             if($loggedIn){
-                echo '<a class="col-md-1 btn" href="#">Logout</a>';
+                echo '<a class="col-md-1 btn log-btn" href="#">Logout</a>';
             }else{
-                echo '<a class="col-md-1 btn" href="login.php">Login</a>';
+                echo '<a class="col-md-1 btn log-btn" href="login.php">Login</a>';
             }
             ?>
         </div>

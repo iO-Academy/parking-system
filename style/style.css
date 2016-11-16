@@ -45,9 +45,6 @@ header {
     position: relative;
     height: 100%; }
 
-.logo-bar .btn {
-  float: right; }
-
 footer {
   background-color: #283f69; }
 
@@ -72,6 +69,9 @@ main {
 
 #login-form-div {
   margin-top: 30px; }
+
+.logo-bar.home {
+  height: 180px; }
 
 main .container {
   height: 100%;
@@ -117,12 +117,12 @@ main .container {
 #update-form {
   display: none; }
 
-.logo-bar .logout-btn {
+.logo-bar .log-btn {
   position: absolute;
   top: 0;
   right: 0; }
 
-.logo-bar .home-btn {
+.logo-bar .othr-btn {
   position: absolute;
   top: 0;
   left: 0; }
