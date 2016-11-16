@@ -70,7 +70,7 @@ if(!empty($_SESSION['userAuth'])) {
     <div class="container center-block">
         <h1>Account Page</h1>
         <a class="btn othr-btn" href="index.php">Home</a>
-        <a class="btn log-btn" href="#">Logout</a>
+        <a class="btn log-btn" href="logout.php">Logout</a>
     </div>
 </div>
 <main>

@@ -50,7 +50,7 @@ if(!empty($_SESSION['userAuth'])) {
             <a class="col-md-1 btn othr-btn" href="account.php">Account</a>
             <?php
             if($loggedIn){
-                echo '<a class="col-md-1 btn log-btn" href="#">Logout</a>';
+                echo '<a class="col-md-1 btn log-btn" href="logout.php">Logout</a>';
             }else{
                 echo '<a class="col-md-1 btn log-btn" href="login.php">Login</a>';
             }
