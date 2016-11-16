@@ -16,11 +16,6 @@ h2 {
 .logo-bar .container {
   text-align: center; }
 
-.logo-bar a {
-  position: absolute;
-  top: 0;
-  right: 0; }
-
 .logo-bar h1 {
   margin-bottom: 20px;
   color: #e3e3e3; }
@@ -121,5 +116,15 @@ main .container {
 
 #update-form {
   display: none; }
+
+.logo-bar .logout-btn {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.logo-bar .home-btn {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,48 +1,3 @@
-<?php
-session_start();
-if(!empty($_SESSION['userAuth'])) {
-    //validate user auth
-} elseif(!empty($_POST['email']) && !empty($_POST['password'])) {
-     //logged them in
-
-    include 'classes/DbConnector.php';
-    include 'classes/User.php';
-
-
-
-    try{
-        $db = new DbConnector();
-    } catch(Exception $e) {
-        //display error message in html
-        echo $e->getMessage();
-    }
-
-    $user = new User($db->getDB());
-    try{
-        $user->login($_POST['email'], $_POST['password']);
-    } catch(Exception $e) {
-        //display error message in html
-        header('Location: login.html?success=false');echo $e->getMessage();
-
-    }
-
-    //set session to logged in and email
-    //random string using time
-
-
-
-
-
-//    echo "<p>HI</p>";
-} else {
-    header('Location: login.html?success=false');
-}
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +16,8 @@ if(!empty($_SESSION['userAuth'])) {
 <div class="logo-bar">
     <div class="container center-block">
         <h1>Account Page</h1>
-        <a class="btn" href="#">Logout</a>
+        <a class="btn home-btn" href="#">Home</a>
+        <a class="btn logout-btn" href="#">Logout</a>
     </div>
 </div>
 <main>
