@@ -1,5 +1,4 @@
 h1 {
-  font-size: 100px;
   color: $page-title-color;
 }
 
@@ -16,4 +15,8 @@ h2 {
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.logo-bar h1 {
+  margin-bottom: 20px;
 }
