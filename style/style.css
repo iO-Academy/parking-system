@@ -142,20 +142,20 @@ main .container {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   height: 140px;
+  position: relative;
   padding: 10px;
   margin-top: 32px; }
   #speech-bubble p {
     font-size: 16px; }
-
-.triangle {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 20px 40px;
-  border-color: transparent transparent #9cc7df transparent;
-  left: -39px;
-  position: absolute;
-  bottom: 13px; }
+  #speech-bubble .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 40px;
+    border-color: transparent transparent #9cc7df transparent;
+    left: -39px;
+    position: absolute;
+    bottom: 13px; }
 
 #visitorSubmit {
   position: absolute;
