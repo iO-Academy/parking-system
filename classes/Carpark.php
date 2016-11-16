@@ -76,10 +76,19 @@ class Carpark
         return $this->isVisitor;
     }
 
-    //just handling staff bookings at first
-    // assume format 'YYYY-MM-DD HH:MM' so split on space
+
+    /**
+     * Returns number of available spaces for user specified dates/times.
+     * @param $dateTimeFrom STRING the date/date from which the user desires to check space availability. Format:
+     * 'YYYY-MM-DD HH:MM'.
+     * @param $dateTimeTo STRING the date/time to which the user desires to check space availability. Format: 'YYYY-MM-DD
+     * HH:MM'.
+     * @return INTEGER number of available spaces.
+     * @throws Exception
+     */
     public function getAvailability($dateTimeFrom, $dateTimeTo) {
         $bookingManager = new BookingManager($this->pdo);
+        //gets bookings from database
         $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
 
         // Handling datetime case
@@ -88,30 +97,36 @@ class Carpark
             if (count(explode(' ', $dateTimeFrom)) < 2) {
                 throw new Exception('Availability in days for visitor!');
             }
+            //Splits on space due to parameter format and converts to Unix time stamp
             $startTime = strtotime(explode(' ', $dateTimeFrom)[1]);
             $endTime = strtotime(explode(' ', $dateTimeTo)[1]);
             $time = $startTime;
             $bookingsAtTime = [];
+            //iterates through each booking, checking if times clash with user specified times
             while ($time < $endTime) {
                 $bookingsAtTime[$time] = 0;
                 foreach ($bookings as $booking) {
-                    if (strtotime(explode(' ', $booking['from'])[1]) <= $time && $time < strtotime(explode(' ', $booking['to'])[1])) {
+                    if (strtotime(explode(' ', $booking['from'])[1]) <= $time && $time < strtotime(explode(' ',
+                            $booking['to'])[1])) {
                         $bookingsAtTime[$time]++;
                     }
                 }
 
             $time += 15 * 60;
             }
+            //returns maximum number of bookings subtracted from carpark capacity
             return  $this->getCapacity() - max($bookingsAtTime);
         } else {
             // Test that the input was provided in correct format for carpark type
             if (count(explode(' ', $dateTimeFrom)) > 1) {
                 throw new Exception('Availability in hours for staff!');
             }
+            //Splits on space, due to parameter format
             $startDay = explode(' ', $dateTimeFrom)[0];
             $endDay = explode(' ', $dateTimeTo)[0];
             $day = $startDay;
             $bookingsOnDay = [];
+            //iterates through each booking, checking if dates clash with user specified dates
             while ($day <= $endDay) {
                 $bookingsOnDay[$day] = 0;
                 foreach ($bookings as $booking) {
@@ -119,20 +134,23 @@ class Carpark
                         $bookingsOnDay[$day]++;
                     }
                 }
+                //converts to Unix time stamp in order to increment date
                 $date = strtotime("+1 day", strtotime($day));
                 $day = date("Y-m-d", $date);
             }
+            //returns maximum number of bookings subtracted from carpark capacity
             return  $this->getCapacity() - max($bookingsOnDay);
-
         }
-
-
-
     }
 
-    public static function check_in_range($start_date, $end_date, $date_from_user)
-    {
-        //d([$start_date, $end_date, $date_from_user]);
+    /**
+     * Returns a boolean, equating to whether user date is between start and end date
+     * @param $start_date STRING start date of booking
+     * @param $end_date STRING end date of booking
+     * @param $date_from_user STRING date to check against start and end date of booking
+     * @return bool
+     */
+    public static function check_in_range($start_date, $end_date, $date_from_user) {
 
         // Convert to timestamp
         $start_ts = strtotime($start_date);
