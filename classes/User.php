@@ -15,37 +15,24 @@ class User {
         $this->pdo = $pdo;
     }
 
-    /**
-     * validates user login details:
-     * if email and password match database then sets $loggedIn to TRUE
-     *
-     * @param STRING $email user email
-     * @param STRING $password user password
-     *
-     * @return BOOLEAN returns if login is successful
-     *
-     * @throws Exception
-     */
+
     function login($email, $password) {
 
-        $sql = "SELECT * FROM `users` WHERE `email` = :email;";
-        $query = $this->pdo->prepare($sql);
-        $query->execute([':email'=>$email]);
-        $user = $query->fetch(PDO::FETCH_ASSOC);
+        if($this->validateDetails($email, $password)) {
+            $token = sha1(time());
+            $_SESSION['userAuth'] = $token;
+            $_SESSION['id'] = $this->id;
 
-        if(empty($user)) {
-            throw new Exception("user does not exist");
+            $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
+            $query = $this->pdo->prepare($sql);
+            $query->execute([':token'=>$token]);
+
         }
 
-        $encryptPass = $user["id"] . $password;
-        $encryptPass = sha1($encryptPass);
+    }
 
-        if($user["password"] != $encryptPass) {
-            throw new Exception("incorrect email and password combination");
-        } else {
-            $this->id = $user['id'];
-            return true;
-        }
+    public function logout() {
+        session_destroy();
     }
 
     /**
@@ -75,5 +62,50 @@ class User {
         $query = $this->pdo->prepare($sql);
         $query->execute([':password'=>$newPassword]);
 
+    }
+
+    /**
+     * validates user login details:
+     * if email and password match database then sets $loggedIn to TRUE
+     *
+     * @param STRING $email user email
+     * @param STRING $password user password
+     *
+     * @return BOOLEAN returns if login is successful
+     *
+     * @throws Exception
+     */
+    public function validateDetails($email, $password){
+
+        $sql = "SELECT * FROM `users` WHERE `email` = :email;";
+        $query = $this->pdo->prepare($sql);
+        $query->execute([':email'=>$email]);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+
+        if(empty($user)) {
+            throw new Exception("user does not exist");
+        }
+
+        $encryptPass = $user["id"] . $password;
+        $encryptPass = sha1($encryptPass);
+
+        if($user["password"] != $encryptPass) {
+            throw new Exception("incorrect email and password combination");
+        } else {
+            $this->id = $user['id'];
+            return true;
+        }
+
+    }
+
+    public function validateToken($token, $id) {
+        $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
+        $query = $this->pdo->prepare($sql);
+        $query->execute([':id'=>$id]);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+
+        if($token != $user['validationString']) {
+            throw new Exception('error validating user');
+        }
     }
 }
