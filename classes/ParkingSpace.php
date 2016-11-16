@@ -18,14 +18,17 @@ class ParkingSpace
 
     //DOCBLOCK ME
     public function book() {
-                $sql = "
+        $sql = '
                 INSERT INTO `bookings` (`carpark_id`,`from`,`to`,`user_id`)
-                VALUES (`$this->carPark`,`$this->from`,`$this->to`,`$this->user`)
-                ;";
-
+                VALUES (:carPark,:from,:to,:user)
+                ;';
+        $ps = $this->conn->prepare($sql);
+        $ps->execute([
+            ':carPark' => $this->carPark,
+            ':from' => $this->from,
+            ':to' => $this->to,
+            ':user' => $this->user,
+        ]);
     }
 
 }
-
-// use anonymous placeholders "?" to prevent sql injection
-
