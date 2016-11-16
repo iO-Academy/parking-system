@@ -22,3 +22,12 @@ function visitorQuery($visitorDate, $visitorFromTime, $visitorToTime) {
 //    Run queries
 //    echo number of available spaces
 }
+
+$arr = array(
+    'car park 1' => '4',
+    'car park 2' => '12'
+);
+
+header('Content-Type: application/json');
+echo json_encode($arr);
+

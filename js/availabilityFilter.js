@@ -109,7 +109,7 @@ $(function() {
         $el.animate({
             right: '75%'
         }, 400)
-        $('#speechBubbleContent').text('Available spaces: ')
+        $('#availabilityContainer').children().css('display', 'none')
     }
 
     $('#staffButton').click(function() {
@@ -246,8 +246,16 @@ $(function() {
             method: "post",
             url: "ajax/availability.php",
             data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
+            success: function(data) {
+                $.each(data, function(carParkName, availability) {
+                    $('#availabilityContainer').append(
+                        '<div class="carPark">' +
+                        '<h3>' + carParkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
+                        '<input class="btn btn-default" type="submit" value="Book">' +
+                        '</div>'
+                    )
+                })
             }
         }))
     })
@@ -264,8 +272,16 @@ $(function() {
             method: "post",
             url: "ajax/availability.php",
             data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
+            success: function(data) {
+                $.each(data, function(carParkName, availability) {
+                    $('#availabilityContainer').append(
+                        '<div class="carPark">' +
+                        '<h3>' + carParkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
+                        '<input class="btn btn-default" type="submit" value="Book">' +
+                        '</div>'
+                    )
+                })
             }
         }))
     })
