@@ -18,9 +18,9 @@ class Carpark
 
     /**
      * Carpark constructor.
-     * @param PDO $pdo
-     * @param $name
-     * @throws Exception
+     * @param PDO $pdo A pdo connected to the project database.
+     * @param $name Name of a carpark must match a name in the name column of the `carpark` table.
+     * @throws Exception If the $name doesn't exist.
      */
     public function __construct(PDO $pdo, $name) {
 
