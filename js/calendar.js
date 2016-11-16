@@ -104,6 +104,7 @@ $(function() {
         $el.animate({
             right: '75%'
         }, 400)
+        $('#speechBubbleContent').text('Available spaces: ')
     }
 
     $('#staffButton').click(function() {
