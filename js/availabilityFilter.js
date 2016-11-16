@@ -232,6 +232,25 @@ $(function() {
 //    ********************************************************************************
 //    Ajax
 
+    function getAvailability(data) {
+        $.ajax(({
+            method: "post",
+            url: "ajax/availability.php",
+            data: data,
+            success: function(data) {
+                $('#availabilityContainer').html('')
+                $.each(data, function(carParkName, availability) {
+                    $('#availabilityContainer').append(
+                        '<div class="carPark">' +
+                        '<h3>' + carParkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
+                        '<input class="btn btn-default" type="submit" value="Book">' +
+                        '</div>'
+                    )
+                })
+            }
+        }))
+    }
 
     $('#visitorSubmit').on('click', function() {
 
@@ -242,22 +261,7 @@ $(function() {
             toTime: $('#toHours').val() + ':' + $('#toMinutes').val()
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function(data) {
-                $.each(data, function(carParkName, availability) {
-                    $('#availabilityContainer').append(
-                        '<div class="carPark">' +
-                        '<h3>' + carParkName + '</h3>' +
-                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
-                        '<input class="btn btn-default" type="submit" value="Book">' +
-                        '</div>'
-                    )
-                })
-            }
-        }))
+        getAvailability(data)
     })
 
     $('#staffSubmit').on('click', function() {
@@ -268,22 +272,7 @@ $(function() {
             toDate: $toDate.datepicker('getFormattedDate'),
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function(data) {
-                $.each(data, function(carParkName, availability) {
-                    $('#availabilityContainer').append(
-                        '<div class="carPark">' +
-                        '<h3>' + carParkName + '</h3>' +
-                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
-                        '<input class="btn btn-default" type="submit" value="Book">' +
-                        '</div>'
-                    )
-                })
-            }
-        }))
+        getAvailability(data)
     })
 })
 
