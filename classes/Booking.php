@@ -21,10 +21,10 @@ class Booking
      * @param $toDateTime
      */
     public function getBookings($carparkId, $fromDateTime, $toDateTime) {
-        $selectString = 'SELECT `to`, `from` FROM `' . self::TABLE_NAME . '` WHERE `id` = :carparkId AND `to` >= :fromDateTime AND `from` <= :toDateTime';
+        $selectString = 'SELECT `to`, `from` FROM `' . self::TABLE_NAME . '` WHERE `id` = ? AND `to` >= ? AND `from` <= ?';
         $statement = $this->pdo->prepare($selectString);
         $statement->execute([$carparkId, $fromDateTime, $toDateTime]);
-        $statement = $pdo->query();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }}
