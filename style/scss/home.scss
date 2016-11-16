@@ -50,7 +50,7 @@ main .container {
 }
 
 #filters {
-  height: 300px;
+  height: 310px;
   overflow: hidden;
   position: relative;
 }
@@ -76,7 +76,7 @@ main .container {
 
 #staff-container {
   width: 620px;
-  padding-left: 90px;
+  padding-left: 60px;
 }
 
 #visitor-container {
@@ -120,6 +120,11 @@ main .container {
   bottom: 13px;
 }
 
+#staffSubmit {
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+}
 #visitorSubmit {
   position: absolute;
   right: 25px;

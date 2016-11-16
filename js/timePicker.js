@@ -39,6 +39,13 @@ $(function() {
             $fromMinutes.val('00').prop("disabled", true)
             $toMinutes.val('00').prop("disabled", true)
         }
+
+        $('#visitorSubmit').prop('disabled', true)
+        if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
+            console.log(typeof($('#fromHours').val()))
+            console.log(typeof($('#toHours').val()))
+            $('#visitorSubmit').prop('disabled', false)
+        }
     })
 
     //When all selection boxes are changed.
@@ -61,6 +68,12 @@ $(function() {
             //Enables all selections except MM default value.
             $('.timeInput.minutes option:not(.defaultOption)').prop("disabled", false)
         }
+
+        if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
+            console.log(typeof($('#fromHours').val()))
+            console.log(typeof($('#toHours').val()))
+            $('#visitorSubmit').prop('disabled', false)
+        }
     })
 
     //When the from hours selection is changed.
@@ -75,5 +88,7 @@ $(function() {
         $('#fromHours option[value="' + toHours + '"]').prop("disabled", true).nextAll().prop("disabled", true)
         $toMinutes.prop('disabled', false)
     })
+
+
 
 })

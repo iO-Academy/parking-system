@@ -37,6 +37,11 @@ $(function() {
         // var $start = $('#fromCal .active.day')
         // var $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
+
+        //Enables button if both dates are selected.
+        if($('#toSpan').text() != '') {
+            $('#staffSubmit').prop('disabled', false)
+        }
     })
 
     $toDate.on("changeDate", function() {
@@ -46,6 +51,11 @@ $(function() {
         // $start = $('#fromCal .active.day')
         // $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
+
+        //Enables button if both dates are selected.
+        if($('#fromSpan').text() != '') {
+            $('#staffSubmit').prop('disabled', false)
+        }
     })
 
     $visitorDate.on("changeDate", function() {
@@ -120,6 +130,10 @@ $(function() {
             right: '40%'
         }, 1000)
     })
+
+//    ********************************************************************************
+
+
 
 
 })
