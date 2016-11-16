@@ -15,20 +15,22 @@ $(function() {
         //Enables all options from dropdowns and selects first drop down option which is HH or mm.
         //If statement checks if stored previous selection had a value and if so sets value to stored selection.
         $fromHours.prop("disabled", false).find('option').first().prop('selected', true)
-        if(typeof(fromHours) != 'undefined') {
+        console.log(fromHours)
+        if(typeof(fromHours) != 'undefined' && fromHours != null) {
+            console.log('lemon')
             $fromHours.val(fromHours)
         }
         $toHours.prop("disabled", false).find('option').first().prop('selected', true)
-        if(typeof(toHours) != 'undefined') {
+        if(typeof(toHours) != 'undefined' && toHours != null) {
             $toHours.val(toHours)
         }
-        $fromMinutes.prop("disabled", false).find('option').first().prop('selected', true)
-        if(typeof(fromMinutes) != 'undefined') {
-            $fromMinutes.val(fromMinutes)
+        $fromMinutes.prop("disabled", true).find('option').first().prop('selected', true)
+        if(typeof(fromMinutes) != 'undefined' && fromMinutes != null) {
+            $fromMinutes.val(fromMinutes).prop("disabled", false)
         }
-        $toMinutes.prop("disabled", false).find('option').first().prop('selected', true)
-        if(typeof(toMinutes) != 'undefined') {
-            $toMinutes.val(toMinutes)
+        $toMinutes.prop("disabled", true).find('option').first().prop('selected', true)
+        if(typeof(toMinutes) != 'undefined' && toMinutes != null) {
+            $toMinutes.val(toMinutes).prop("disabled", false)
         }
 
         //When full day checkbox is toggled, sets selection to full day defaults and disables selection boxes.

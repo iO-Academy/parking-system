@@ -147,4 +147,49 @@ footer {
   margin-top: 20px;
   text-align: right; }
 
+main .container {
+  height: 100%;
+  padding-top: 30px;
+  overflow: hidden; }
+
+.form {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.person-select {
+  padding: 0;
+  z-index: 3; }
+
+.person-select .btn {
+  padding: 30px 0;
+  width: 100%; }
+
+.person-select .btn:first-child {
+  border-bottom: 0; }
+
+.date-select {
+  height: 100%;
+  border-left: none;
+  border-right: none;
+  position: absolute;
+  right: 75%;
+  padding: 15px;
+  overflow: auto;
+  background-color: #F9F9F9; }
+
+#filters {
+  overflow: hidden;
+  position: relative; }
+
+#filters .btn {
+  font-size: 32px;
+  padding: 50px 0;
+  position: relative; }
+
+#filters .btn[disabled] {
+  opacity: 1; }
+
+#visitor-container {
+  z-index: 2; }
+
 /*# sourceMappingURL=style.css.map */

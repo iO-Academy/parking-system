@@ -23,7 +23,7 @@ class CarparkTest extends TestCase
             'capacity' => 'test_capacity',
             'isVisitor' => 1
         ]);
-        $mockPDO->method('query')->willReturn($mockStatement);
+        $mockPDO->method('prepare')->willReturn($mockStatement);
 
         $failed = false;
         try {
@@ -43,7 +43,7 @@ class CarparkTest extends TestCase
         $mockPDO = $this->createMock('PDO');
         $mockStatement = $this->createMock('PDOStatement');
         $mockStatement->method('fetch')->willReturn([]);
-        $mockPDO->method('query')->willReturn($mockStatement);
+        $mockPDO->method('prepare')->willReturn($mockStatement);
 
         $testName = 'test_name';
         try {

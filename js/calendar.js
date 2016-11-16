@@ -6,21 +6,27 @@ $(function() {
 
     $fromDate = $('#fromCal')
     $toDate = $('#toCal')
+    $visitorDate = $('#visitorCal')
 
     $fromDate.datepicker({
         todayHighlight: true,
-        clearBtn: true,
+        // clearBtn: true,
         startDate: $date,
-        todayBtn: true,
+        // todayBtn: true,
         defaultViewDate: { month: $month }})
 
     $toDate.datepicker({
         todayHighlight: true,
-        clearBtn: true,
+        // clearBtn: true,
         startDate: $toStartDate,
-        todayBtn: true,
+        // todayBtn: true,
         defaultViewDate: { month: $month + 1 }
     })
+
+    $visitorDate.datepicker({
+        todayHighlight: true,
+        startDate: $date,
+        defaultViewDate: { month: $month }})
 
     $fromDate.on("changeDate", function() {
         $('#fromSpan').text(
@@ -40,6 +46,15 @@ $(function() {
         // $start = $('#fromCal .active.day')
         // $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
+    })
+
+    $visitorDate.on("changeDate", function() {
+        $('#visitorSpan').text(
+            $visitorDate.datepicker('getFormattedDate')
+        )
+        $('#time-container').animate({
+            right: '10%'
+        }, 1000)
     })
 
     function rangeHighlight($start, $finish) {
@@ -69,6 +84,46 @@ $(function() {
         }
     }
 
+    function slideRight($el) {
+        $el.animate({
+            right: '10%'
+        }, 1000)
+    }
+
+    function slideLeft($el) {
+        $el.animate({
+            right: '75%'
+        }, 400)
+    }
+
+    $('#staffButton').click(function() {
+        $(this).prop('disabled', true)
+        $('#visitorButton').prop('disabled', false)
+        if($('#visitor-container').css('right') != '0') {
+            slideLeft($('#visitor-container, #time-container'))
+        }
+        $('#staff-container').animate({
+            right: '10%'
+        }, 1000)
+    })
+
+    $('#visitorButton').click(function() {
+        $(this).prop('disabled', true)
+        $('#staffButton').prop('disabled', false)
+        if($('#staff-container').css('right') != '0') {
+            slideLeft($('#staff-container'))
+        }
+        $('#visitor-container').animate({
+            right: '35%'
+        }, 1000)
+        $('#time-container').animate({
+            right: '40%'
+        }, 1000)
+    })
+
+
 })
+
+
 
 
