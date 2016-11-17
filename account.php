@@ -80,7 +80,7 @@ if ($_POST['newPassword']) {
             <div id="details" class="user-account-content">
                 <h2>User Details</h2>
                 <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
-                <button type="submit" id="edit" class="btn">edit</button>
+                <button type="submit" id="edit" class="btn toggle-user-form">edit</button>
             </div>
             <div id="update-form-container" class="user-account-content">
                 <h2>Change Details</h2>
@@ -100,7 +100,7 @@ if ($_POST['newPassword']) {
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="submit" id="save-user-details" class="btn" value="Save">
-                            <input type="submit" class="btn" value="Cancel">
+                            <button type="button" class="btn toggle-user-form">Cancel</button>
                         </div>
                     </div>
                 </form>

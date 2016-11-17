@@ -1,23 +1,25 @@
 $(function(){
 
-    $('#edit').click(function (){
+    $('.toggle-user-form').click(function (){
+        $('#email').val('')
+        $('#passowrd').val('')
         $('.user-account-content').slideToggle()
     })
 
     $('#update-form').submit(function(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         //if user confirms alert?
 
         //put user data into an object
-        var userData = {};
+        var userData = {}
 
         //put in switch for each loop for all form input?
         if($('#email').val() != ''){
-            userData['newEmail'] = $('#email').val();
+            userData['newEmail'] = $('#email').val()
         }
         if($('#password').val() != ''){
-            userData['newPassword'] = $('#password').val();
+            userData['newPassword'] = $('#password').val()
         }
 
 
