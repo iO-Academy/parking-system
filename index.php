@@ -190,12 +190,10 @@ else {
             <div class="col-md-3" id="alien-container">
                 <img id="alien" src="images/alien.svg" alt="alien">
             </div>
-            <div class="col-md-6">
-                <div id="speech-bubble">
-                    <div class="triangle"></div>
-                    <p id="speechBubbleContent">Available spaces: </p>
+            <div class="col-md-6" id="speech-bubble">
+                <div class="triangle"></div>
+                <div id="availabilityContainer">
                 </div>
-                <div class="btn" id="book-button">Book</div>
             </div>
         </div>
     </main>

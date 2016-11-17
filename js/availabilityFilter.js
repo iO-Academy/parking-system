@@ -40,10 +40,7 @@ $(function() {
         // var $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
-        //Enables button if both dates are selected.
-        if($('#toSpan').text() != '') {
-            $('#staffSubmit').prop('disabled', false)
-        }
+        $('#staffSubmit').prop('disabled', true)
     })
 
     $toDate.on("changeDate", function() {
@@ -55,7 +52,7 @@ $(function() {
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
         //Enables button if both dates are selected.
-        if($('#fromSpan').text() != '') {
+        if($('#fromSpan').text() != '' && $('#toSpan').text() != '') {
             $('#staffSubmit').prop('disabled', false)
         }
     })
@@ -109,7 +106,7 @@ $(function() {
         $el.animate({
             right: '75%'
         }, 400)
-        $('#speechBubbleContent').text('Available spaces: ')
+        $('#availabilityContainer').children().css('display', 'none')
     }
 
     $('#staffButton').click(function() {
@@ -232,6 +229,25 @@ $(function() {
 //    ********************************************************************************
 //    Ajax
 
+    function getAvailability(data) {
+        $.ajax(({
+            method: "post",
+            url: "ajax/availability.php",
+            data: data,
+            success: function(data) {
+                $('#availabilityContainer').html('')
+                $.each(data, function(carParkName, availability) {
+                    $('#availabilityContainer').append(
+                        '<div class="carPark">' +
+                        '<h3>' + carParkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
+                        '<input class="btn btn-default" type="submit" value="Book">' +
+                        '</div>'
+                    )
+                })
+            }
+        }))
+    }
 
     $('#visitorSubmit').on('click', function() {
 
@@ -242,14 +258,7 @@ $(function() {
             toTime: $('#toHours').val() + ':' + $('#toMinutes').val()
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
-            }
-        }))
+        getAvailability(data)
     })
 
     $('#staffSubmit').on('click', function() {
@@ -260,14 +269,7 @@ $(function() {
             toDate: $toDate.datepicker('getFormattedDate'),
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
-            }
-        }))
+        getAvailability(data)
     })
 })
 
