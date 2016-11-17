@@ -6,6 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase {
 
+    //TODO: public function __construct()
+    //TODO: public function validateEmail()
+    //TODO: public function validateToken()
+
+    //TODO: create mock setUserDetails function
     /**
      * Tests validateDetails() returns true when validating an existing email and password combination.
      */
@@ -66,12 +71,13 @@ class UserTest extends TestCase {
         }
     }
 
+    //TODO: public function setUserDetails()
+
+
 // These weren't very testable functions as they don't output anything
 // public function login()
 // public function testChangeEmail()
 // public function testChangePassword()
 
-//TODO: public function __construct()
-//TODO: public function validateToken()
 
 }
