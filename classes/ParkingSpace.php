@@ -26,7 +26,7 @@ class ParkingSpace
         $ps->execute([
             ':carPark' => $this->carPark,
             ':fromDateTime' => $this->fromDateTime,
-            ':to' => $this->toDateTime,
+            ':toDateTime' => $this->toDateTime,
             ':user' => $this->user,
         ]);
     }
