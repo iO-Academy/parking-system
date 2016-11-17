@@ -152,7 +152,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `hash`, `firstName`, `lastName`, `carMake`, `carModel`, `carNumPlate`, `phoneNumber`, `department`)
 VALUES
-  (1,'example@email.com','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','fb6e1644654ce2f00a0a332e1163dd8d978889b1',1234,'John','Smith','Ford','Fiesta','AB12 ABC','01234 567890','1');
+  (1,'example@email.com','07be8796e6c6e701448e7b66ae85eaa5073d148e','fb6e1644654ce2f00a0a332e1163dd8d978889b1',1234,'John','Smith','Ford','Fiesta','AB12 ABC','01234 567890','1');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
