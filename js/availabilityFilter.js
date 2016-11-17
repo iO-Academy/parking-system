@@ -229,14 +229,48 @@ $(function() {
             method: "post",
             url: "ajax/availability.php",
             data: data,
-            success: function(data) {
+            success: function(result) {
                 $('#availabilityContainer').html('')
-                $.each(data, function(carParkName, availability) {
-                    $('#availabilityContainer').append(
-                        '<div class="carPark">' +
-                        '<h3>' + carParkName + '</h3>' +
-                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
-                        '<input class="btn btn-default" type="submit" value="Book">' +
+                var message
+                $.each(result, function(key, carParkDetails) {
+                    var availabilityHTML = '<div class="carPark">' +
+                        '<h3>' + carParkDetails.carparkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
+
+                    if (carParkDetails.availability != 0) {
+                    availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
+                        'data-target="#myModal' + carParkDetails.carparkId + '">';
+                     }
+                    availabilityHTML += '</div>'
+
+
+                    $('#availabilityContainer').append(availabilityHTML)
+
+                    message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                        + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
+                        + data.toTime + '</b><br><br>Is this correct?<br><br>'
+                    if (data.carPark == 'staff') {
+                        message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                            + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
+                            '<br><br>Is this correct?<br><br>'
+                    }
+
+                    $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                        '<div class="modal-dialog" role="document">' +
+                        '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                        '<h4 class="modal-title" id="myModalLabel">Confirm Booking</h4>' +
+                        '</div>' +
+                        '<div class="modal-body">' + message +
+                        '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>' +
+                        '<button type="button" class="btn btn-primary" id="carpark' + carParkDetails.carparkId + '">Book</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
                         '</div>'
                     )
                 })
@@ -265,6 +299,12 @@ $(function() {
         }
 
         getAvailability(data)
+    })
+
+    //    ********************************************************************************
+
+    $('.bookButton').on('click', function() {
+
     })
 })
 

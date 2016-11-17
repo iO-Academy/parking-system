@@ -32,7 +32,16 @@ if ($_POST['carPark'] == 'staff') {
 $payload = [];
 foreach ($carparks as $carpark) {
     try {
-        $payload[$carpark->getName()] = $carpark->getAvailability($fromDateTime, $toDateTime);
+        array_push($payload, [
+            'carparkId' => $carpark->getId(),
+            'carparkName' => $carpark->getName(),
+            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime)
+        ]);
+
+
+//        $payload['carparkId'] = $carpark->getId();
+//        $payload['carparkName'] = $carpark->getName();
+//        $payload['availability'] = $carpark->getAvailability($fromDateTime, $toDateTime);
     } catch (Exception $e) {
         $payload = [];
         break;
