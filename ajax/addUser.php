@@ -1,5 +1,6 @@
 <?php
 require_once "../autoload.php";
+
 function userDataFilter ($key) {
     $userTableColumnNames = array('email','password','validationString','firstName','lastName',
         'carMake','carModel','carNumPlate', 'phoneNumber', 'department');
