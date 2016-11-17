@@ -135,4 +135,27 @@ class User {
         $query->execute([':id' => $this->id]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Add a user to the database with an a
+     *
+     * @param $arr ARRAY An associative array of user data of the form $arr['column'] = value;
+     * @return STRING A PDOStatement error code, 00000 is ok.
+     */
+    public function addUser($arr) {
+        unset($arr['id']); // Let id auto increment
+        $arr['department'] = !empty($arr['department']) ?: 2; // Undefined as default
+        $queryString = 'INSERT INTO `users` (' .
+                        implode(', ', array_keys($arr)) .
+                        ') ' .
+                        'VALUES (' .
+                        implode(', ', array_fill(0, count($arr), '?')) .
+                        ');';
+        //die($queryString);
+        $statement = $this->pdo->prepare($queryString);
+        $statement->execute(array_values($arr));
+        return $statement->errorCode();
+    }
+
+
 }
