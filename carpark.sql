@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
-# Database: academy
-# Generation Time: 2016-11-17 13:33:03 +0000
+# Database: parkingSystem
+# Generation Time: 2016-11-17 14:29:10 +0000
 # ************************************************************
 
 
@@ -43,7 +43,7 @@ LOCK TABLES `bookings` WRITE;
 
 INSERT INTO `bookings` (`id`, `carpark_id`, `from`, `to`, `user_id`)
 VALUES
-	(1,1,'2016-11-20 00:00:00','2016-11-22 00:00:00',0);
+	(1,1,'2016-11-20 00:00:00','2016-11-22 00:00:00',1);
 
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -101,6 +101,29 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table permissions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `permissions`;
+
+CREATE TABLE `permissions` (
+  `userId` int(11) unsigned NOT NULL COMMENT 'linked to user id in users table',
+  `canCreateUser` int(1) NOT NULL COMMENT '1 = yes',
+  KEY `userId` (`userId`),
+  CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `permissions` WRITE;
+/*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
+
+INSERT INTO `permissions` (`userId`, `canCreateUser`)
+VALUES
+	(1,1);
+
+/*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table users
 # ------------------------------------------------------------
 
@@ -128,7 +151,7 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `firstName`, `lastName`, `carMake`, `carModel`, `carNumPlate`, `phoneNumber`, `department`)
 VALUES
-	(1,'example@email.com','364321e78f46562a65a902156e03c322badbcf48','45a428f2e65e0d12c548fa2c99fd1e55ab79a1df','','','0','0','',NULL,1);
+	(1,'example@email.com','364321e78f46562a65a902156e03c322badbcf48','e77ee2101912063a02d716e359a06ada1b8ccb21','','','0','0','',NULL,1);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
