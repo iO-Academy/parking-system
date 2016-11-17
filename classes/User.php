@@ -17,6 +17,15 @@ class User {
         $this->pdo = $pdo;
     }
 
+    /**
+     * validates that given email is valid
+     *
+     * @param STRING $email given email to check
+     *
+     * @return BOOLEAN
+     *
+     * @throws Exception
+     */
     private function validateEmail($email) {
 
         // Remove all illegal characters from email
@@ -35,6 +44,10 @@ class User {
      *
      * @param STRING $email email to check against database
      * @param STRING $password password to check against database
+     *
+     * @return BOOLEAN
+     *
+     * @throws Exception
      */
     function login($email, $password) {
 
@@ -58,6 +71,8 @@ class User {
      * updates user email in database and $_SESSION
      *
      * @param STRING $newEmail email to add to database
+     *
+     * @throws Exception
      */
     public function changeEmail($newEmail){
 
@@ -80,7 +95,7 @@ class User {
     /**
      * updates user password in database
      *
-     * @param STRING $newPassword password to add to database
+     * @param STRING $password password to add to database
      */
     public function changePassword($password){
 
@@ -95,7 +110,7 @@ class User {
 
     /**
      * validates user login details:
-     * if email and password match database then sets $loggedIn to TRUE
+     * if email and password match database then sets $loggedIn to TRUE and updates class variables
      *
      * @param STRING $email user email
      * @param STRING $password user password
@@ -136,6 +151,8 @@ class User {
      * @param STRING $token validation string to check against database
      * @param STRING $id id of user to check validation string against
      *
+     * @returns BOOLEAN
+     *
      * @throws Exception
      */
     public function validateToken($token, $id) {
@@ -152,9 +169,15 @@ class User {
         return $this->setUserDetails($user);
 
     }
-
+    
+    /**
+     * updates class variables
+     *
+     * @param ARRAY $user array containing all user details
+     *
+     * @return BOOLEAN
+     */
     public function setUserDetails($user){
-        //set details
         $this->id = $user['id'];
         $this->email = $user['email'];
         $this->hash = $user['hash'];
