@@ -4,7 +4,7 @@ $(function(){
         $('.user-account-content').slideToggle()
     })
 
-    $('form').submit(function(e) {
+    $('#update-form').submit(function(e) {
         e.preventDefault();
 
         //if user confirms alert?
