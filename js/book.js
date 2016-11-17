@@ -7,7 +7,7 @@ $(function() {
 
         var data = {
             'from': $('#fromSpan').text(),
-            'to': $('#fromSpan').text(),
+            'to': $('#toSpan').text(),
         }
 
         $.ajax({
