@@ -1,5 +1,8 @@
 <?php
 require_once "../autoload.php";
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+
 function userDataFilter ($key) {
     $userTableColumnNames = array('email','password','validationString','firstName','lastName',
         'carMake','carModel','carNumPlate', 'phoneNumber', 'department');

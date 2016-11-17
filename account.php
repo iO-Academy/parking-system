@@ -146,55 +146,55 @@ $canCreateUser = $user->getCanCreateUser();
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
             </div>
         </div>
         <div class="form-group">
             <label for="password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="password" placeholder="changeMe">
+                <input type="text" class="form-control" name="password" id="password" placeholder="changeMe">
             </div>
         </div>
         <div class="form-group">
             <label for="firstName" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="firstName" placeholder="John">
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="John">
             </div>
         </div>
         <div class="form-group">
             <label for="lastName" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="lastName" placeholder="Smith">
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Smith">
             </div>
         </div>
         <div class="form-group">
             <label for="carMake" class="col-sm-2 control-label">Car Make</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="carMake" placeholder="Renault etc.">
+                <input type="text" class="form-control" name="carMake" id="carMake" placeholder="Renault etc.">
             </div>
         </div>
         <div class="form-group">
             <label for="carModel" class="col-sm-2 control-label">Car Model</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="carModel" placeholder="Megane etc.">
+                <input type="text" class="form-control" name="carModel" id="carModel" placeholder="Megane etc.">
             </div>
         </div>
         <div class="form-group">
             <label for="carNumPlate" class="col-sm-2 control-label">Number Plate</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" id="carNumPlate" placeholder="AB00 ABC">
+                <input type="email" class="form-control" name="carNumPlate" id="carNumPlate" placeholder="AB00 ABC">
             </div>
         </div>
         <div class="form-group">
             <label for="phoneNumber" class="col-sm-2 control-label">Telephone</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="phoneNumber" placeholder="01234 567890">
+                <input type="password" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="01234 567890">
             </div>
         </div>
         <div class="form-group">
             <label for="department" class="col-sm-2 control-label">Department</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" id="department" placeholder="Finance">
+                <input type="password" class="form-control" name="department" id="department" placeholder="Finance">
             </div>
         </div>
         <div class="form-group">
