@@ -231,6 +231,7 @@ $(function() {
             data: data,
             success: function(result) {
                 $('#availabilityContainer').html('')
+                var message
                 $.each(result, function(key, carParkDetails) {
                     $('#availabilityContainer').append(
                         '<div class="carPark">' +
@@ -240,6 +241,16 @@ $(function() {
                         'data-target="#myModal' + carParkDetails.carparkId + '">' +
                         '</div>'
                     )
+
+                    message = 'You are about to book a ' + data.carPark + ' space in '
+                        + carParkDetails.carparkName + ':<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
+                        + data.toTime + '</b><br><br>Is this correct?'
+                    if (data.carPark == 'staff') {
+                        message = 'You are about to book a ' + data.carPark + ' space in '
+                            + carParkDetails.carparkName + ':<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
+                            '<br><br>Is this correct?'
+                    }
+
                     $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                         '<div class="modal-dialog" role="document">' +
                         '<div class="modal-content">' +
@@ -249,7 +260,7 @@ $(function() {
                         '</button>' +
                         '<h4 class="modal-title" id="myModalLabel">Confirm Booking</h4>' +
                         '</div>' +
-                        '<div class="modal-body">Are you sure you want to book a ' + data.carPark + ' space in ' + carParkDetails.carparkName + '?</div>' +
+                        '<div class="modal-body">' + message +
                         '<div class="modal-footer">' +
                         '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>' +
                         '<button type="button" class="btn btn-primary" id="carpark' + carParkDetails.carparkId + '">Book</button>' +
