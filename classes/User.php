@@ -169,7 +169,7 @@ class User {
         return $this->setUserDetails($user);
 
     }
-    
+
     /**
      * updates class variables
      *
