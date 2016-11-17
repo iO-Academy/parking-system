@@ -57,10 +57,13 @@ CREATE TABLE `bookings` (
   `carpark_id` int(11) unsigned NOT NULL,
   `from` datetime DEFAULT NULL,
   `to` datetime DEFAULT NULL,
+  `user_id` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `carpark_id` (`carpark_id`),
-  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`carpark_id`) REFERENCES `carpark` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `booker_id` (`user_id`),
+  CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`carpark_id`) REFERENCES `carpark` (`id`),
+  CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
