@@ -229,14 +229,33 @@ $(function() {
             method: "post",
             url: "ajax/availability.php",
             data: data,
-            success: function(data) {
+            success: function(result) {
                 $('#availabilityContainer').html('')
-                $.each(data, function(carParkName, availability) {
+                $.each(result, function(key, carParkDetails) {
                     $('#availabilityContainer').append(
                         '<div class="carPark">' +
-                        '<h3>' + carParkName + '</h3>' +
-                        '<p class="availableSpaces">Available Spaces: ' + availability + '</p>' +
-                        '<input class="btn btn-default" type="submit" value="Book">' +
+                        '<h3>' + carParkDetails.carparkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>' +
+                        '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
+                        'data-target="#myModal' + carParkDetails.carparkId + '">' +
+                        '</div>'
+                    )
+                    $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                        '<div class="modal-dialog" role="document">' +
+                        '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                        '<h4 class="modal-title" id="myModalLabel">Confirm Booking</h4>' +
+                        '</div>' +
+                        '<div class="modal-body">Are you sure you want to book a ' + data.carPark + ' space in ' + carParkDetails.carparkName + '?</div>' +
+                        '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>' +
+                        '<button type="button" class="btn btn-primary" id="carpark' + carParkDetails.carparkId + '">Book</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
                         '</div>'
                     )
                 })
@@ -265,6 +284,12 @@ $(function() {
         }
 
         getAvailability(data)
+    })
+
+    //    ********************************************************************************
+
+    $('.bookButton').on('click', function() {
+
     })
 })
 
