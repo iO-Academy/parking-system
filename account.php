@@ -137,7 +137,7 @@ $canCreateUser = $user->getCanCreateUser();
         <?php
         if ($canCreateUser == 1) {
             echo '<div class="addUser" id = "addUserForm" ><h2>Add New User</h2>
-       <form class="form-horizontal">
+       <form class="form-horizontal" action="ajax/addUser.php">
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
@@ -194,7 +194,7 @@ $canCreateUser = $user->getCanCreateUser();
         </div>
         <div class="form-group pull-right">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="pull-right btn btn-default">Add User</button>
+                <button class="pull-right btn btn-default">Add User</button>
             </div>
         </div>
     </form>
