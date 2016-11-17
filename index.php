@@ -22,8 +22,7 @@ session_start();
 if(!empty($_SESSION['userAuth'])) {
 
     try {
-        $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
-        $loggedIn = TRUE;
+        $loggedIn = $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
     } catch(Exception $e) {
         session_destroy();
         $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
