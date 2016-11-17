@@ -23,16 +23,25 @@ $user = new User($db->getDB());
     }
 
 /********** handle ajax **********/
-//try catch doesnt catch error
+
+$errors = [];
+
 if ($_POST['newEmail']) {
     try {
         $user->changeEmail($_POST['newEmail']);
     } catch(Exception $e) {
-        echo $e->getMessage();
+        $errors['email'] = $e->getMessage();
     }
 
 
 }
 if ($_POST['newPassword']) {
     $user->changePassword($_POST['newPassword']);
+}
+
+if(!empty($errors)) {
+    echo json_encode($errors);
+}
+else {
+    echo 'success';
 }

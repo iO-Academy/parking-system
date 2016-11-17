@@ -62,11 +62,16 @@ class User {
     public function changeEmail($newEmail){
 
         if($this->validateEmail($newEmail)){
-            $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
-            $query = $this->pdo->prepare($sql);
-            $query->execute([':email'=>$newEmail]);
+            try {
+                $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
+                $query = $this->pdo->prepare($sql);
+                $query->execute([':email'=>$newEmail]);
 
-            $_SESSION['email'] = $newEmail;
+                $_SESSION['email'] = $newEmail;
+            } catch(Exception $e) {
+                throw new Exception('email already exist');
+            }
+
         }
 
 
@@ -120,8 +125,7 @@ class User {
         if($user['password'] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
-            $this->setUserDetails($user);
-            return true;
+            return $this->setUserDetails($user);
         }
 
     }
