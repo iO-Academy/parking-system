@@ -29,7 +29,7 @@ if(!empty($_SESSION['userAuth'])) {
 
 } elseif(!empty($_POST['email']) && !empty($_POST['password'])) {
 
-    /********** validate / login **********/
+/********** validate / login **********/
 
     try{
         $user->login($_POST['email'], $_POST['password']);
@@ -41,6 +41,16 @@ if(!empty($_SESSION['userAuth'])) {
 else {
     header('Location: login.php?success=false');
 }
+
+/********** handle ajax **********/
+
+if($_POST['newEmail']){
+    $user->changeEmail($_POST['newEmail']);
+}
+if($_POST['newPassword']){
+    $user->changePassword($_POST['newPassword']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +80,7 @@ else {
         <div id="user-details">
             <div id="details" class="user-account-content">
                 <h2>User Details</h2>
-                <h4 id="email-field">Email: <span>example@email.com</span></h4>
-                <h4>Password: password1</h4>
+                <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
                 <button type="submit" id="edit" class="btn">edit</button>
             </div>
             <div id="update-form" class="user-account-content">
@@ -92,6 +101,7 @@ else {
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="submit" id="save-user-details" class="btn" value="Save">
+                            <input type="submit" class="btn" value="Cancel">
                         </div>
                     </div>
                 </form>
