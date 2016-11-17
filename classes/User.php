@@ -24,7 +24,7 @@ class User {
 
         // Validate e-mail
         if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-            throw new Exception('is not a valid email address');
+            throw new Exception('not a valid email address');
         }
 
         return true;
@@ -145,7 +145,8 @@ class User {
         }
 
         $this->id = $id;
-        $this->setUserDetails($user);
+        return $this->setUserDetails($user);
+
     }
 
     public function setUserDetails($user){
@@ -153,6 +154,7 @@ class User {
         $this->id = $user['id'];
         $this->email = $user['email'];
         $this->hash = $user['hash'];
+        return true;
     }
 
 }
