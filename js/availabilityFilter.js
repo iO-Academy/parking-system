@@ -224,7 +224,14 @@ $(function() {
 //    ********************************************************************************
 //    Ajax
 
+    /**
+     * Takes an object containing the filter data, runs the ajax request and displays relevant availability.
+     *
+     * @param data OBJECT Contains filter data
+     */
     function getAvailability(data) {
+
+        //Posts data object to availability.php and returns the relevant availability.
         $.ajax(({
             method: "post",
             url: "ajax/availability.php",
@@ -242,24 +249,26 @@ $(function() {
                         '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
 
                     if (carParkDetails.availability != 0 && result.loggedIn) {
-                    availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
-                        'data-target="#myModal' + carParkDetails.carparkId + '">';
+                    availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" ' +
+                        'data-toggle="modal" ' + 'data-target="#myModal' + carParkDetails.carparkId + '">';
                      }
                     availabilityHTML += '</div>'
 
 
                     $('#availabilityContainer').append(availabilityHTML)
 
-                    message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
-                        + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
-                        + data.toTime + '</b><br><br>Is this correct?<br><br>'
+                    message = 'You are about to book a ' + data.carPark + ' parking space in <b>' +
+                        carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' +
+                        data.fromTime + '</b> to <b>' + data.toTime + '</b><br><br>Is this correct?<br><br>'
+
                     if (data.carPark == 'staff') {
                         message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
-                            + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
-                            '<br><br>Is this correct?<br><br>'
+                            + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.fromDate + '</b> to <b>'
+                            + data.toDate + '</b>' + '<br><br>Is this correct?<br><br>'
                     }
 
-                    $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                    $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" ' +
+                        'tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
                         '<div class="modal-dialog" role="document">' +
                         '<div class="modal-content">' +
                         '<div class="modal-header">' +
@@ -282,6 +291,8 @@ $(function() {
         }))
     }
 
+    // Creates a click event on the visitor submit button, creates a data object to be posted with ajax
+    // Passes data object in to getAvailability function.
     $('#visitorSubmit').on('click', function() {
 
         var data = {
@@ -294,6 +305,8 @@ $(function() {
         getAvailability(data)
     })
 
+    // Creates a click event on the staff submit button, creates a data object to be posted with ajax
+    // Passes data object in to getAvailability function.
     $('#staffSubmit').on('click', function() {
 
         var data = {
@@ -306,10 +319,6 @@ $(function() {
     })
 
     //    ********************************************************************************
-
-    $('.bookButton').on('click', function() {
-
-    })
 })
 
 
