@@ -17,6 +17,19 @@ class User {
         $this->pdo = $pdo;
     }
 
+    private function validateEmail($email) {
+
+        // Remove all illegal characters from email
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+        // Validate e-mail
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            throw new Exception('is not a valid email address');
+        }
+
+        return true;
+    }
+
     /**
      * sets the session data and adds random validation string to database
      *
@@ -25,7 +38,7 @@ class User {
      */
     function login($email, $password) {
 
-        if($this->validateDetails($email, $password)) {
+        if($this->validateEmail($email) && $this->validateDetails($email, $password)) {
             $token = sha1(time());
 
             //set all data used to validate / display
@@ -35,7 +48,9 @@ class User {
 
             $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
             $query = $this->pdo->prepare($sql);
-            $query->execute([':token'=>$token]);
+            return $query->execute([':token'=>$token]);
+        } else {
+            throw new Exception('Invalid Login');
         }
     }
 
@@ -46,11 +61,15 @@ class User {
      */
     public function changeEmail($newEmail){
 
-        $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
-        $query = $this->pdo->prepare($sql);
-        $query->execute([':email'=>$newEmail]);
+        if($this->validateEmail($newEmail)){
+            $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
+            $query = $this->pdo->prepare($sql);
+            $query->execute([':email'=>$newEmail]);
 
-        $_SESSION['email'] = $newEmail;
+            $_SESSION['email'] = $newEmail;
+        }
+
+
     }
 
     /**
@@ -81,6 +100,10 @@ class User {
      * @throws Exception
      */
     public function validateDetails($email, $password){
+
+        if(!$this->validateEmail($email)) {
+            throw new Exception("not valid email");
+        }
 
         $sql = "SELECT * FROM `users` WHERE `email` = :email;";
         $query = $this->pdo->prepare($sql);

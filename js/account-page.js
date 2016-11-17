@@ -25,13 +25,17 @@ $(function(){
 
         $.ajax(({
             method: "post",
-            url: "account.php",
+            url: "handle.php",
             data: userData,
-            success: function() {
+            success: function(a,b,c) {
+                console.log(a)
+                console.log(b)
+                console.log(c)
+
                 $(".user-account-content").slideToggle()
-                if($('#email').val() != ""){
-                    $("#email-field span").text($('#email').val())
-                }
+                // if($('#email').val() != ""){
+                //     $("#email-field span").text($('#email').val())
+                // }
                 if($('#password').val() != ""){
                     $("#password-field span").text($('#password').val())
                 }

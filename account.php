@@ -41,14 +41,20 @@ if (!empty($_SESSION['userAuth'])) {
     header('Location: login.php?success=false');
 }
 
-/********** handle ajax **********/
-
-if ($_POST['newEmail']) {
-    $user->changeEmail($_POST['newEmail']);
-}
-if ($_POST['newPassword']) {
-    $user->changePassword($_POST['newPassword']);
-}
+///********** handle ajax **********/
+////try catch doesnt catch error
+//if ($_POST['newEmail']) {
+//    try {
+//        $user->changeEmail($_POST['newEmail']);
+//    } catch(Exception $e) {
+//        $err = $e->getMessage();
+//    }
+//
+//
+//}
+//if ($_POST['newPassword']) {
+//    $user->changePassword($_POST['newPassword']);
+//}
 
 ?>
 
