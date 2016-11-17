@@ -15,28 +15,30 @@ class User {
         $this->pdo = $pdo;
     }
 
-
+    /**
+     * sets the session data and adds random validation string to database
+     *
+     * @param STRING $email email to check against database
+     * @param STRING $password password to check against database
+     */
     function login($email, $password) {
 
         if($this->validateDetails($email, $password)) {
             $token = sha1(time());
+
+            //set all data used to validate / display
             $_SESSION['userAuth'] = $token;
             $_SESSION['id'] = $this->id;
+            $_SESSION['email'] = $email;
 
             $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
             $query = $this->pdo->prepare($sql);
             $query->execute([':token'=>$token]);
-
         }
-
-    }
-
-    public function logout() {
-        session_destroy();
     }
 
     /**
-     * updates user email in database
+     * updates user email in database and $_SESSION
      *
      * @param STRING $newEmail email to add to database
      */
@@ -46,6 +48,7 @@ class User {
         $query = $this->pdo->prepare($sql);
         $query->execute([':email'=>$newEmail]);
 
+        $_SESSION['email'] = $newEmail;
     }
 
     /**
@@ -61,7 +64,6 @@ class User {
         $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
         $query = $this->pdo->prepare($sql);
         $query->execute([':password'=>$newPassword]);
-
     }
 
     /**
@@ -98,8 +100,20 @@ class User {
 
     }
 
+<<<<<<< HEAD
     public function validateToken($token, $id)
     {
+=======
+    /**
+     * validates that the session data matches up with the data in the database
+     *
+     * @param STRING $token validation string to check against database
+     * @param STRING $id id of user to check validation string against
+     *
+     * @throws Exception
+     */
+    public function validateToken($token, $id) {
+>>>>>>> login
         $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $id]);
@@ -108,6 +122,9 @@ class User {
         if ($token != $user['validationString']) {
             throw new Exception('error validating user');
         }
+
+        $this->id = $id;
+        
     }
 
     /**

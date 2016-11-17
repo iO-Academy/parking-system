@@ -2,6 +2,7 @@
 require_once 'autoload.php';
 
 /********** create database **********/
+
 try{
     $db = new DbConnector();
 } catch(Exception $e) {
@@ -12,6 +13,10 @@ try{
 $user = new User($db->getDB());
 
 session_start();
+
+
+/********** validate session data **********/
+
 if(!empty($_SESSION['userAuth'])) {
 
     try {
@@ -22,36 +27,34 @@ if(!empty($_SESSION['userAuth'])) {
         header($header_str);
     }
 
-
 } elseif(!empty($_POST['email']) && !empty($_POST['password'])) {
 
-
-
-    /********** validate / login **********/
+/********** validate / login **********/
 
     try{
         $user->login($_POST['email'], $_POST['password']);
-//        var_dump($_SESSION);
     } catch(Exception $e) {
         $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
         header($header_str);
     }
-
-    //set session to logged in and id
-    //random string using time
-
-
-
-} else {
+}
+else {
     header('Location: login.php?success=false');
 }
 
 $bookings = $user->getBookings();
 
 //change spec errors to if success=false echo some generic err (do validation in form?)
+/********** handle ajax **********/
+
+if($_POST['newEmail']){
+    $user->changeEmail($_POST['newEmail']);
+}
+if($_POST['newPassword']){
+    $user->changePassword($_POST['newPassword']);
+}
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -71,8 +74,8 @@ $bookings = $user->getBookings();
 <div class="logo-bar">
     <div class="container center-block">
         <h1>Account Page</h1>
-        <a class="btn home-btn" href="index.php">Home</a>
-        <a class="btn logout-btn" href="#">Logout</a>
+        <a class="btn othr-btn" href="index.php">Home</a>
+        <a class="btn log-btn" href="logout.php">Logout</a>
     </div>
 </div>
 <main>
@@ -80,8 +83,7 @@ $bookings = $user->getBookings();
         <div id="user-details">
             <div id="details" class="user-account-content">
                 <h2>User Details</h2>
-                <h4 id="email-field">Email: <span>example@email.com</span></h4>
-                <h4>Password: password1</h4>
+                <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
                 <button type="submit" id="edit" class="btn">edit</button>
             </div>
             <div id="update-form" class="user-account-content">
@@ -102,6 +104,7 @@ $bookings = $user->getBookings();
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="submit" id="save-user-details" class="btn" value="Save">
+                            <input type="submit" class="btn" value="Cancel">
                         </div>
                     </div>
                 </form>
@@ -111,7 +114,6 @@ $bookings = $user->getBookings();
             <h2>Your Bookings</h2>
             <?php
             if (is_array($bookings) && count($bookings) > 0) {
-//                var_dump($bookings);
                 echo '<div class="table-responsive">';
                 echo '<table class="table"><tr><th>Carpark Name</th><th>Date From</th><th>Time From</th><th>Date To</th><th>Time To</th></tr>';
                 foreach ($bookings as $row) {

@@ -4,6 +4,7 @@ require_once 'autoload.php';
 $loggedIn = FALSE;
 
 /********** create database **********/
+
 try{
     $db = new DbConnector();
 } catch(Exception $e) {
@@ -14,20 +15,28 @@ try{
 $user = new User($db->getDB());
 
 session_start();
+
+
+/********** validate session data **********/
+
 if(!empty($_SESSION['userAuth'])) {
 
     try {
         $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
         $loggedIn = TRUE;
     } catch(Exception $e) {
-//        session_destroy();
-        //do something
+        session_destroy();
+        $header_str = 'Location: login.php?success=false&err=' . $e->getMessage();
+        header($header_str);
     }
 
-
-}else {
+}
+//add this else statement to stop users from seeing home if they're not logged in
+/*
+else {
     header('Location: login.php?success=false');
 }
+*/
 
 ?>
 
@@ -50,10 +59,17 @@ if(!empty($_SESSION['userAuth'])) {
             <img class="brand center-block" src="images/spacebook.png" alt="space book">
         </div>
     </header>
-    <div class="logo-bar">
+    <div class="logo-bar home">
         <div class="container center-block">
             <img src="images/header.png" alt="Space Book rocket logo">
-            <a class="col-md-1 btn" href="#">Login</a>
+            <a class="col-md-1 btn othr-btn" href="account.php">Account</a>
+            <?php
+            if($loggedIn){
+                echo '<a class="col-md-1 btn log-btn" href="logout.php">Logout</a>';
+            }else{
+                echo '<a class="col-md-1 btn log-btn" href="login.php">Login</a>';
+            }
+            ?>
         </div>
     </div>
     <main>
