@@ -11,6 +11,12 @@ require __DIR__ . '/BookingManager.php';
 class Carpark
 {
     const CARPARK_TABLE_NAME = 'carpark';
+    const HOURS = 24;
+    const SECONDS_IN_HOUR = 3600;
+    const MINUTE_INCREMENTS = 15;
+    const MINUTES_IN_HOUR = 60;
+    const END_TIME = ' 23:59:59'; //default end of day, formatted for ease of concatenation
+    const START_TIME = ' 00:00:00'; //default start of day, formatted for ease of concatenation
 
     private $pdo;
     private $id;
@@ -74,91 +80,81 @@ class Carpark
         return $this->isVisitor;
     }
 
-
-    /**
-     * Returns number of available spaces for user specified dates/times.
-     * @param $dateTimeFrom STRING the date/date from which the user desires to check space availability. Format:
-     * 'YYYY-MM-DD HH:MM'.
-     * @param $dateTimeTo STRING the date/time to which the user desires to check space availability. Format: 'YYYY-MM-DD
-     * HH:MM'.
-     * @return INTEGER number of available spaces.
-     * @throws Exception
-     */
     public function getAvailability($dateTimeFrom, $dateTimeTo) {
-        $bookingManager = new BookingManager($this->pdo);
-        //gets bookings from database
-        $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
-
-        // Handling datetime case
-        if ($this->isVisitor()) {
-            // Test that the input was provided in correct format for carpark type
-            if (count(explode(' ', $dateTimeFrom)) < 2) {
-                throw new Exception('Availability in days for visitor!');
-            }
-            //Splits on space due to parameter format and converts to Unix time stamp
-            $startTime = strtotime(explode(' ', $dateTimeFrom)[1]);
-            $endTime = strtotime(explode(' ', $dateTimeTo)[1]);
-            $time = $startTime;
-            $bookingsAtTime = [];
-            //iterates through each booking, checking if times clash with user specified times
-            while ($time < $endTime) {
-                $bookingsAtTime[$time] = 0;
-                foreach ($bookings as $booking) {
-                    if (strtotime(explode(' ', $booking['from'])[1]) <= $time && $time < strtotime(explode(' ',
-                            $booking['to'])[1])) {
-                        $bookingsAtTime[$time]++;
-                    }
-                }
-
-            $time += 15 * 60;
-            }
-            //returns maximum number of bookings subtracted from carpark capacity
-            return  $this->getCapacity() - max($bookingsAtTime);
+        if ($this->isVisitor) {
+            $startValue = $this->getTimeStampFromTime($dateTimeFrom);
+            $endValue = $this->getTimeStampFromTime($dateTimeTo, 1);
+            $increment = self::MINUTE_INCREMENTS;
+            $measurement = self::MINUTES_IN_HOUR;
         } else {
-            // Test that the input was provided in correct format for carpark type
-            if (count(explode(' ', $dateTimeFrom)) > 1) {
-                throw new Exception('Availability in hours for staff!');
-            }
-            //Splits on space, due to parameter format
-            $startDay = explode(' ', $dateTimeFrom)[0];
-            $endDay = explode(' ', $dateTimeTo)[0];
-            $day = $startDay;
-            $bookingsOnDay = [];
-            //iterates through each booking, checking if dates clash with user specified dates
-            while ($day <= $endDay) {
-                $bookingsOnDay[$day] = 0;
-                foreach ($bookings as $booking) {
-                    if (self::check_in_range(explode(' ', $booking['from'])[0], explode(' ', $booking['to'])[0], $day)) {
-                        $bookingsOnDay[$day]++;
-                    }
-                }
-                //converts to Unix time stamp in order to increment date
-                $date = strtotime("+1 day", strtotime($day));
-                $day = date("Y-m-d", $date);
-            }
-            //returns maximum number of bookings subtracted from carpark capacity
-            return  $this->getCapacity() - max($bookingsOnDay);
+            $dateTimeTo .= self::END_TIME;
+            $dateTimeFrom .= self::START_TIME;
+            $startValue = $this->getTimeStampFromDate($dateTimeFrom);
+            $endValue = $this->getTimeStampFromDate($dateTimeTo);
+            $increment = self::HOURS;
+            $measurement = self::SECONDS_IN_HOUR;
         }
+        $bookingManager = new BookingManager($this->pdo);
+        $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
+        $clashingBookings = $this->getConcurrentBookings($startValue, $endValue, $bookings, $increment,
+            $measurement);
+        return $this->getCapacity() - max($clashingBookings);
     }
 
-    /**
-     * Returns a boolean, equating to whether user date is between start and end date
-     * @param $start_date STRING start date of booking
-     * @param $end_date STRING end date of booking
-     * @param $date_from_user STRING date to check against start and end date of booking
-     * @return bool
-     */
-    public static function check_in_range($start_date, $end_date, $date_from_user) {
-
-        // Convert to timestamp
-        $start_ts = strtotime($start_date);
-        $end_ts = strtotime($end_date);
-        $user_ts = strtotime($date_from_user);
-
-        // Check that user date is between start & end
-        return (($user_ts >= $start_ts) && ($user_ts <= $end_ts));
+    private function getConcurrentBookings($start, $end, $bookings ,$timeMeasure, $timeIncrement) {
+        $concurrentBookings = [];
+        while ($start <= $end) {
+            $concurrentBookings[$start] = 0;
+            foreach ($bookings as $booking) {
+                $dateRange = $this->getRangeTimeStamps($booking);
+                if (
+                    ($dateRange['from'] <= $start &&
+                    $dateRange['to'] > $start) ||
+                    ($dateRange['from'] >= $start &&
+                    $dateRange['to'] <= $end) ||
+                    ($dateRange['from'] > $start &&
+                    $dateRange['to'] >= $end)
+                ) {
+                    $concurrentBookings[$start]++;
+                }
+            }
+            $start = $this->incrementTime($start, $timeMeasure, $timeIncrement);
+        }
+        return $concurrentBookings;
     }
 
+    private function getRangeTimeStamps($booking) {
+        if ($this->isVisitor) {
+            $to = $this->getTimeStampFromTime($booking['to'], 1);
+            $from = $this->getTimeStampFromTime($booking['from']);
+        } else {
+            $to = $this->getTimeStampFromDate($booking['to']);
+            $from = $this->getTimeStampFromDate($booking['from']);
+        }
+        $dateRange = ['from' => $from, 'to' => $to];
+        return $dateRange;
+    }
 
+    private function getTimeStampFromTime($dateTime, $negative = 0) {
+        $timeStampFromTime = strtotime(explode(' ', $dateTime)[1]) - $negative;
+        if(!$timeStampFromTime) {
+            throw new Exception('TimeStamp conversion failure!');
+        }
+        return $timeStampFromTime;
+    }
+
+    private function getTimeStampFromDate($dateTime) {
+        $timeStampFromDate = strtotime($dateTime);
+        if(!$timeStampFromDate) {
+            throw new Exception('TimeStamp conversion failure!');
+        }
+        return $timeStampFromDate;
+    }
+
+    private function incrementTime($start, $timeMeasure, $timeIncrement) {
+        $start += $timeMeasure * $timeIncrement;
+        return $start;
+    }
 
 }
+
