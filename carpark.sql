@@ -130,11 +130,11 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL DEFAULT '',
-  `password` VARCHAR(255) NOT NULL DEFAULT '',
-  `validationString` CHAR(40) DEFAULT '',
-  `hash` INT(4) DEFAULT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `password` varchar(255) NOT NULL DEFAULT '',
+  `validationString` char(40) DEFAULT '',
+  `hash` int(4) DEFAULT NULL,
   `firstName` VARCHAR(255) NOT NULL DEFAULT '',
   `lastName` VARCHAR(255) NOT NULL DEFAULT '',
   `carMake` VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmake table',

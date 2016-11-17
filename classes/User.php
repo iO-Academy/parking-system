@@ -5,7 +5,7 @@ class User {
     private $id;
     private $email;
     private $hash;
-    private $canCrerateUser;
+    private $canCreateUser;
     private $pdo;
 
 
@@ -130,7 +130,7 @@ class User {
         //set details
         $this->id = $user['id'];
         $this->email = $user['email'];
-        $this->canCrerateUser = $user['canCreateUser'];
+        $this->canCreateUser = $user['canCreateUser'];
         $this->hash = $user['hash'];
     }
 
