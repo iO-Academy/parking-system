@@ -181,18 +181,33 @@ class User {
      * @return STRING A PDOStatement error code, 00000 is ok.
      */
     public function addUser($arr) {
-        unset($arr['id']); // Let id auto increment
-        $arr['department'] = !empty($arr['department']) ?: 2; // Undefined as default
+
+        $arr = $this->validateAddUserData($arr);
         $queryString = 'INSERT INTO `users` (' .
                         implode(', ', array_keys($arr)) .
                         ') ' .
                         'VALUES (' .
                         implode(', ', array_fill(0, count($arr), '?')) .
                         ');';
-        //die($queryString);
         $statement = $this->pdo->prepare($queryString);
         $statement->execute(array_values($arr));
         return $statement->errorCode();
+    }
+
+    private function validateAddUserData($arr) {
+
+        // Let id auto increment
+        unset($arr['id']);
+        $arr['hash'] = $arr['hash'] ?: mt_rand(1000,9999);
+
+        // Required fields
+        $arr['department'] = !empty($arr['department']) ?: 2; // Undefined as default
+        if (!empty($arr['password'])) {
+            $arr['password'] = sha1($arr['hash'] . $arr['password']);
+        } else {
+            throw New Exception('Tried to add new user with no password!');
+        }
+        return $arr;
     }
 
 
