@@ -5,6 +5,7 @@ class User {
     private $id;
     private $email;
     private $hash;
+    private $canCrerateUser;
     private $pdo;
 
 
@@ -112,7 +113,7 @@ class User {
      * @throws Exception
      */
     public function validateToken($token, $id) {
-        $sql = "SELECT * FROM `users` WHERE `id` = :id;";
+        $sql = "SELECT `users`.*, `permissions`.`canCreateUser` FROM `users` LEFT JOIN  `permissions` ON `users`.`id`=`permissions`.`userId` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $id]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
@@ -129,6 +130,7 @@ class User {
         //set details
         $this->id = $user['id'];
         $this->email = $user['email'];
+        $this->canCrerateUser = $user['canCreateUser'];
         $this->hash = $user['hash'];
     }
 

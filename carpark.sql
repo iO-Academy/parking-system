@@ -26,24 +26,24 @@
 DROP TABLE IF EXISTS `bookings`;
 
 CREATE TABLE `bookings` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `carpark_id` int(11) unsigned NOT NULL,
-  `from` datetime DEFAULT NULL,
-  `to` datetime DEFAULT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `carpark_id` INT(11) UNSIGNED NOT NULL,
+  `from` DATETIME DEFAULT NULL,
+  `to` DATETIME DEFAULT NULL,
+  `user_id` INT(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   KEY `carpark_id` (`carpark_id`),
   KEY `booker_id` (`user_id`),
   CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`carpark_id`) REFERENCES `carpark` (`id`),
   CONSTRAINT `bookings_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `bookings` WRITE;
 /*!40000 ALTER TABLE `bookings` DISABLE KEYS */;
 
 INSERT INTO `bookings` (`id`, `carpark_id`, `from`, `to`, `user_id`)
 VALUES
-	(1,1,'2016-11-20 00:00:00','2016-11-22 00:00:00',1);
+  (1,1,'2016-11-20 00:00:00','2016-11-22 00:00:00',1);
 
 /*!40000 ALTER TABLE `bookings` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -55,21 +55,21 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `carpark`;
 
 CREATE TABLE `carpark` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `capacity` int(5) NOT NULL,
-  `isVisitor` tinyint(1) DEFAULT NULL,
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL DEFAULT '',
+  `capacity` INT(5) NOT NULL,
+  `isVisitor` TINYINT(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `carpark` WRITE;
 /*!40000 ALTER TABLE `carpark` DISABLE KEYS */;
 
 INSERT INTO `carpark` (`id`, `name`, `capacity`, `isVisitor`)
 VALUES
-	(1,'hobnob',100,0),
-	(3,'digestive',50,0),
-	(4,'rich tea',50,1);
+  (1,'hobnob',100,0),
+  (3,'digestive',50,0),
+  (4,'rich tea',50,1);
 
 /*!40000 ALTER TABLE `carpark` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -81,21 +81,21 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `department`;
 
 CREATE TABLE `department` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `department` WRITE;
 /*!40000 ALTER TABLE `department` DISABLE KEYS */;
 
 INSERT INTO `department` (`id`, `name`)
 VALUES
-	(1,'HR'),
-	(2,'unknown'),
-	(6,'admin'),
-	(7,'orbit'),
-	(8,'academy');
+  (1,'HR'),
+  (2,'unknown'),
+  (6,'admin'),
+  (7,'orbit'),
+  (8,'academy');
 
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -107,18 +107,18 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `permissions`;
 
 CREATE TABLE `permissions` (
-  `userId` int(11) unsigned NOT NULL COMMENT 'linked to user id in users table',
-  `canCreateUser` int(1) NOT NULL COMMENT '1 = yes',
+  `userId` INT(11) UNSIGNED NOT NULL COMMENT 'linked to user id in users table',
+  `canCreateUser` INT(1) NOT NULL COMMENT '1 = yes',
   KEY `userId` (`userId`),
   CONSTRAINT `permissions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
 
 INSERT INTO `permissions` (`userId`, `canCreateUser`)
 VALUES
-	(1,1);
+  (1,1);
 
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -130,29 +130,29 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL DEFAULT '',
-  `validationString` char(40) DEFAULT '',
-  `hash` int(4) DEFAULT NULL,
-  `firstName` varchar(255) NOT NULL DEFAULT '',
-  `lastName` varchar(255) NOT NULL DEFAULT '',
-  `carMake` varchar(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmake table',
-  `carModel` varchar(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmodel table',
-  `carNumPlate` char(8) NOT NULL DEFAULT '',
-  `phoneNumber` int(11) unsigned DEFAULT NULL,
-  `department` int(11) unsigned NOT NULL,
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(255) NOT NULL DEFAULT '',
+  `password` VARCHAR(255) NOT NULL DEFAULT '',
+  `validationString` CHAR(40) DEFAULT '',
+  `hash` INT(4) DEFAULT NULL,
+  `firstName` VARCHAR(255) NOT NULL DEFAULT '',
+  `lastName` VARCHAR(255) NOT NULL DEFAULT '',
+  `carMake` VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmake table',
+  `carModel` VARCHAR(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmodel table',
+  `carNumPlate` CHAR(8) NOT NULL DEFAULT '',
+  `phoneNumber` INT(11) UNSIGNED DEFAULT NULL,
+  `department` INT(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   KEY `department` (`department`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`department`) REFERENCES `department` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=INNODB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
 INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `hash`, `firstName`, `lastName`, `carMake`, `carModel`, `carNumPlate`, `phoneNumber`, `department`)
 VALUES
-	(1,'example@email.com','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684',1234, '','','0','0','',NULL,1);
+  (1,'example@email.com','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','fb6e1644654ce2f00a0a332e1163dd8d978889b1',1234,'John','Smith','Ford','Fiesta','AB12 ABC','01234 567890','1');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
