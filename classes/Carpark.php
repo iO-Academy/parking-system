@@ -84,9 +84,10 @@ class Carpark
      * Calculates quantity of available spaces from carpark capacity and overlapping bookings, using user input
      * @param $dateTimeFrom STRING date from which user desires to check availability
      * @param $dateTimeTo STRING date to which user desires to check availability
+     * @param $bookingManager OBJECT containing PDO query for bookings
      * @return INTEGER number of available spaces
      */
-    public function getAvailability($dateTimeFrom, $dateTimeTo) {
+    public function getAvailability($dateTimeFrom, $dateTimeTo, $bookingManager) {
         if ($this->isVisitor) {
             $startValue = $this->getTimeStampFromTime($dateTimeFrom);
             $endValue = $this->getTimeStampFromTime($dateTimeTo, 1);
@@ -100,7 +101,6 @@ class Carpark
             $increment = self::HOURS;
             $measurement = self::SECONDS_IN_HOUR;
         }
-        $bookingManager = new BookingManager($this->pdo);
         $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
         $clashingBookings = $this->getConcurrentBookings($startValue, $endValue, $bookings, $increment,
             $measurement);
@@ -108,14 +108,15 @@ class Carpark
     }
 
     /**
-     * @param $start
-     * @param $end
-     * @param $bookings
-     * @param $timeMeasure
-     * @param $timeIncrement
-     * @return array
+     * Iterates over current bookings and returns number of bookings that overlap with user dates/times
+     * @param $start INTEGER timestamp of user's from date/time, used to start iteration and for bookings comparison
+     * @param $end INTEGER timestamp of user's end date/time, used to end iteration and for bookings comparison
+     * @param $bookings ARRAY current bookings array for comparison
+     * @param $timeMeasure INTEGER hours or minutes, depending on whether checking dates or times
+     * @param $timeIncrement INTEGER of number of minutes or seconds in hour, depending on whether checking dates or times
+     * @return array containing counts of clashing bookings
      */
-    private function getConcurrentBookings($start, $end, $bookings , $timeMeasure, $timeIncrement) {
+    private function getConcurrentBookings($start, $end, $bookings, $timeMeasure, $timeIncrement) {
         $concurrentBookings = [];
         while ($start <= $end) {
             $concurrentBookings[$start] = 0;
@@ -138,6 +139,7 @@ class Carpark
     }
 
     /**
+     * calls getTimeStampFromTime() or getTimeStampFromDate() as appropriate and
      * @param $booking
      * @return array
      */

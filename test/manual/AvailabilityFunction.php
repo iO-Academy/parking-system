@@ -18,4 +18,5 @@ $password = "";
 $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 $carpark = new Carpark($pdo, 'magic');
-echo $carpark->getAvailability('2016-12-02 12:00:00', '2016-12-02 14:00:00');
+$bookingManager = new BookingManager($pdo);
+echo $carpark->getAvailability('2016-12-02 12:00:00', '2016-12-02 14:00:00', $bookingManager);
