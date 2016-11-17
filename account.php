@@ -29,7 +29,7 @@ if (!empty($_SESSION['userAuth'])) {
 
 } elseif (!empty($_POST['email']) && !empty($_POST['password'])) {
 
-    /********** validate / login **********/
+/********** validate / login **********/
 
     try {
         $user->login($_POST['email'], $_POST['password']);
@@ -41,21 +41,6 @@ if (!empty($_SESSION['userAuth'])) {
     header('Location: login.php?success=false');
 }
 
-///********** handle ajax **********/
-////try catch doesnt catch error
-//if ($_POST['newEmail']) {
-//    try {
-//        $user->changeEmail($_POST['newEmail']);
-//    } catch(Exception $e) {
-//        $err = $e->getMessage();
-//    }
-//
-//
-//}
-//if ($_POST['newPassword']) {
-//    $user->changePassword($_POST['newPassword']);
-//}
-
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +49,7 @@ if (!empty($_SESSION['userAuth'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
     <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/account-page.js"></script>
     <title>Space Book</title>
 </head>
@@ -81,10 +67,25 @@ if (!empty($_SESSION['userAuth'])) {
     </div>
 </div>
 <main>
+    <!--    modal popup-->
+    <div class="modal" role="dialog" area-lablledby="saveModal" id="save-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <h4 class="modal-header" id="saveModal">Save Details?</h4>
+                <div class="modal-body">Are you sure you want to make these changes?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal" id="save-confirm">Yes</button>
+                    <button type="button" class="btn" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    page content-->
     <div class="container center-block">
         <div id="user-details">
             <div id="details" class="user-account-content">
                 <h2>User Details</h2>
+                <div id="errors" class="text-danger"></div>
                 <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
                 <button type="submit" id="edit" class="btn toggle-user-form">edit</button>
             </div>
@@ -105,7 +106,8 @@ if (!empty($_SESSION['userAuth'])) {
                     </div>
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
-                            <input type="submit" id="save-user-details" class="btn" value="Save">
+                            <input type="submit" id="save-user-details" class="btn" data-toggle="modal"
+                                   data-target="#save-modal" value="Save">
                             <button type="button" class="btn toggle-user-form">Cancel</button>
                         </div>
                     </div>
