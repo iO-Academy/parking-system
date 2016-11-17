@@ -5,6 +5,17 @@ date_default_timezone_set('Europe/London');
 $conn = new DbConnector();
 $pdo = $conn->getDB();
 
+$loggedIn = FALSE;
+
+session_start();
+if (!empty($_SESSION['userAuth'])) {
+    try {
+        $user = new User($pdo);
+        $loggedIn = $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
+    } catch (Exception $e) {
+        // Not logged in -> Don't do anything
+    }
+}
 
 // Append times if visitors
 if ($_POST['carPark'] == 'visitor') {
@@ -37,16 +48,13 @@ foreach ($carparks as $carpark) {
             'carparkName' => $carpark->getName(),
             'availability' => $carpark->getAvailability($fromDateTime, $toDateTime)
         ]);
-
-
-//        $payload['carparkId'] = $carpark->getId();
-//        $payload['carparkName'] = $carpark->getName();
-//        $payload['availability'] = $carpark->getAvailability($fromDateTime, $toDateTime);
     } catch (Exception $e) {
         $payload = [];
         break;
     }
 }
+
+$payload['loggedIn'] = $loggedIn;
 
 header('Content-Type: application/json');
 echo json_encode($payload);

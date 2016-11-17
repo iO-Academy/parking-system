@@ -233,11 +233,15 @@ $(function() {
                 $('#availabilityContainer').html('')
                 var message
                 $.each(result, function(key, carParkDetails) {
+                    if (!carParkDetails.hasOwnProperty('carparkName')) {
+                        return false
+                    }
+
                     var availabilityHTML = '<div class="carPark">' +
                         '<h3>' + carParkDetails.carparkName + '</h3>' +
                         '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
 
-                    if (carParkDetails.availability != 0) {
+                    if (carParkDetails.availability != 0 && result.loggedIn) {
                     availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
                         'data-target="#myModal' + carParkDetails.carparkId + '">';
                      }
