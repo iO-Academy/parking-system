@@ -175,6 +175,17 @@ main .container {
   right: 25px;
   margin-top: 10px; }
 
+.carPark {
+  float: left;
+  width: 50%;
+  text-align: center; }
+
+.carPark h3 {
+  margin-top: 10px; }
+
+#availabilityContainer {
+  overflow: auto; }
+
 header {
   height: 180px; }
 

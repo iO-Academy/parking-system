@@ -40,10 +40,7 @@ $(function() {
         // var $finish = $('#toCal .active.day')
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
-        //Enables button if both dates are selected.
-        if($('#toSpan').text() != '') {
-            $('#staffSubmit').prop('disabled', false)
-        }
+        $('#staffSubmit').prop('disabled', true)
     })
 
     $toDate.on("changeDate", function() {
@@ -55,7 +52,7 @@ $(function() {
         // rangeHighlight($start, $finish) @toDo Highlight range between selected dates.
 
         //Enables button if both dates are selected.
-        if($('#fromSpan').text() != '') {
+        if($('#fromSpan').text() != '' && $('#toSpan').text() != '') {
             $('#staffSubmit').prop('disabled', false)
         }
     })
@@ -109,7 +106,7 @@ $(function() {
         $el.animate({
             right: '75%'
         }, 400)
-        $('#speechBubbleContent').text('Available spaces: ')
+        $('#availabilityContainer').children().css('display', 'none')
     }
 
     $('#staffButton').click(function() {
@@ -164,7 +161,6 @@ $(function() {
         }
         $fromMinutes.prop("disabled", true).find('option').first().prop('selected', true)
         if(typeof(fromMinutes) != 'undefined' && fromMinutes != null) {
-            console.log('lemon')
             $fromMinutes.val(fromMinutes).prop("disabled", false)
         }
         $toMinutes.prop("disabled", true).find('option').first().prop('selected', true)
@@ -182,8 +178,6 @@ $(function() {
 
         $('#visitorSubmit').prop('disabled', true)
         if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
-            console.log(typeof($('#fromHours').val()))
-            console.log(typeof($('#toHours').val()))
             $('#visitorSubmit').prop('disabled', false)
         }
     })
@@ -210,8 +204,6 @@ $(function() {
         }
 
         if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
-            console.log(typeof($('#fromHours').val()))
-            console.log(typeof($('#toHours').val()))
             $('#visitorSubmit').prop('disabled', false)
         }
     })
@@ -232,6 +224,59 @@ $(function() {
 //    ********************************************************************************
 //    Ajax
 
+    function getAvailability(data) {
+        $.ajax(({
+            method: "post",
+            url: "ajax/availability.php",
+            data: data,
+            success: function(result) {
+                $('#availabilityContainer').html('')
+                var message
+                $.each(result, function(key, carParkDetails) {
+                    var availabilityHTML = '<div class="carPark">' +
+                        '<h3>' + carParkDetails.carparkName + '</h3>' +
+                        '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
+
+                    if (carParkDetails.availability != 0) {
+                    availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
+                        'data-target="#myModal' + carParkDetails.carparkId + '">';
+                     }
+                    availabilityHTML += '</div>'
+
+
+                    $('#availabilityContainer').append(availabilityHTML)
+
+                    message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                        + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
+                        + data.toTime + '</b><br><br>Is this correct?<br><br>'
+                    if (data.carPark == 'staff') {
+                        message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                            + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
+                            '<br><br>Is this correct?<br><br>'
+                    }
+
+                    $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
+                        '<div class="modal-dialog" role="document">' +
+                        '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                        '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                        '<span aria-hidden="true">&times;</span>' +
+                        '</button>' +
+                        '<h4 class="modal-title" id="myModalLabel">Confirm Booking</h4>' +
+                        '</div>' +
+                        '<div class="modal-body">' + message +
+                        '<div class="modal-footer">' +
+                        '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>' +
+                        '<button type="button" class="btn btn-primary" id="carpark' + carParkDetails.carparkId + '">Book</button>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                    )
+                })
+            }
+        }))
+    }
 
     $('#visitorSubmit').on('click', function() {
 
@@ -242,14 +287,7 @@ $(function() {
             toTime: $('#toHours').val() + ':' + $('#toMinutes').val()
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
-            }
-        }))
+        getAvailability(data)
     })
 
     $('#staffSubmit').on('click', function() {
@@ -260,14 +298,13 @@ $(function() {
             toDate: $toDate.datepicker('getFormattedDate'),
         }
 
-        $.ajax(({
-            method: "post",
-            url: "ajax/availability.php",
-            data: data,
-            success: function($return) {
-                $('#speechBubbleContent').text('Available spaces: ' + $return)
-            }
-        }))
+        getAvailability(data)
+    })
+
+    //    ********************************************************************************
+
+    $('.bookButton').on('click', function() {
+
     })
 })
 

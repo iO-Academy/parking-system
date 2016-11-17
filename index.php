@@ -48,6 +48,7 @@ else {
     <script src="js/vendor/bootstrap-datepicker.en-GB.min.js"></script>
     <script src="js/availabilityFilter.js"></script>
     <script src="js/book.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
@@ -76,8 +77,8 @@ else {
         <div class="container center-block">
             <div id="filters">
                 <div class="col-md-3 person-select form">
-                    <button class="btn btn-default" href="#" id="staffButton">Staff</button>
-                    <button class="btn btn-d  efault" href="#" id="visitorButton">Visitor</button>
+                    <button class="btn btn-default" href="#" id="staffButton" autocomplete="off">Staff</button>
+                    <button class="btn btn-d  efault" href="#" id="visitorButton" autocomplete="off">Visitor</button>
                 </div>
                 <div class="col-md-7 offset-md-2 date-select form slider" id="staff-container">
                     <div id="staffPicker" class="input-group input-daterange">
@@ -193,9 +194,9 @@ else {
             <div class="col-md-6">
                 <div id="speech-bubble">
                     <div class="triangle"></div>
-                    <p id="speechBubbleContent">Available spaces: </p>
+                    <div id="availabilityContainer">
+                    </div>
                 </div>
-                <div class="btn" id="book-button">Book</div>
             </div>
         </div>
     </main>
