@@ -18,6 +18,13 @@
   display: none;
 }
 
+.addUser {
+  background-color: $account-details-background-color;
+  padding: 15px;
+  margin-top: 15px;
+  overflow: auto;
+}
+
 .logo-bar .log-btn {
   position: absolute;
   top: 0;

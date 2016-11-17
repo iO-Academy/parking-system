@@ -19,6 +19,14 @@ class User {
     }
 
     /**
+     * @return mixed
+     */
+    public function getCanCreateUser()
+    {
+        return $this->canCreateUser;
+    }
+
+    /**
      * sets the session data and adds random validation string to database
      *
      * @param STRING $email email to check against database

@@ -43,6 +43,7 @@ else {
 }
 
 $bookings = $user->getBookings();
+$canCreateUser = $user->getCanCreateUser();
 
 //change spec errors to if success=false echo some generic err (do validation in form?)
 /********** handle ajax **********/
@@ -129,6 +130,73 @@ if($_POST['newPassword']){
             }
             ?>
         </div>
+        <?php
+        if ($canCreateUser == 1) {
+            echo '<div class="addUser" id = "addUserForm" ><h2>Add New User</h2>
+       <form class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="password" placeholder="changeMe">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="firstName" placeholder="John">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="lastName" placeholder="Smith">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="carMake" class="col-sm-2 control-label">Car Make</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="carMake" placeholder="Renault etc.">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="carModel" class="col-sm-2 control-label">Car Model</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="carModel" placeholder="Megane etc.">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="carNumPlate" class="col-sm-2 control-label">Number Plate</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="carNumPlate" placeholder="AB00 ABC">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-2 control-label">Telephone</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="phoneNumber" placeholder="01234 567890">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="department" class="col-sm-2 control-label">Department</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="department" placeholder="Finance">
+            </div>
+        </div>
+        <div class="form-group pull-right">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="pull-right btn btn-default">Add User</button>
+            </div>
+        </div>
+    </form>
+        </div >';
+        }
+        ?>
     </div>
 </main>
 <footer>

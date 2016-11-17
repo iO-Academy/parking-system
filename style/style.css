@@ -224,6 +224,12 @@ footer {
 #update-form {
   display: none; }
 
+.addUser {
+  background-color: #9cc7df;
+  padding: 15px;
+  margin-top: 15px;
+  overflow: auto; }
+
 .logo-bar .log-btn {
   position: absolute;
   top: 0;
