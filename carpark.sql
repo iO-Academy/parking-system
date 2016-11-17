@@ -7,7 +7,11 @@
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
 # Database: parkingSystem
+<<<<<<< HEAD
 # Generation Time: 2016-11-17 14:29:10 +0000
+=======
+# Generation Time: 2016-11-17 10:25:26 +0000
+>>>>>>> login
 # ************************************************************
 
 
@@ -134,6 +138,7 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `validationString` char(40) DEFAULT '',
+  `hash` int(4) DEFAULT NULL,
   `firstName` varchar(255) NOT NULL DEFAULT '',
   `lastName` varchar(255) NOT NULL DEFAULT '',
   `carMake` varchar(255) NOT NULL DEFAULT '' COMMENT 'In future link to carmake table',
@@ -149,9 +154,9 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `firstName`, `lastName`, `carMake`, `carModel`, `carNumPlate`, `phoneNumber`, `department`)
+INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `hash`, `firstName`, `lastName`, `carMake`, `carModel`, `carNumPlate`, `phoneNumber`, `department`)
 VALUES
-	(1,'example@email.com','364321e78f46562a65a902156e03c322badbcf48','e77ee2101912063a02d716e359a06ada1b8ccb21','','','0','0','',NULL,1);
+	(1,'example@email.com','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684',1234, '','','0','0','',NULL,1);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
