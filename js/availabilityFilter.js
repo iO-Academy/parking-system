@@ -161,7 +161,6 @@ $(function() {
         }
         $fromMinutes.prop("disabled", true).find('option').first().prop('selected', true)
         if(typeof(fromMinutes) != 'undefined' && fromMinutes != null) {
-            console.log('lemon')
             $fromMinutes.val(fromMinutes).prop("disabled", false)
         }
         $toMinutes.prop("disabled", true).find('option').first().prop('selected', true)
@@ -179,8 +178,6 @@ $(function() {
 
         $('#visitorSubmit').prop('disabled', true)
         if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
-            console.log(typeof($('#fromHours').val()))
-            console.log(typeof($('#toHours').val()))
             $('#visitorSubmit').prop('disabled', false)
         }
     })
@@ -207,8 +204,6 @@ $(function() {
         }
 
         if(typeof($fromHours.val()) == 'string' && typeof($toHours.val()) == 'string' && typeof($fromMinutes.val()) == 'string' && typeof($toMinutes.val()) == 'string') {
-            console.log(typeof($('#fromHours').val()))
-            console.log(typeof($('#toHours').val()))
             $('#visitorSubmit').prop('disabled', false)
         }
     })
