@@ -1,31 +1,34 @@
 <?php
-
-// TODO: These need to be removed when this is merged with the autoloader branch
-require __DIR__ . '/../classes/DbConnector.php';
-require __DIR__ . '/../classes/Carpark.php';
+require __DIR__ . '/../autoload.php';
 date_default_timezone_set('Europe/London');
 
 $conn = new DbConnector();
 $pdo = $conn->getDB();
 
-/**
- * Takes converts a string 'DD/MM/YYYY' to 'YYYY-MM-DD'
- */
-function dateConvert($input) {
-    return implode('-', array_reverse(explode('/', $input)));
+$loggedIn = FALSE;
+
+session_start();
+if (!empty($_SESSION['userAuth'])) {
+    try {
+        $user = new User($pdo);
+        $loggedIn = $user->validateToken($_SESSION['userAuth'], $_SESSION['id']);
+    } catch (Exception $e) {
+        // Not logged in -> Don't do anything
+    }
 }
-
-// Get the dates in the right format
-
 
 // Append times if visitors
 if ($_POST['carPark'] == 'visitor') {
-    $baseDate = dateConvert($_POST['date']);
+    $tmpDate = DateTime::createFromFormat('d/m/Y', $_POST['date']);
+    $baseDate = $tmpDate->format('Y-m-d');
     $fromDateTime = $baseDate . ' ' . $_POST['fromTime'];
     $toDateTime = $baseDate . ' ' . $_POST['toTime'];
 } else {
-    $fromDateTime = dateConvert($_POST['fromDate']);
-    $toDateTime = dateConvert($_POST['toDate']);
+    $tmpDate = DateTime::createFromFormat('d/m/Y', $_POST['fromDate']);
+    $fromDateTime = $tmpDate->format('Y-m-d');
+
+    $tmpDate = DateTime::createFromFormat('d/m/Y', $_POST['toDate']);
+    $toDateTime = $tmpDate->format('Y-m-d');
 }
 
 $carparks = [];
@@ -40,12 +43,18 @@ if ($_POST['carPark'] == 'staff') {
 $payload = [];
 foreach ($carparks as $carpark) {
     try {
-        $payload[$carpark->getName()] = $carpark->getAvailability($fromDateTime, $toDateTime);
+        array_push($payload, [
+            'carparkId' => $carpark->getId(),
+            'carparkName' => $carpark->getName(),
+            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime)
+        ]);
     } catch (Exception $e) {
         $payload = [];
         break;
     }
 }
+
+$payload['loggedIn'] = $loggedIn;
 
 header('Content-Type: application/json');
 echo json_encode($payload);
