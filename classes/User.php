@@ -100,10 +100,6 @@ class User {
 
     }
 
-<<<<<<< HEAD
-    public function validateToken($token, $id)
-    {
-=======
     /**
      * validates that the session data matches up with the data in the database
      *
@@ -113,7 +109,6 @@ class User {
      * @throws Exception
      */
     public function validateToken($token, $id) {
->>>>>>> login
         $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $id]);
