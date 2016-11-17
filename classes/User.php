@@ -3,6 +3,9 @@
 class User {
 
     private $id;
+    private $email;
+    private $hash;
+    private $canCreateUser;
     private $pdo;
 
 
@@ -56,14 +59,15 @@ class User {
      *
      * @param STRING $newPassword password to add to database
      */
-    public function changePassword($newPassword){
+    public function changePassword($password){
 
-        $newPassword = $this->id . $newPassword;
+        $newPassword = $this->hash . $password;
         $newPassword = sha1($newPassword);
 
         $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
         $query = $this->pdo->prepare($sql);
         $query->execute([':password'=>$newPassword]);
+
     }
 
     /**
@@ -88,13 +92,13 @@ class User {
             throw new Exception("user does not exist");
         }
 
-        $encryptPass = $user["id"] . $password;
+        $encryptPass = $user['hash'] . $password;
         $encryptPass = sha1($encryptPass);
 
-        if($user["password"] != $encryptPass) {
+        if($user['password'] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
-            $this->id = $user['id'];
+            $this->setUserDetails($user);
             return true;
         }
 
@@ -109,7 +113,7 @@ class User {
      * @throws Exception
      */
     public function validateToken($token, $id) {
-        $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
+        $sql = "SELECT `users`.*, `permissions`.`canCreateUser` FROM `users` LEFT JOIN  `permissions` ON `users`.`id`=`permissions`.`userId` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $id]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
@@ -119,8 +123,17 @@ class User {
         }
 
         $this->id = $id;
-        
+        $this->setUserDetails($user);
     }
+
+    public function setUserDetails($user){
+        //set details
+        $this->id = $user['id'];
+        $this->email = $user['email'];
+        $this->canCreateUser = $user['canCreateUser'];
+        $this->hash = $user['hash'];
+    }
+
 
     /**
      * gets all bookings for current user from the bookings table
