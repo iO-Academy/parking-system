@@ -80,6 +80,12 @@ class Carpark
         return $this->isVisitor;
     }
 
+    /**
+     * Calculates quantity of available spaces from carpark capacity and overlapping bookings, using user input
+     * @param $dateTimeFrom STRING date from which user desires to check availability
+     * @param $dateTimeTo STRING date to which user desires to check availability
+     * @return INTEGER number of available spaces
+     */
     public function getAvailability($dateTimeFrom, $dateTimeTo) {
         if ($this->isVisitor) {
             $startValue = $this->getTimeStampFromTime($dateTimeFrom);
@@ -101,7 +107,15 @@ class Carpark
         return $this->getCapacity() - max($clashingBookings);
     }
 
-    private function getConcurrentBookings($start, $end, $bookings ,$timeMeasure, $timeIncrement) {
+    /**
+     * @param $start
+     * @param $end
+     * @param $bookings
+     * @param $timeMeasure
+     * @param $timeIncrement
+     * @return array
+     */
+    private function getConcurrentBookings($start, $end, $bookings , $timeMeasure, $timeIncrement) {
         $concurrentBookings = [];
         while ($start <= $end) {
             $concurrentBookings[$start] = 0;
@@ -123,6 +137,10 @@ class Carpark
         return $concurrentBookings;
     }
 
+    /**
+     * @param $booking
+     * @return array
+     */
     private function getRangeTimeStamps($booking) {
         if ($this->isVisitor) {
             $to = $this->getTimeStampFromTime($booking['to'], 1);
@@ -135,6 +153,12 @@ class Carpark
         return $dateRange;
     }
 
+    /**
+     * @param $dateTime
+     * @param int $negative
+     * @return int
+     * @throws Exception
+     */
     private function getTimeStampFromTime($dateTime, $negative = 0) {
         $timeStampFromTime = strtotime(explode(' ', $dateTime)[1]) - $negative;
         if(!$timeStampFromTime) {
@@ -143,6 +167,11 @@ class Carpark
         return $timeStampFromTime;
     }
 
+    /**
+     * @param $dateTime
+     * @return int
+     * @throws Exception
+     */
     private function getTimeStampFromDate($dateTime) {
         $timeStampFromDate = strtotime($dateTime);
         if(!$timeStampFromDate) {
@@ -151,6 +180,12 @@ class Carpark
         return $timeStampFromDate;
     }
 
+    /**
+     * @param $start
+     * @param $timeMeasure
+     * @param $timeIncrement
+     * @return mixed
+     */
     private function incrementTime($start, $timeMeasure, $timeIncrement) {
         $start += $timeMeasure * $timeIncrement;
         return $start;
