@@ -1,13 +1,24 @@
 $(function() {
 
 
-    // DOBCLOCK ME
+    /**
+     * Takes a string in the format DD/MM/YYYY and returns it in the format YYYY-MM-DD
+     *
+     * @param date STRING DD/MM/YYYY
+     * @returns STRING YYYY-MM-DD
+     */
     function dateConvert(date) {
         return date.split('/').reverse().join('-')
     }
 
 
-    // DOBCLOCK ME
+    /**
+     * Takes a date and time, passes the date to dateConvert and returns a formatted datetime string
+     *
+     * @param date STRING DD/MM/YYYY
+     * @param time STRING HH:MM
+     * @returns STRING YYYY-MM-DD HH:MM:00
+     */
     function changeToDateTime(date, time) {
         return dateConvert(date) + ' ' + time + ':00'
     }
@@ -25,7 +36,7 @@ $(function() {
 
 
     // DOCBLOCK ME
-    // getting selected date(s) (and times) into datetime format and putting into ajax data object, along with carParkId
+    // gets selected date(s) (and times) into datetime format and puts into ajax data object, along with carParkId
     function createAjaxData(carParkId) {
 
         var vd, // visitor date
@@ -72,27 +83,15 @@ $(function() {
 
 
     // sends ajax request when carpark4 (visitor:rich tea) book button is clicked
-    $('#carpark4').click(function () {
-
-       createAjaxData(4)
-        makeBooking(data)
-    })
+    $('#carpark4').click(makeBooking(createAjaxData(4)))
 
 
     // sends ajax request when staff carpark1 (staff:hobnob) book button is clicked
-    $('#carpark1').click(function () {
-
-        createAjaxData(1)
-        makeBooking(data)
-    })
+    $('#carpark1').click(makeBooking(createAjaxData(1)))
 
 
     // sends ajax request when staff carpark3 (staff:digestive) book button is clicked
-    $('#carpark3').click(function () {
-
-        createAjaxData(3)
-        makeBooking(data)
-    })
+    $('#carpark3').click(makeBooking(createAjaxData(3)))
 
 })
 
