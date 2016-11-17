@@ -5,7 +5,7 @@ $(function() {
         return date.split('/').reverse().join('-')
     }
     // DOBCLOCK ME
-    function toDateTime(date, time) {
+    function changeToDateTime(date, time) {
         return dateConvert(date) + ' ' + time + ':00'
     }
     // DOBCLOCK ME
@@ -18,7 +18,7 @@ $(function() {
         })
     }
 
-    // sends ajax request when visitor carpark book button is clicked
+    // sends ajax request when carpark4 (visitor/rich tea) book button is clicked
     $('#carpark4').click(function () {
 
         // getting visitor selected date and times into a 'to' and 'from' datetime variable
@@ -29,11 +29,11 @@ $(function() {
             tdt, // to-datetime
             data
 
-        fdt = toDateTime(vd, vft)
-        tdt = toDateTime(vd, vtt)
+        fdt = changeToDateTime(vd, vft)
+        tdt = changeToDateTime(vd, vtt)
 
         data = {
-            carPark: 'visitor', //needs to be a variable (or a different literal for staff)
+            carPark: 4,
             fromDateTime: fdt,
             toDateTime: tdt
         }
@@ -41,7 +41,7 @@ $(function() {
         makeBooking(data)
     })
 
-    // sends ajax request when staff carpark hobnob book button is clicked
+    // sends ajax request when staff carpark1 (hobnob) book button is clicked
     $('#carpark1').click(function () {
 
         // getting staff selected date and times into a 'to' and 'from' datetime variable
@@ -51,11 +51,33 @@ $(function() {
             tdt, // to-datetime
             data
 
-        fdt = toDateTime(vd, vft)
-        tdt = toDateTime(vd, vtt)
+        fdt = changeToDateTime(sfd, "00:00")
+        tdt = changeToDateTime(std, "23:59")
 
         data = {
-            carPark: 'visitor', //needs to be a variable (or a different literal for staff)
+            carPark: 1,
+            fromDateTime: fdt,
+            toDateTime: tdt
+        }
+
+        makeBooking(data)
+    })
+
+    // sends ajax request when staff carpark3 (digestive) book button is clicked
+    $('#carpark3').click(function () {
+
+        // getting staff selected date and times into a 'to' and 'from' datetime variable
+        var sfd = $('#fromCal').datepicker('getFormattedDate'), // staff from-date
+            std = $('#toCal').datepicker('getFormattedDate'), // staff to-date
+            fdt, // from-datetime
+            tdt, // to-datetime
+            data
+
+        fdt = changeToDateTime(sfd, "00:00")
+        tdt = changeToDateTime(std, "23:59")
+
+        data = {
+            carPark: 3,
             fromDateTime: fdt,
             toDateTime: tdt
         }
