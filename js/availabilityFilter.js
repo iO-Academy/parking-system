@@ -242,13 +242,13 @@ $(function() {
                         '</div>'
                     )
 
-                    message = 'You are about to book a ' + data.carPark + ' space in '
-                        + carParkDetails.carparkName + ':<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
-                        + data.toTime + '</b><br><br>Is this correct?'
+                    message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                        + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
+                        + data.toTime + '</b><br><br>Is this correct?<br><br>'
                     if (data.carPark == 'staff') {
-                        message = 'You are about to book a ' + data.carPark + ' space in '
-                            + carParkDetails.carparkName + ':<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
-                            '<br><br>Is this correct?'
+                        message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
+                            + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.fromDate + '</b> to <b>' + data.toDate + '</b>' +
+                            '<br><br>Is this correct?<br><br>'
                     }
 
                     $('body').append('<div class="modal fade" id="myModal' + carParkDetails.carparkId + '" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">' +
