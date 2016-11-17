@@ -15,6 +15,7 @@ class DbConnector
 
         try {
             $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             throw new Exception('error connecting to database');
         }
