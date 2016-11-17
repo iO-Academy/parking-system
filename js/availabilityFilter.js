@@ -233,14 +233,18 @@ $(function() {
                 $('#availabilityContainer').html('')
                 var message
                 $.each(result, function(key, carParkDetails) {
-                    $('#availabilityContainer').append(
-                        '<div class="carPark">' +
+                    var availabilityHTML = '<div class="carPark">' +
                         '<h3>' + carParkDetails.carparkName + '</h3>' +
-                        '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>' +
-                        '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
-                        'data-target="#myModal' + carParkDetails.carparkId + '">' +
-                        '</div>'
-                    )
+                        '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
+
+                    if (carParkDetails.availability != 0) {
+                    availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" data-toggle="modal" ' +
+                        'data-target="#myModal' + carParkDetails.carparkId + '">';
+                     }
+                    availabilityHTML += '</div>'
+
+
+                    $('#availabilityContainer').append(availabilityHTML)
 
                     message = 'You are about to book a ' + data.carPark + ' parking space in <b>'
                         + carParkDetails.carparkName + '</b> carpark:<br><br><b>' + data.date + '</b><br><br><b>' + data.fromTime + '</b> to <b>'
