@@ -119,7 +119,6 @@ class User {
     public function getBookings() {
 
         $sql = "SELECT `carpark`.`name` AS `Carpark Name`, DATE(`bookings`.`FROM`) AS `Date From`, TIME_FORMAT(`bookings`.`FROM`, '%H:%i') AS `Time From`, DATE(`bookings`.`TO`) AS `Date To`, TIME_FORMAT(`bookings`.`TO`, '%H:%i') AS `Time To` FROM `bookings` LEFT JOIN `carpark` ON `bookings`.`carpark_id`=`carpark`.`id` WHERE `bookings`.`user_id` = :id;";
-//        $sql = "SELECT * FROM `bookings` LEFT JOIN `carpark` ON `bookings`.`carpark_id`=`carpark`.`id` WHERE `bookings`.`user_id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $this->id]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
