@@ -25,8 +25,11 @@ class User {
 
         if($this->validateDetails($email, $password)) {
             $token = sha1(time());
+
+            //set all data used to validate / display
             $_SESSION['userAuth'] = $token;
             $_SESSION['id'] = $this->id;
+            $_SESSION['email'] = $email;
 
             $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
             $query = $this->pdo->prepare($sql);
@@ -35,7 +38,7 @@ class User {
     }
 
     /**
-     * updates user email in database
+     * updates user email in database and $_SESSION
      *
      * @param STRING $newEmail email to add to database
      */
@@ -45,6 +48,7 @@ class User {
         $query = $this->pdo->prepare($sql);
         $query->execute([':email'=>$newEmail]);
 
+        $_SESSION['email'] = $newEmail;
     }
 
     /**
@@ -60,7 +64,6 @@ class User {
         $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
         $query = $this->pdo->prepare($sql);
         $query->execute([':password'=>$newPassword]);
-
     }
 
     /**
