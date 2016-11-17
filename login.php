@@ -13,6 +13,7 @@
 <div class="logo-bar">
     <div class="container center-block">
         <h1>Login Page</h1>
+        <a class="btn othr-btn" href="index.php">Home</a>
     </div>
 </div>
 <main>

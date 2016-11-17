@@ -3,6 +3,8 @@
 class User {
 
     private $id;
+    private $email;
+    private $hash;
     private $pdo;
 
 
@@ -15,6 +17,19 @@ class User {
         $this->pdo = $pdo;
     }
 
+    private function validateEmail($email) {
+
+        // Remove all illegal characters from email
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+        // Validate e-mail
+        if(filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+            throw new Exception('not a valid email address');
+        }
+
+        return true;
+    }
+
     /**
      * sets the session data and adds random validation string to database
      *
@@ -23,7 +38,7 @@ class User {
      */
     function login($email, $password) {
 
-        if($this->validateDetails($email, $password)) {
+        if($this->validateEmail($email) && $this->validateDetails($email, $password)) {
             $token = sha1(time());
 
             //set all data used to validate / display
@@ -33,7 +48,9 @@ class User {
 
             $sql = "UPDATE `users` SET `validationString` = :token WHERE `id` = " . $this->id . ";";
             $query = $this->pdo->prepare($sql);
-            $query->execute([':token'=>$token]);
+            return $query->execute([':token'=>$token]);
+        } else {
+            throw new Exception('Invalid Login');
         }
     }
 
@@ -44,11 +61,15 @@ class User {
      */
     public function changeEmail($newEmail){
 
-        $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
-        $query = $this->pdo->prepare($sql);
-        $query->execute([':email'=>$newEmail]);
+        if($this->validateEmail($newEmail)){
+            $sql = "UPDATE `users` SET `email` = :email WHERE `id` = " . $this->id . ";";
+            $query = $this->pdo->prepare($sql);
+            $query->execute([':email'=>$newEmail]);
 
-        $_SESSION['email'] = $newEmail;
+            $_SESSION['email'] = $newEmail;
+        }
+
+
     }
 
     /**
@@ -56,14 +77,15 @@ class User {
      *
      * @param STRING $newPassword password to add to database
      */
-    public function changePassword($newPassword){
+    public function changePassword($password){
 
-        $newPassword = $this->id . $newPassword;
+        $newPassword = $this->hash . $password;
         $newPassword = sha1($newPassword);
 
         $sql = "UPDATE `users` SET `password` = :password WHERE `id` = " . $this->id . ";";
         $query = $this->pdo->prepare($sql);
         $query->execute([':password'=>$newPassword]);
+
     }
 
     /**
@@ -79,6 +101,10 @@ class User {
      */
     public function validateDetails($email, $password){
 
+        if(!$this->validateEmail($email)) {
+            throw new Exception("not valid email");
+        }
+
         $sql = "SELECT * FROM `users` WHERE `email` = :email;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':email'=>$email]);
@@ -88,13 +114,13 @@ class User {
             throw new Exception("user does not exist");
         }
 
-        $encryptPass = $user["id"] . $password;
+        $encryptPass = $user['hash'] . $password;
         $encryptPass = sha1($encryptPass);
 
-        if($user["password"] != $encryptPass) {
+        if($user['password'] != $encryptPass) {
             throw new Exception("incorrect email and password combination");
         } else {
-            $this->id = $user['id'];
+            $this->setUserDetails($user);
             return true;
         }
 
@@ -109,7 +135,7 @@ class User {
      * @throws Exception
      */
     public function validateToken($token, $id) {
-        $sql = "SELECT `validationString` FROM `users` WHERE `id` = :id;";
+        $sql = "SELECT * FROM `users` WHERE `id` = :id;";
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $id]);
         $user = $query->fetch(PDO::FETCH_ASSOC);
@@ -119,7 +145,16 @@ class User {
         }
 
         $this->id = $id;
-        
+        return $this->setUserDetails($user);
+
+    }
+
+    public function setUserDetails($user){
+        //set details
+        $this->id = $user['id'];
+        $this->email = $user['email'];
+        $this->hash = $user['hash'];
+        return true;
     }
 
     /**

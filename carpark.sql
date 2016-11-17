@@ -7,7 +7,7 @@
 #
 # Host: 192.168.20.56 (MySQL 5.6.33)
 # Database: parkingSystem
-# Generation Time: 2016-11-16 16:44:36 +0000
+# Generation Time: 2016-11-17 10:25:26 +0000
 # ************************************************************
 
 
@@ -112,15 +112,16 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `validationString` char(40) DEFAULT '',
+  `hash` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `email`, `password`, `validationString`)
+INSERT INTO `users` (`id`, `email`, `password`, `validationString`, `hash`)
 VALUES
-	(1,'example@email.com','364321e78f46562a65a902156e03c322badbcf48','45a428f2e65e0d12c548fa2c99fd1e55ab79a1df');
+	(1,'example@email.com','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684','fb6e1644654ce2f00a0a332e1163dd8d978889b1',1234);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
