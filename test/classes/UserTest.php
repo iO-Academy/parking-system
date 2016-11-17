@@ -67,9 +67,9 @@ class UserTest extends TestCase {
     }
 
 // These weren't very testable functions as they don't output anything
-// public function login()
 // public function testChangeEmail()
 // public function testChangePassword()
+// public function getBookings()
 
 //TODO: public function __construct()
 //TODO: public function validateToken()
