@@ -86,10 +86,10 @@ $canCreateUser = $user->getCanCreateUser();
 <main>
     <div class="container center-block">
         <div id="user-details">
-            <div id="details" class="user-account-content">
+            <div id="userDetails" class="user-account-content">
                 <h2>User Details</h2>
                 <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
-                <button type="submit" id="edit" class="btn toggle-user-form">edit</button>
+                <button type="submit" id="edit" class="btn toggle-user-form" data-target="#update-form-container, #userDetails">edit</button>
             </div>
             <div id="update-form-container" class="user-account-content">
                 <h2>Change Details</h2>
@@ -109,7 +109,7 @@ $canCreateUser = $user->getCanCreateUser();
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="submit" id="save-user-details" class="btn" value="Save">
-                            <button type="button" class="btn toggle-user-form">Cancel</button>
+                            <button type="button" class="btn toggle-user-form" data-target="#update-form-container, #userDetails">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -136,8 +136,13 @@ $canCreateUser = $user->getCanCreateUser();
         </div>
         <?php
         if ($canCreateUser == 1) {
-            echo '<div class="addUser" id = "addUserForm" ><h2>Add New User</h2>
-       <form class="form-horizontal" action="ajax/addUser.php">
+        echo '<div class="addUser">
+            <h2>Add New User</h2>
+            <div class="user-account-content" id ="addUserFormContainer">
+            <button type="submit" class="btn toggle-user-form pull-right"  data-target="#addUser, #addUserFormContainer">Add</button>
+            </div>
+        <div id="addUser" class="user-account-content" >
+        <form class="form-horizontal" action="ajax/addUser.php">
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
@@ -192,14 +197,15 @@ $canCreateUser = $user->getCanCreateUser();
                 <input type="password" class="form-control" id="department" placeholder="Finance">
             </div>
         </div>
-        <div class="form-group pull-right">
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button class="pull-right btn btn-default">Add User</button>
+                <button type="button" class="btn toggle-user-form pull-right" data-target="#addUser, #addUserFormContainer">Cancel</button>
             </div>
         </div>
     </form>
-        </div >';
-        }
+    </div>
+        </div>';}
         ?>
     </div>
 </main>

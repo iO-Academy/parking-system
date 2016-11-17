@@ -22,7 +22,12 @@
   background-color: $account-details-background-color;
   padding: 15px;
   margin-top: 15px;
+  margin-bottom: 15px;
   overflow: auto;
+}
+
+#addUser {
+  display: none;
 }
 
 .logo-bar .log-btn {
