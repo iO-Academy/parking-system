@@ -1,0 +1,249 @@
+.btn {
+  background-color: #F9F9F9;
+  color: #627391;
+  border-top: 2px solid #9cc7df;
+  border-left: 2px solid #9cc7df;
+  border-right: 2px solid #d25e4e;
+  border-bottom: 2px solid #d25e4e; }
+
+.btn:hover {
+  background-color: #9cc7df;
+  color: #4f6184; }
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center; }
+
+.logo-bar .container {
+  text-align: center; }
+
+.logo-bar h1 {
+  margin-bottom: 20px;
+  color: #e3e3e3; }
+
+.warningText {
+  color: red; }
+
+header {
+  background-image: url("../images/stars.jpeg");
+  background-color: #004E64;
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%; }
+
+.brand {
+  height: 80px;
+  margin-top: 42px; }
+
+.logo-bar {
+  background-color: #283f69;
+  -moz-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  -webkit-box-shadow: 2px -3px 23px 10px #F9F9F9;
+  box-shadow: 2px -3px 23px 10px #F9F9F9; }
+  .logo-bar img {
+    position: absolute;
+    width: 306px;
+    left: 327px;
+    bottom: -36px; }
+  .logo-bar .container {
+    position: relative;
+    height: 100%; }
+
+footer {
+  position: relative;
+  background-color: #283f69;
+  color: #F9F9F9; }
+  footer h4 {
+    margin-top: 158px;
+    margin-left: 20px;
+    float: left;
+    padding: 0;
+    font-size: 11px; }
+  footer img {
+    height: 30%;
+    margin-top: 118px;
+    margin-left: 20px;
+    float: right; }
+
+main .container {
+  height: 100%;
+  padding-top: 30px;
+  overflow: hidden; }
+
+.form {
+  height: 100%; }
+
+.person-select {
+  padding: 0;
+  z-index: 3; }
+
+.person-select .btn {
+  height: 50%;
+  width: 100%;
+  padding: 30px 0; }
+
+.person-select .btn:first-child {
+  border-bottom: 0; }
+
+.date-select {
+  height: 100%;
+  border-left: none;
+  border-right: none;
+  position: absolute;
+  right: 75%;
+  padding: 15px;
+  overflow: auto;
+  background-color: #F9F9F9; }
+
+.time-date-select {
+  border-left: none;
+  cursor: default; }
+
+.time-date-select:hover {
+  background-color: #e9f2f7; }
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%); }
+
+#filters {
+  height: 310px;
+  overflow: hidden;
+  position: relative; }
+
+#staffButton,
+#visitorButton {
+  font-size: 32px;
+  padding: 50px 0;
+  position: relative; }
+
+#filters .btn[disabled] {
+  opacity: 1; }
+
+.slider {
+  height: 100%;
+  color: #627391;
+  border-top: 2px solid #9cc7df;
+  border-right: 2px solid #d25e4e;
+  border-bottom: 2px solid #d25e4e; }
+
+#staff-container {
+  width: 620px;
+  padding-left: 60px; }
+
+#visitor-container {
+  z-index: 2;
+  width: 380px;
+  padding-left: 90px; }
+
+#alien-container {
+  position: relative;
+  height: 240px; }
+
+#alien {
+  width: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px; }
+
+#speech-bubble {
+  background-color: #9cc7df;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  height: 140px;
+  position: relative;
+  padding: 10px;
+  margin-top: 32px; }
+  #speech-bubble p {
+    font-size: 16px; }
+  #speech-bubble .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 20px 40px;
+    border-color: transparent transparent #9cc7df transparent;
+    left: -39px;
+    position: absolute;
+    bottom: 13px; }
+
+#staffSubmit {
+  position: absolute;
+  right: 25px;
+  bottom: 15px; }
+
+#visitorSubmit {
+  position: absolute;
+  right: 25px;
+  margin-top: 10px; }
+
+.carPark {
+  text-align: center; }
+
+.carPark h3 {
+  margin-top: 10px; }
+
+#availabilityContainer {
+  overflow: auto; }
+
+header {
+  height: 180px; }
+
+main {
+  background-color: #F9F9F9; }
+
+footer {
+  height: 180px; }
+
+.container {
+  width: 100%;
+  height: 100%; }
+
+.center-block {
+  width: 960px; }
+
+#login-form-div {
+  margin-top: 230px; }
+
+.logo-bar.home {
+  height: 180px; }
+
+#timePicker {
+  padding: 10px;
+  margin-top: 10px; }
+
+.form-inline {
+  text-align: center; }
+
+#fullDayContainer {
+  margin-top: 20px;
+  text-align: right; }
+
+#user-details {
+  background-color: #9cc7df;
+  padding: 15px;
+  overflow: auto; }
+
+.bookings {
+  background-color: #d25e4e;
+  padding: 15px;
+  margin-top: 15px; }
+
+#user-details .btn {
+  float: right; }
+
+#update-form-container {
+  display: none; }
+
+.logo-bar .log-btn {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.logo-bar .othr-btn {
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/*# sourceMappingURL=style.css.map */
