@@ -152,7 +152,7 @@ $canCreateUser = $user->getCanCreateUser();
         <div class="form-group">
             <label for="newUserPassword" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="password" id="newUserPassword" placeholder="Min 8 characters">
+                <input type="text" class="form-control" name="password" id="newUserPassword" placeholder="Required - min 8 characters">
             </div>
         </div>
         <div class="form-group">
