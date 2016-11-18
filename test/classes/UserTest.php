@@ -7,8 +7,6 @@ use PHPUnit\Framework\TestCase;
 class UserTest extends TestCase {
 
     //TODO: public function __construct()
-    //TODO: public function validateEmail()
-    //TODO: public function validateToken()
 
     //TODO: create mock setUserDetails function
     /**
@@ -21,7 +19,8 @@ class UserTest extends TestCase {
         $mockStatement->method('fetch')->willReturn([
             'id' => '1',
             'email' => 'example@gmail.com',
-            'password' => sha1('1' . 'aaa')
+            'password' => sha1('1234' . 'aaa'),
+            'hash' => '1234'
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
@@ -49,6 +48,7 @@ class UserTest extends TestCase {
         }
     }
 
+    //TODO: create mock setUserDetails function
     /**
      * Tests that the correct error will be thrown while trying to validate using an existing email but an incorrect password.
      */
@@ -59,17 +59,23 @@ class UserTest extends TestCase {
         $mockStatement->method('fetch')->willReturn([
             'id' => '1',
             'email' => 'example@gmail.com',
-            'password' => sha1('1' . 'aab')
+            'password' => sha1('1234' . 'aab'),
+            'hash' => '1234'
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
         $user = new User($mockPDO);
+
+        $errorMessage = '';
         try {
             $user->validateDetails('example@gmail.com','aaa');
         } catch (Exception $e) {
-            $this->assertEquals('incorrect email and password combination', $e->getMessage());
+            $errorMessage = $e->getMessage();
         }
+        $this->assertEquals('incorrect email and password combination', $errorMessage);
     }
+
+    //TODO: public function validateToken()
 
     //TODO: public function setUserDetails()
 
@@ -79,5 +85,7 @@ class UserTest extends TestCase {
 // public function testChangeEmail()
 // public function testChangePassword()
 
+// Private functions impossible to test
+// private function validateEmail()
 
 }
