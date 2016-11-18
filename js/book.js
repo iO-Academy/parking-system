@@ -83,13 +83,12 @@ $(function() {
         }
 
         data = {
-            carPark: carParkId,
+            carParkId: carParkId,
             fromDateTime: fromDateTime,
             toDateTime: toDateTime
         }
 
         return data
-
 
     }
 
