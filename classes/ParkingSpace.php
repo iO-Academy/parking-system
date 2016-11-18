@@ -30,13 +30,20 @@ class ParkingSpace
                 INSERT INTO `bookings` (`carpark_id`,`from`,`to`,`user_id`)
                 VALUES (:carParkId,:fromDateTime,:toDateTime,:userId) 
                 ;';
-        $ps = $this->conn->prepare($sql);
-        $ps->execute([
-            ':carParkId' => $carParkId,
-            ':fromDateTime' => $fromDateTime,
-            ':toDateTime' => $toDateTime,
-            ':userId' => $userId, 
-        ]);
+
+
+        try {
+            $ps = $this->conn->prepare($sql); //declaring/assigning prepared statement
+            return $ps->execute([
+                ':carParkId' => $carParkId,
+                ':fromDateTime' => $fromDateTime,
+                ':toDateTime' => $toDateTime,
+                ':userId' => $userId,
+            ]);
+        } catch (Exception $e) {
+            return false;
+        }
+
     }
 
 }

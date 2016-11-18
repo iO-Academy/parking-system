@@ -35,7 +35,10 @@ $(function() {
             method: "POST",
             url: "../ajax/createBooking.php",
             data: data,
-            success: function() {} // need to talk with Ali about making his modal indicate success.
+            success: function(result) {
+                result.result // true or false
+
+            } // need to talk with Ali about making his modal indicate success.
             //remember to update docblock after writing success function
         })
     }
