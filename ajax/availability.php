@@ -39,6 +39,12 @@ if ($_POST['carPark'] == 'staff') {
     $carparks[] = new Carpark($pdo, 'rich tea');
 }
 
+$bookingManager = new BookingManager($pdo);
+if ($loggedIn) {
+    $userbookingManager = new UserBookingManager($pdo, $user->getId());
+}
+
+$spacesBooked = 0;
 
 $payload = [];
 foreach ($carparks as $carpark) {
@@ -46,8 +52,11 @@ foreach ($carparks as $carpark) {
         array_push($payload, [
             'carparkId' => $carpark->getId(),
             'carparkName' => $carpark->getName(),
-            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime)
+            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime, $bookingManager)
         ]);
+        if ($loggedIn) {
+            $spacesBooked += $carpark->getSpacesBooked($fromDateTime, $toDateTime, $userbookingManager);
+        }
     } catch (Exception $e) {
         $payload = [];
         break;
@@ -55,7 +64,12 @@ foreach ($carparks as $carpark) {
 }
 
 $payload['loggedIn'] = $loggedIn;
-$payload['quotaReached'] = TRUE;
+
+if ($_POST['carPark'] == 'staff') {
+    $payload['quotaReached'] = ($spacesBooked >= User::STAFF_LIMIT);
+} else {
+    $payload['quotaReached'] = ($spacesBooked >= User::VISITOR_LIMIT);
+}
 
 header('Content-Type: application/json');
 echo json_encode($payload);
