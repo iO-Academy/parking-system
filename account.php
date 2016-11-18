@@ -188,13 +188,13 @@ $canCreateUser = $user->getCanCreateUser();
         <div class="form-group">
             <label for="phoneNumber" class="col-sm-2 control-label">Telephone</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="01234 567890">
+                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" placeholder="01234 567890">
             </div>
         </div>
         <div class="form-group">
             <label for="department" class="col-sm-2 control-label">Department</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="department" id="department" placeholder="Finance">
+                <input type="text" class="form-control" name="department" id="department" placeholder="Finance">
             </div>
         </div>
         <div class="form-group">
