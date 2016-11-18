@@ -32,16 +32,17 @@ if ($_POST['newEmail']) {
     } catch(Exception $e) {
         $errors['email'] = $e->getMessage();
     }
-
-
 }
 if ($_POST['newPassword']) {
     $user->changePassword($_POST['newPassword']);
 }
 
 if(!empty($errors)) {
+    header('Content-Type: application/json');
     echo json_encode($errors);
 }
 else {
-    echo 'success';
+    $errors = ['result' => TRUE];
+    header('Content-Type: application/json');
+    echo json_encode($errors);
 }

@@ -28,12 +28,10 @@ $(function () {
                     url: "handle.php",
                     data: userData,
                     success: function (data) {
-
-                        //if data is empty?
-                        if (data != 'success') {
-                            var dataObj = JSON.parse(data)
-                            $('#errors').append(dataObj['email'])
-                            console.log(dataObj['email'])
+                        console.log(data);
+                        if (!data.result) {
+                            $('#errors').append(data.email)
+                            console.log(data.email)
                         } else {
                             $(".user-account-content").slideToggle()
                             if ($('#email').val() != '') {
