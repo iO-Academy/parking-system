@@ -1,6 +1,5 @@
 <?php
 
-require __DIR__ . '/../../classes/User.php';
 require __DIR__ . '/../../autoload.php';
 use PHPUnit\Framework\TestCase;
 
