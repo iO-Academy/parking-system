@@ -28,14 +28,14 @@ if ($_POST['carPark'] == 'staff') {
     $carparks[] = new Carpark($pdo, 'rich tea');
 }
 
-
+$bookingmanager = new BookingManager($pdo);
 $payload = [];
 foreach ($carparks as $carpark) {
     try {
         array_push($payload, [
             'carparkId' => $carpark->getId(),
             'carparkName' => $carpark->getName(),
-            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime)
+            'availability' => $carpark->getAvailability($fromDateTime, $toDateTime, $bookingmanager)
         ]);
 
 
