@@ -85,13 +85,13 @@ if (!empty($_SESSION['userAuth'])) {
         <div id="user-details">
             <div id="details" class="user-account-content">
                 <h2>User Details</h2>
-                <div id="errors" class="text-danger"></div>
                 <h4 id="email-field">Email: <span><?php echo $_SESSION['email'] ?></span></h4>
                 <button type="submit" id="edit" class="btn toggle-user-form">edit</button>
             </div>
             <div id="update-form-container" class="user-account-content">
                 <h2>Change Details</h2>
                 <form method="post" id="update-form" class="form-horizontal">
+                    <div id="errors" class="text-danger"></div>
                     <div class="form-group">
                         <label for="email" class="col-md-3 control-label">New Email:</label>
                         <div class="col-md-6">
