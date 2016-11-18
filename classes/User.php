@@ -191,7 +191,7 @@ class User {
     public function addUser($arr) {
 
         $arr = $this->validateAddUserData($arr);
-        
+
         $columns = preg_replace('/(\w+)/', '`$1`', array_keys($arr));
         $queryString = 'INSERT INTO `users` (' .
             implode(', ', $columns) .
@@ -214,8 +214,6 @@ class User {
         $arr['department'] = !empty($arr['department']) ?: 2; // Undefined as default
         if (!empty($arr['password'])) {
             $arr['password'] = sha1($arr['hash'] . $arr['password']);
-        } else {
-            throw New Exception('Tried to add new user with no password!');
         }
         return $arr;
     }
