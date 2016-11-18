@@ -99,6 +99,8 @@ $(function() {
 
     // sends ajax request when carpark4 (visitor:rich tea) book button is clicked
     $('body').on("click", '.book-button', function() {
+        // Add button disabling but only once we know how to re-enable it.
+        // $(this).prop('disabled', true)
         makeBooking(
             createAjaxData(
                 $(this).data('carparkid'),
