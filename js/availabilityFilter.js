@@ -244,14 +244,14 @@ $(function() {
                         return false
                     }
 
-                    var availabilityHTML = '<div class="carPark">' +
+                    var availabilityHTML = '<div class="carPark col-xs-6">' +
                         '<h3>' + carParkDetails.carparkName + '</h3>' +
                         '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
 
-                    if (carParkDetails.availability != 0 && result.loggedIn) {
+                    if (carParkDetails.availability != 0 && result.loggedIn && !result.quotaReached) {
                     availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" ' +
                         'data-toggle="modal" ' + 'data-target="#myModal' + carParkDetails.carparkId + '">';
-                     }
+                    }
                     availabilityHTML += '</div>'
 
 
@@ -287,6 +287,12 @@ $(function() {
                         '</div>'
                     )
                 })
+                if (result.loggedIn && result.quotaReached) {
+                    $('#availabilityContainer').append(
+                        '<div class="col-xs-12">' +
+                        '<p class="text-center warningText"><b>You have reached your<br> booking quota.</b></p>' +
+                        '</div>')
+                }
             }
         }))
     }
