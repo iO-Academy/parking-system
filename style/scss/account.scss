@@ -30,6 +30,26 @@
   display: none;
 }
 
+.additionalBookings {
+  background-color: $bookings-background-color;
+  padding: 15px;
+  overflow: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#additionalBooking {
+  display: none;
+}
+
+#staffAddBookingReq {
+  display: none;
+}
+
+#visitorAddBookingReq {
+  display: none;
+}
+
 .logo-bar .log-btn {
   position: absolute;
   top: 0;

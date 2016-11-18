@@ -43,6 +43,7 @@ if (!empty($_SESSION['userAuth'])) {
 
 $bookings = $user->getBookings();
 $canCreateUser = $user->getCanCreateUser();
+$allowanceReached = 1;
 
 ///********** handle ajax **********/
 ////try catch doesnt catch error
@@ -206,6 +207,83 @@ $canCreateUser = $user->getCanCreateUser();
     </form>
     </div>
         </div>';}
+        ?>
+        <?php
+        // triggered by the user having the maximum amount of bookings. Faked for this branch!
+        if ($allowanceReached == 1) {
+            echo
+        '<div class="additionalBookings">
+                <h2>Request Additional Booking</h2>
+                <div class="user-account-content" id ="additionalBookingsContainer">
+                    <button type="submit" class="btn toggle-user-form pull-right"  data-target="#additionalBooking, #additionalBookingsContainer">Request</button>
+                </div>
+            <div id="additionalBooking" class="user-account-content" >
+                <form class="form-horizontal" action="#">
+                    <div class="form-group">
+                        <label for="sel1" class="col-sm-2 control-label">Staff or Visitor</label>
+                        <div class="col-sm-10 ">
+                          <select class="form-control" id="sel1">
+                                <option>Select</option>
+                                <option>Staff</option>
+                                <option>Visitor</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div id="staffAddBookingReq">
+                        <div class="form-group">
+                            <label for="addStaffDateFrom" class="col-sm-2 control-label">Date From</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="addStaffDateFrom" id="addStaffDateFrom" placeholder="Required: dd/mm/yyyy">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addStaffDateTo" class="col-sm-2 control-label">Date To</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="addStaffDateTo" id="addStaffDateTo" placeholder="Required: dd/mm/yyyy">
+                            </div>
+                        </div>
+                     </div>
+                    <div id="visitorAddBookingReq">
+                        <div class="form-group">
+                            <label for="addDateFrom" class="col-sm-2 control-label">Date From</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" name="addDateFrom" id="addDateFrom" placeholder="Required: dd/mm/yyyy">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addDateTo" class="col-sm-2 control-label">Date To</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="addDateTo" id="addDateTo" placeholder="Required: dd/mm/yyyy">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addTimeFrom" class="col-sm-2 control-label">Time From</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="addTimeFrom" id="addTimeFrom" placeholder="Required: hh:mm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addTimeTo" class="col-sm-2 control-label">Time To</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="addTimeTo" id="addTimeTo" placeholder="Required: hh:mm">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addReqReason" class="col-sm-2 control-label">Reason</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="addReqReason" id="addReqReason" placeholder="Required: reason for additional booking">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="addReqBtn" class="pull-right btn btn-default" disabled="disabled">Request</button>
+                            <button type="button" class="btn toggle-user-form pull-right" data-target="#additionalBooking, #additionalBookingsContainer">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>';};
         ?>
     </div>
 </main>
