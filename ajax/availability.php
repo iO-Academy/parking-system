@@ -55,6 +55,7 @@ foreach ($carparks as $carpark) {
 }
 
 $payload['loggedIn'] = $loggedIn;
+$payload['quotaReached'] = TRUE;
 
 header('Content-Type: application/json');
 echo json_encode($payload);
