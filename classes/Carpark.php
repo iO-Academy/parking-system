@@ -173,9 +173,10 @@ class Carpark
     }
 
     /**
-     * @param $dateTime
-     * @return int
-     * @throws Exception
+     * Converts date to unix timestamp
+     * @param STRING $dateTime date and time
+     * @return INTEGER unix timestamp of time
+     * @throws Exception if timestamp fails and returns false
      */
     private function getTimeStampFromDate($dateTime) {
         $timeStampFromDate = strtotime($dateTime);
@@ -186,9 +187,10 @@ class Carpark
     }
 
     /**
-     * @param $start
-     * @param $timeMeasure
-     * @param $timeIncrement
+     * Increments time using specified interval
+     * @param $start INTEGER unix timestamp to be incremented
+     * @param $timeMeasure INTEGER time interval to increment by (e.g. 15 minutes for time or 1 day for date)
+     * @param $timeIncrement INTEGER minutes in hour or seconds in hour (e.g. depending on time or date)
      * @return mixed
      */
     private function incrementTime($start, $timeMeasure, $timeIncrement) {
