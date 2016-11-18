@@ -185,37 +185,43 @@ class User {
     /**
      * Add a user to the database with an a
      *
-     * @param $arr ARRAY An associative array of user data of the form $arr['column'] = value;
+     * @param $userFields ARRAY An associative array of user data of the form $arr['column'] = value
      * @return STRING A PDOStatement error code, 00000 is ok.
      */
-    public function addUser($arr) {
+    public function addUser($userFields) {
 
-        $arr = $this->validateAddUserData($arr);
+        $userFields = $this->setAddUserDataDefaults($userFields);
 
-        $columns = preg_replace('/(\w+)/', '`$1`', array_keys($arr));
+        $columns = preg_replace('/(\w+)/', '`$1`', array_keys($userFields));
         $queryString = 'INSERT INTO `users` (' .
             implode(', ', $columns) .
             ') ' .
             'VALUES (' .
-            implode(', ', array_fill(0, count($arr), '?')) .
+            implode(', ', array_fill(0, count($userFields), '?')) .
             ');';
         $statement = $this->pdo->prepare($queryString);
-        $statement->execute(array_values($arr));
+        $statement->execute(array_values($userFields));
         return $statement->errorCode();
     }
 
-    private function validateAddUserData($arr) {
+    /**
+     * Populate the userFields passed to addUser array with appropriate defaults.
+     *
+     * @param $userFields ARRAY An associative array of user data of the form $arr['column'] = value
+     * @return ARRAY userFields populated with appropriate defaults.
+     */
+    private function setAddUserDataDefaults($userFields) {
 
         // Let id auto increment
-        unset($arr['id']);
-        $arr['hash'] = $arr['hash'] ?: mt_rand(1000,9999);
+        unset($userFields['id']);
+        $userFields['hash'] = $userFields['hash'] ?: mt_rand(1000,9999);
 
         // Required fields
-        $arr['department'] = !empty($arr['department']) ?: 2; // Undefined as default
-        if (!empty($arr['password'])) {
-            $arr['password'] = sha1($arr['hash'] . $arr['password']);
+        $userFields['department'] = !empty($userFields['department']) ?: 2; // Undefined as default
+        if (!empty($userFields['password'])) {
+            $userFields['password'] = sha1($userFields['hash'] . $userFields['password']);
         }
-        return $arr;
+        return $userFields;
     }
 
 
