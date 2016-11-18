@@ -239,7 +239,9 @@ $(function() {
             success: function(result) {
                 $('#availabilityContainer').html('')
                 var message
+                console.log(result.quotaReached)
                 $.each(result, function(key, carParkDetails) {
+
                     if (!carParkDetails.hasOwnProperty('carparkName')) {
                         return false
                     }
@@ -249,6 +251,7 @@ $(function() {
                         '<p class="availableSpaces">Available Spaces: ' + carParkDetails.availability + '</p>'
 
                     if (carParkDetails.availability != 0 && result.loggedIn && !result.quotaReached) {
+                        console.log('lemon')
                     availabilityHTML += '<input class="btn btn-default bookButton" type="submit" value="Book" ' +
                         'data-toggle="modal" ' + 'data-target="#myModal' + carParkDetails.carparkId + '">';
                     }
