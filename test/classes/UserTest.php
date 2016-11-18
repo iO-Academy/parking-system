@@ -7,7 +7,6 @@ class UserTest extends TestCase {
 
     //TODO: public function __construct()
 
-    //TODO: create mock setUserDetails function
     /**
      * Tests validateDetails() returns true when validating an existing email and password combination.
      */
@@ -23,7 +22,13 @@ class UserTest extends TestCase {
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
-        $user = new User($mockPDO);
+        $user = $this->getMockBuilder('User')
+            ->setConstructorArgs(array($mockPDO))
+            ->setMethods(array('setUserDetails'))
+            ->getMock();
+
+        $user->method('setUserDetails')
+            ->willReturn(true);
 
         $this->assertTrue($user->validateDetails('example@gmail.com','aaa'));
 
@@ -47,7 +52,6 @@ class UserTest extends TestCase {
         }
     }
 
-    //TODO: create mock setUserDetails function
     /**
      * Tests that the correct error will be thrown while trying to validate using an existing email but an incorrect password.
      */
@@ -63,7 +67,13 @@ class UserTest extends TestCase {
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
-        $user = new User($mockPDO);
+        $user = $this->getMockBuilder('User')
+            ->setConstructorArgs(array($mockPDO))
+            ->setMethods(array('setUserDetails'))
+            ->getMock();
+
+        $user->method('setUserDetails')
+            ->willReturn(true);
 
         $errorMessage = '';
         try {
@@ -74,7 +84,6 @@ class UserTest extends TestCase {
         $this->assertEquals('incorrect email and password combination', $errorMessage);
     }
 
-    //TODO: create mock setUserDetails function
     /**
      * Tests that validateToken() returns true when given valid details
      */
@@ -90,7 +99,13 @@ class UserTest extends TestCase {
         ]);
         $mockPDO->method('prepare')->willReturn($mockStatement);
 
-        $user = new User($mockPDO);
+        $user = $this->getMockBuilder('User')
+            ->setConstructorArgs(array($mockPDO))
+            ->setMethods(array('setUserDetails'))
+            ->getMock();
+
+        $user->method('setUserDetails')
+            ->willReturn(true);
 
         $this->assertTrue($user->validateToken('123', 1));
     }
