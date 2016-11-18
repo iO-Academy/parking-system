@@ -8,7 +8,7 @@ class ParkingSpace
      *
      * @param $conn OBJECT PDO
      */
-    public function __constructor($conn) {
+    public function __construct($conn) {
         $this->conn = $conn;
     }
 

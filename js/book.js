@@ -31,12 +31,13 @@ $(function() {
      * @param data OBJECT contains the carpark id and datetime boundaries for a booking
      */
     function makeBooking(data) {
+        console.log(data)
         $.ajax({
             method: "POST",
-            url: "../ajax/createBooking.php",
+            url: "ajax/createBooking.php",
             data: data,
             success: function(result) {
-                result.result // true or false
+                console.log(result.result) // true or false
 
             } // need to talk with Ali about making his modal indicate success.
             //remember to update docblock after writing success function
@@ -97,14 +98,24 @@ $(function() {
 
 
     // sends ajax request when carpark4 (visitor:rich tea) book button is clicked
-    $('.book-button').click(function() {
+    $('body').on("click", '.book-button', function() {
         makeBooking(
             createAjaxData(
-                $(this).data('carparkId'),
-                $(this).data('isVisitor')
+                $(this).data('carparkid'),
+                $(this).data('isvisitor')
             )
         )
     })
+
+
+    // $('.book-button').click(function() {
+    //     makeBooking(
+    //         createAjaxData(
+    //             $(this).data('carparkId'),
+    //             $(this).data('isVisitor')
+    //         )
+    //     )
+    // })
 
 })
 
