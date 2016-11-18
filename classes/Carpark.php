@@ -116,7 +116,7 @@ class Carpark
      * @param $timeIncrement INTEGER of number of minutes or seconds in hour, depending on whether checking dates or times
      * @return array containing counts of clashing bookings
      */
-    private function getConcurrentBookings($start, $end, $bookings, $timeMeasure, $timeIncrement) {
+    public function getConcurrentBookings($start, $end, $bookings, $timeMeasure, $timeIncrement) {
         $concurrentBookings = [];
         while ($start <= $end) {
             $concurrentBookings[$start] = 0;
@@ -164,7 +164,7 @@ class Carpark
      * @return INTEGER unix timestamp of time
      * @throws Exception if timestamp fails and returns false
      */
-    private function getTimeStampFromTime($dateTime, $negative = 0) {
+    public function getTimeStampFromTime($dateTime, $negative = 0) {
         $timeStampFromTime = strtotime(explode(' ', $dateTime)[1]) - $negative;
         if(!$timeStampFromTime) {
             throw new Exception('TimeStamp conversion failure!');
@@ -178,7 +178,7 @@ class Carpark
      * @return INTEGER unix timestamp of time
      * @throws Exception if timestamp fails and returns false
      */
-    private function getTimeStampFromDate($dateTime) {
+    public function getTimeStampFromDate($dateTime) {
         $timeStampFromDate = strtotime($dateTime);
         if(!$timeStampFromDate) {
             throw new Exception('TimeStamp conversion failure!');
@@ -193,7 +193,7 @@ class Carpark
      * @param $timeIncrement INTEGER minutes in hour or seconds in hour (e.g. depending on time or date)
      * @return mixed
      */
-    private function incrementTime($start, $timeMeasure, $timeIncrement) {
+    public function incrementTime($start, $timeMeasure, $timeIncrement) {
         $start += $timeMeasure * $timeIncrement;
         return $start;
     }
