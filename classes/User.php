@@ -191,12 +191,14 @@ class User {
     public function addUser($arr) {
 
         $arr = $this->validateAddUserData($arr);
+        
+        $columns = preg_replace('/(\w+)/', '`$1`', array_keys($arr));
         $queryString = 'INSERT INTO `users` (' .
-                        implode(', ', array_keys($arr)) .
-                        ') ' .
-                        'VALUES (' .
-                        implode(', ', array_fill(0, count($arr), '?')) .
-                        ');';
+            implode(', ', $columns) .
+            ') ' .
+            'VALUES (' .
+            implode(', ', array_fill(0, count($arr), '?')) .
+            ');';
         $statement = $this->pdo->prepare($queryString);
         $statement->execute(array_values($arr));
         return $statement->errorCode();
