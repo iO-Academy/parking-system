@@ -146,25 +146,25 @@ $canCreateUser = $user->getCanCreateUser();
         <div class="form-group">
             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Required">
             </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-sm-2 control-label">Password</label>
+            <label for="newUserPassword" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="password" id="password" placeholder="changeMe">
+                <input type="text" class="form-control" name="password" id="newUserPassword" placeholder="Min 8 characters">
             </div>
         </div>
         <div class="form-group">
             <label for="firstName" class="col-sm-2 control-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="John">
+                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Required">
             </div>
         </div>
         <div class="form-group">
             <label for="lastName" class="col-sm-2 control-label">Last Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Smith">
+                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Required">
             </div>
         </div>
         <div class="form-group">
@@ -199,7 +199,7 @@ $canCreateUser = $user->getCanCreateUser();
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button class="pull-right btn btn-default">Add User</button>
+                <button id="addUserBtn" class="pull-right btn btn-default" disabled="disabled">Add User</button>
                 <button type="button" class="btn toggle-user-form pull-right" data-target="#addUser, #addUserFormContainer">Cancel</button>
             </div>
         </div>

@@ -43,7 +43,13 @@ $(function(){
         }))
 
     })
+
+    $('#addUser').change(function() {
+        if(($('#inputEmail').val() != 'NULL') && ($('#newUserPassword').val().length >= 8) && ($('#firstName').val().length > 0) && ($('#lastName').val().length > 0)) {
+            $('#addUserBtn').prop('disabled', false)
+        }
+        else {
+            $('#addUserBtn').prop('disabled', true)
+        }
+    })
 })
-
-
-
