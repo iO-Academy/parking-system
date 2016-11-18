@@ -75,7 +75,52 @@ class UserTest extends TestCase {
         $this->assertEquals('incorrect email and password combination', $errorMessage);
     }
 
-    //TODO: public function validateToken()
+    //TODO: create mock setUserDetails function
+    /**
+     * Tests that validateToken() returns true when given valid details
+     */
+    public function testSuccessfulValidateToken() {
+        $mockPDO = $this->createMock('PDO');
+        $mockStatement = $this->createMock('PDOStatement');
+        $mockStatement->method('fetch')->willReturn([
+            'id' => 1,
+            'email' => 'example@gmail.com',
+            'password' => sha1('1234' . 'aab'),
+            'hash' => '1234',
+            'validationString' => '123'
+        ]);
+        $mockPDO->method('prepare')->willReturn($mockStatement);
+
+        $user = new User($mockPDO);
+
+        $this->assertTrue($user->validateToken('123', 1));
+    }
+
+    /**
+     * Tests that correct error will be thrown when validateToken() is passed invalid details
+     */
+    public function testIncorrectTokenValidateToken() {
+        $mockPDO = $this->createMock('PDO');
+        $mockStatement = $this->createMock('PDOStatement');
+        $mockStatement->method('fetch')->willReturn([
+            'id' => 1,
+            'email' => 'example@gmail.com',
+            'password' => sha1('1234' . 'aab'),
+            'hash' => '1234',
+            'validationString' => '123'
+        ]);
+        $mockPDO->method('prepare')->willReturn($mockStatement);
+
+        $user = new User($mockPDO);
+
+        $errorMessage = '';
+        try {
+            $user->validateToken('124', 1);
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+        }
+        $this->assertEquals('error validating user', $errorMessage);
+    }
 
     //TODO: public function setUserDetails()
 
