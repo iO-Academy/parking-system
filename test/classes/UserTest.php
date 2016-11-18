@@ -122,8 +122,17 @@ class UserTest extends TestCase {
         $this->assertEquals('error validating user', $errorMessage);
     }
 
-    //TODO: public function setUserDetails()
+    /**
+     * Tests that setUserDetails() returns true when passed valid array
+     */
+    public function testSuccessfulSetUserDetails(){
+        $mockPDO = $this->createMock('PDO');
+        $user = new User($mockPDO);
+        $userDetails = ['id'=>'1', 'email'=>'example@email.com', 'hash'=>'123'];
+        $this->assertTrue($user->setUserDetails($userDetails));
+    }
 
+    //TODO: public function setUserDetails() when passed invalid array
 
 // These weren't very testable functions as they don't output anything
 // public function login()
