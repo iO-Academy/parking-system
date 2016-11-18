@@ -214,7 +214,7 @@ class User {
 
         // Let id auto increment
         unset($userFields['id']);
-        $userFields['hash'] = $userFields['hash'] ?: mt_rand(1000,9999);
+        $userFields['hash'] = array_key_exists('hash', $userFields) ? $userFields['hash'] : mt_rand(1000,9999);
 
         // Required fields
         $userFields['department'] = !empty($userFields['department']) ?: 2; // Undefined as default
