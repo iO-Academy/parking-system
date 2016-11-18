@@ -139,9 +139,10 @@ class Carpark
     }
 
     /**
-     * calls getTimeStampFromTime() or getTimeStampFromDate() as appropriate and
-     * @param $booking
-     * @return array
+     * calls getTimeStampFromTime() or getTimeStampFromDate() as appropriate. If visitor passes an additional parameter
+     * to getTimeStampFromTime on 'to' so that 1 can be subtracted, stopping the time slots from being inclusive
+     * @param $booking ARRAY containing 'to' and 'from' for each booking
+     * @return ARRAY containing new 'to' and 'from' keys and the unix timestamp equivalent of its previous value
      */
     private function getRangeTimeStamps($booking) {
         if ($this->isVisitor) {
@@ -156,10 +157,12 @@ class Carpark
     }
 
     /**
-     * @param $dateTime
-     * @param int $negative
-     * @return int
-     * @throws Exception
+     * Takes the second part of $dateTime (just the time), subtracts a number if necessary (to stop it being inclusive)
+     * and then converts to unix timestamp.
+     * @param STRING $dateTime date and time
+     * @param INTEGER $negative number to subtract (default 0, pass in one to stop in being inclusive)
+     * @return INTEGER unix timestamp of time
+     * @throws Exception if timestamp fails and returns false
      */
     private function getTimeStampFromTime($dateTime, $negative = 0) {
         $timeStampFromTime = strtotime(explode(' ', $dateTime)[1]) - $negative;
