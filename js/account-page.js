@@ -3,7 +3,7 @@ $(function(){
     $('.toggle-user-form').click(function (){
         $('#email').val('')
         $('#passowrd').val('')
-        $('.user-account-content').slideToggle()
+        $($(this).data('target')).slideToggle()
     })
 
     $('#update-form').submit(function(e) {

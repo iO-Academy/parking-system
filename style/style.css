@@ -228,7 +228,11 @@ footer {
   background-color: #9cc7df;
   padding: 15px;
   margin-top: 15px;
+  margin-bottom: 15px;
   overflow: auto; }
+
+#addUser {
+  display: none; }
 
 .logo-bar .log-btn {
   position: absolute;
