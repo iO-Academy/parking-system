@@ -12,11 +12,19 @@ class ParkingSpace
         $this->conn = $conn;
     }
 
-    /*DOCBLOCK ME I'm aware that there is an inconsistency with the naming convention, in that there are underscores
-    and camelCase. Both have been used in the project, as we failed to set a convention at the beginning, and this
-    just happens to be a point where the two naming conventions meet up. Aside: carpark_id is poor naming as carpark
-    should be two words.
-    */
+    /**
+     * Sends an INSERT query to the db to add a new row to the bookings table.
+     *
+     * @param $carParkId STRING
+     * @param $fromDateTime STRING
+     * @param $toDateTime STRING
+     * @param $userId STRING
+     *
+     * Note: I'm aware that there is an inconsistency with the naming convention, in that there are underscores
+     * and camelCase. Both have been used in the project, as we failed to set a convention at the beginning, and this
+     * just happens to be a point where the two naming conventions meet up. To unify it would mean changing things
+     * which could affect other people's code, or break mine.
+     */
     public function book($carParkId, $fromDateTime, $toDateTime, $userId) {
         $sql = '
                 INSERT INTO `bookings` (`carpark_id`,`from`,`to`,`user_id`)
