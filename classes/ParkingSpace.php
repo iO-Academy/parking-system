@@ -1,43 +1,42 @@
 <?php
 class ParkingSpace
 {
-    private $carPark;
-    private $user;
-    private $fromDateTime;
-    private $toDateTime;
     private $conn;
 
-    //DOCBLOCK ME
+    /**
+     * Sets $conn property to passed in PDO
+     *
+     * @param $conn OBJECT PDO
+     */
     public function __constructor($conn) {
-        $this->carPark = $_POST['carPark'];
-        $this->user = $_SESSION['userId'];
-        $this->fromDateTime = $_POST['fromDateTime'];
-        $this->toDateTime = $_POST['toDateTime'];
         $this->conn = $conn;
     }
 
-    //DOCBLOCK ME
-    public function book() {
+    /**
+     * Sends an INSERT query to the db to add a new row to the bookings table.
+     *
+     * @param $carParkId STRING
+     * @param $fromDateTime STRING
+     * @param $toDateTime STRING
+     * @param $userId STRING
+     *
+     * Note: I'm aware that there is an inconsistency with the naming convention, in that there are underscores
+     * and camelCase. Both have been used in the project, as we failed to set a convention at the beginning, and this
+     * just happens to be a point where the two naming conventions meet up. To unify it would mean changing things
+     * which could affect other people's code, or break mine.
+     */
+    public function book($carParkId, $fromDateTime, $toDateTime, $userId) {
         $sql = '
                 INSERT INTO `bookings` (`carpark_id`,`from`,`to`,`user_id`)
-                VALUES (:carPark,:fromDateTime,:toDateTime,:user)
+                VALUES (:carParkId,:fromDateTime,:toDateTime,:userId) 
                 ;';
         $ps = $this->conn->prepare($sql);
         $ps->execute([
-            ':carPark' => $this->carPark,
-            ':fromDateTime' => $this->fromDateTime,
-            ':toDateTime' => $this->toDateTime,
-            ':user' => $this->user,
+            ':carParkId' => $carParkId,
+            ':fromDateTime' => $fromDateTime,
+            ':toDateTime' => $toDateTime,
+            ':userId' => $userId, 
         ]);
     }
 
 }
-
-//if ($_POST['carPark'] == 'visitor') {
-//    $baseDate = dateConvert($_POST['date']);
-//    $fromDateTime = $baseDate . ' ' . $_POST['fromTime'];
-//    $toDateTime = $baseDate . ' ' . $_POST['toTime'];
-//} else {
-//    $fromDateTime = dateConvert($_POST['fromDate']);
-//    $toDateTime = dateConvert($_POST['toDate']);
-//}

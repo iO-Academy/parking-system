@@ -280,7 +280,7 @@ $(function() {
                         '<div class="modal-body">' + message +
                         '<div class="modal-footer">' +
                         '<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>' +
-                        '<button type="button" class="btn btn-primary">Book</button>' +
+                        '<button type="button" class="btn btn-primary book-button" data-isVisitor="' + data.carPark + '" data-carParkId="' + carParkDetails.carparkId + '">Book</button>' +
                         '</div>' +
                         '</div>' +
                         '</div>' +

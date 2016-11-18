@@ -17,81 +17,91 @@ $(function() {
      *
      * @param date STRING DD/MM/YYYY
      * @param time STRING HH:MM
-     * @returns STRING YYYY-MM-DD HH:MM:00
+     * @param seconds STRING SS
+     * @returns STRING YYYY-MM-DD HH:MM:SS
      */
-    function changeToDateTime(date, time) {
-        return dateConvert(date) + ' ' + time + ':00'
+    function changeToDateTime(date, time, seconds) {
+        return dateConvert(date) + ' ' + time + ':' + seconds
     }
 
 
-    // DOBCLOCK ME
+    /**
+     * Sends a POST ajax request to createBooking.php with passed in details of a booking
+     *
+     * @param data OBJECT contains the carpark id and datetime boundaries for a booking
+     */
     function makeBooking(data) {
         $.ajax({
             method: "POST",
             url: "../ajax/createBooking.php",
             data: data,
-            success: function() {} // need to talk with Ali about making his modal indicate success
+            success: function() {} // need to talk with Ali about making his modal indicate success.
+            //remember to update docblock after writing success function
         })
     }
 
 
-    // DOCBLOCK ME
-    // gets selected date(s) (and times) into datetime format and puts into ajax data object, along with carParkId
-    function createAjaxData(carParkId) {
+    /**
+     * Puts selected date(s) (and times) into datetime format and puts into ajax data object, along with carParkId
+     *
+     * @param carParkId NUMBER
+     * @param carParkType STRING 'visitor' or 'staff'
+     * @returns OBJECT {carPark: STRING carParkId, fromDateTime: STRING, toDateTime: STRING}
+     */
+    //
+    function createAjaxData(carParkId, carParkType) {
 
-        var vd, // visitor date
-            vft, // visitor from-time
-            vtt, // visitor to-time
+        var visitorDate,
+            visitorFromTime,
+            visitorToTime,
 
-            sfd, // staff from-date
-            std, // staff to-date
+            staffFromDate,
+            staffToDate,
 
-            fdt, // from-datetime
-            tdt, // to-datetime
+            fromDateTime,
+            toDateTime,
 
             data
 
-        if (carParkId == 4) { // getting visitor selected date and times into a 'to' and 'from' datetime variable
+        if (carParkType == 'visitor') { // getting visitor selected date and times into a 'to' and 'from' datetime variable
 
-            vd = $('#visitorCal').datepicker('getFormattedDate')
-            vft = $('#fromHours').val() + ':' + $('#fromMinutes').val()
-            vtt = $('#toHours').val() + ':' + $('#toMinutes').val()
+            visitorDate = $('#visitorCal').datepicker('getFormattedDate')
+            visitorFromTime = $('#fromHours').val() + ':' + $('#fromMinutes').val()
+            visitorToTime = $('#toHours').val() + ':' + $('#toMinutes').val()
 
-            fdt = changeToDateTime(vd, vft)
-            tdt = changeToDateTime(vd, vtt)
+            fromDateTime = changeToDateTime(visitorDate, visitorFromTime, '00')
+            toDateTime = changeToDateTime(visitorDate, visitorToTime, '00')
 
         } else { // getting staff selected date and times into a 'to' and 'from' datetime variable
 
-            sfd = $('#fromCal').datepicker('getFormattedDate')
-            std = $('#toCal').datepicker('getFormattedDate')
+            staffFromDate = $('#fromCal').datepicker('getFormattedDate')
+            staffToDate = $('#toCal').datepicker('getFormattedDate')
 
-            fdt = changeToDateTime(sfd, "00:00")
-            tdt = changeToDateTime(std, "23:59")
+            fromDateTime = changeToDateTime(staffFromDate, '00:00', '00')
+            toDateTime = changeToDateTime(staffToDate, '23:59', '59')
 
         }
 
         data = {
-            carPark: carParkId,
-            fromDateTime: fdt,
-            toDateTime: tdt
+            carParkId: carParkId,
+            fromDateTime: fromDateTime,
+            toDateTime: toDateTime
         }
 
         return data
-
 
     }
 
 
     // sends ajax request when carpark4 (visitor:rich tea) book button is clicked
-    $('#carpark4').click(makeBooking(createAjaxData(4)))
-
-
-    // sends ajax request when staff carpark1 (staff:hobnob) book button is clicked
-    $('#carpark1').click(makeBooking(createAjaxData(1)))
-
-
-    // sends ajax request when staff carpark3 (staff:digestive) book button is clicked
-    $('#carpark3').click(makeBooking(createAjaxData(3)))
+    $('.book-button').click(function() {
+        makeBooking(
+            createAjaxData(
+                $(this).data('carparkId'),
+                $(this).data('isVisitor')
+            )
+        )
+    })
 
 })
 
