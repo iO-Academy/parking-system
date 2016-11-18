@@ -1,0 +1,146 @@
+main .container {
+  height: 100%;
+  padding-top: 30px;
+  overflow: hidden;
+}
+
+.form {
+  height: 100%;
+}
+
+.person-select {
+  padding: 0;
+  z-index: 3;
+}
+
+.person-select .btn {
+  height: 50%;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.person-select .btn:first-child {
+  border-bottom: 0;
+}
+
+.date-select {
+  height: 100%;
+  border-left: none;
+  border-right: none;
+  position: absolute;
+  right: 75%;
+  padding: 15px;
+  overflow: auto;
+  background-color: $snow;
+}
+
+.time-date-select {
+  border-left: none;
+  cursor: default;
+}
+
+.time-date-select:hover {
+  background-color: $date-time-hover;
+}
+
+.btn h2 {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  transform: translateY(50%);
+}
+
+#filters {
+  height: 310px;
+  overflow: hidden;
+  position: relative;
+}
+
+#staffButton,
+#visitorButton {
+  font-size: 32px;
+  padding: 50px 0;
+  position: relative;
+}
+
+#filters .btn[disabled] {
+  opacity: 1;
+}
+
+.slider {
+  height: 100%;
+  color: $dark-blue-gray;
+  border-top: 2px solid $pale-cerulean;
+  border-right: 2px solid $jelly-bean;
+  border-bottom: 2px solid $jelly-bean;
+}
+
+#staff-container {
+  width: 620px;
+  padding-left: 60px;
+}
+
+#visitor-container {
+  z-index: 2;
+  width: 380px;
+  padding-left: 90px;
+}
+
+#alien-container {
+  position: relative;
+  height: 240px;
+}
+
+#alien {
+  width: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 50px;
+}
+
+#speech-bubble {
+  background-color: $bubble-bg;
+  @include border-radius(20px);
+  height: 140px;
+  padding: 10px;
+  margin-top: 32px;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 20px 40px;
+  border-color: transparent transparent $pale-cerulean transparent;
+  left: -39px;
+  position: absolute;
+  bottom: 13px;
+}
+
+#staffSubmit {
+  position: absolute;
+  right: 25px;
+  bottom: 15px;
+}
+#visitorSubmit {
+  position: absolute;
+  right: 25px;
+  margin-top: 10px;
+}
+
+.carPark {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+.carPark h3 {
+  margin-top: 10px;
+}
+
+#availabilityContainer {
+  overflow: auto;
+}

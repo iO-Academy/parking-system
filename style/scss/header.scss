@@ -1,0 +1,35 @@
+header {
+  background-image: url("../images/stars.jpeg");
+  background-color: #004E64;
+  background-position: 58% 40%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+}
+
+.brand {
+  height: 80px;
+  margin-top: 42px;
+}
+
+.logo-bar {
+  background-color: $logo-bar-bg;
+  @include box-shadow($box-shadow);
+
+  img {
+    position: absolute;
+    width: 306px;
+    left: 327px;
+    bottom: -36px;
+  }
+
+  .container {
+    position: relative;
+    height: 100%;
+  }
+}
+
+.logo-bar .btn {
+  float: right;
+}
+
