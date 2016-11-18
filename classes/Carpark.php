@@ -80,14 +80,7 @@ class Carpark
         return $this->isVisitor;
     }
 
-    /**
-     * Calculates quantity of available spaces from carpark capacity and overlapping bookings, using user input
-     * @param $dateTimeFrom STRING date from which user desires to check availability
-     * @param $dateTimeTo STRING date to which user desires to check availability
-     * @param $bookingManager OBJECT containing PDO query for bookings
-     * @return INTEGER number of available spaces
-     */
-    public function getAvailability($dateTimeFrom, $dateTimeTo, $bookingManager) {
+    public function getSpacesBooked($dateTimeFrom, $dateTimeTo, getBookings $bookingManager) {
         if ($this->isVisitor) {
             $startValue = $this->getTimeStampFromTime($dateTimeFrom);
             $endValue = $this->getTimeStampFromTime($dateTimeTo, 1);
@@ -104,7 +97,20 @@ class Carpark
         $bookings = $bookingManager->getBookings($this->getId(), $dateTimeFrom, $dateTimeTo);
         $clashingBookings = $this->getConcurrentBookings($startValue, $endValue, $bookings, $increment,
             $measurement);
-        return $this->getCapacity() - max($clashingBookings);
+
+        return max($clashingBookings);
+    }
+
+
+    /**
+     * Calculates quantity of available spaces from carpark capacity and overlapping bookings, using user input
+     * @param $dateTimeFrom STRING date from which user desires to check availability
+     * @param $dateTimeTo STRING date to which user desires to check availability
+     * @param $bookingManager OBJECT containing PDO query for bookings
+     * @return INTEGER number of available spaces
+     */
+    public function getAvailability($dateTimeFrom, $dateTimeTo, getBookings $bookingManager) {
+        return $this->getCapacity() - $this->getSpacesBooked($dateTimeFrom, $dateTimeTo, $bookingManager);
     }
 
     /**

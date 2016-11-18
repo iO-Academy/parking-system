@@ -2,6 +2,9 @@
 
 class User {
 
+    const VISITOR_LIMIT = 5;
+    const STAFF_LIMIT = 1;
+
     private $id;
     private $email;
     private $hash;
@@ -175,5 +178,10 @@ class User {
         $query = $this->pdo->prepare($sql);
         $query->execute([':id' => $this->id]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getId() {
+        return $this->id;
     }
 }

@@ -6,7 +6,7 @@
  * Date: 16/11/2016
  * Time: 09:15
  */
-class BookingManager
+class BookingManager implements getBookings
 {
     const TABLE_NAME = 'bookings';
 
