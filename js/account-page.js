@@ -31,7 +31,6 @@ $(function () {
                         console.log(data);
                         if (!data.result) {
                             $('#errors').append(data.email)
-                            console.log(data.email)
                         } else {
                             $(".user-account-content").slideToggle()
                             if ($('#email').val() != '') {

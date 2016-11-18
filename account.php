@@ -48,8 +48,8 @@ if (!empty($_SESSION['userAuth'])) {
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
     <script src="js/account-page.js"></script>
     <title>Space Book</title>
 </head>
