@@ -39,11 +39,24 @@ $(function(){
                 if($('#password').val() != ""){
                     $("#password-field span").text($('#password').val())
                 }
-            }
-        }))
+}
+}))
 
-    })
 })
 
+    $('#addUser').change(function() {
+            if((validateEmail($('#inputEmail').val())) && ($('#newUserPassword').val().length >= 8) && ($('#firstName').val().length > 0) && ($('#lastName').val().length > 0)) {
+                $('#addUserBtn').prop('disabled', false)
+            }
+            else {
+                $('#addUserBtn').prop('disabled', true)
+            }
+        })
+})
 
-
+function validateEmail(email) {
+    var regEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.match(regEx)) {
+        return true;
+    }
+}
