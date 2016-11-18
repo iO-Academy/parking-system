@@ -240,6 +240,7 @@ $(function() {
                 $('#availabilityContainer').html('')
                 var message
                 console.log(result.quotaReached)
+                $('.modal').remove()
                 $.each(result, function(key, carParkDetails) {
 
                     if (!carParkDetails.hasOwnProperty('carparkName')) {
@@ -326,6 +327,11 @@ $(function() {
         }
 
         getAvailability(data)
+    })
+
+    $('body').on("click", '.bookButton', function() {
+        console.log('excalibur')
+        $('.carPark').remove()
     })
 
     //    ********************************************************************************
