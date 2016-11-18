@@ -4,9 +4,7 @@ require __DIR__ . '/../../autoload.php';
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase {
-
-    //TODO: public function __construct()
-
+    
     /**
      * Tests validateDetails() returns true when validating an existing email and password combination.
      */
@@ -143,6 +141,7 @@ class UserTest extends TestCase {
         $mockPDO = $this->createMock('PDO');
         $user = new User($mockPDO);
         $userDetails = ['id'=>'1', 'email'=>'example@email.com', 'hash'=>'123'];
+
         $this->assertTrue($user->setUserDetails($userDetails));
     }
 
@@ -153,7 +152,7 @@ class UserTest extends TestCase {
 // public function testChangeEmail()
 // public function testChangePassword()
 
-// Private functions impossible to test
+// functions impossible to test
 // private function validateEmail()
-
+// public function __construct() as sets private variable
 }
