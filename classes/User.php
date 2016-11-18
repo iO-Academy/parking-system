@@ -49,7 +49,7 @@ class User {
      *
      * @throws Exception
      */
-    function login($email, $password) {
+    public function login($email, $password) {
 
         if($this->validateEmail($email) && $this->validateDetails($email, $password)) {
             $token = sha1(time());
